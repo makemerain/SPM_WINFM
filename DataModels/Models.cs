@@ -152,28 +152,28 @@ namespace MAUI_SPM.DataModels
 
 
         }
-
-        public class SecionalSpeedModel
-        {
-            public double SectionKmFrom { get; set; }
-            public double SectionKmTo { get; set; }
-            public Int16 SectionalSpeed { get; set; }
-        }
+              
 
         public class CautionOrderModel
         {
-            public Single CautionOrderFrom { get; set; }
-            public Single CautionOrderTo { get; set; }
+            public double CautionOrderFrom { get; set; }
+            public double CautionOrderTo { get; set; }
             public int SpeedRestriction { get; set; }
         }
 
         public class BlockSecionModel
         {
             public string BlockSectionName { get; set; }
-            public Single BlockStartKms { get; set; }
-            public Single BlockEndKms { get; set; }
+            public double  BlockStartKms { get; set; }
+            public double BlockEndKms { get; set; }
         }
 
+        public class SectionalSpeedModel
+        {
+            public double SectionalSpeedFromKms { get; set; }
+            public double SectionalSpeedToKms { get; set; }
+            public int SectionalSpeed { get; set; }
+        }
         public static class EventDataTypesModel {
 
             public static List<String> EventDataModelTypesList()
@@ -183,6 +183,7 @@ namespace MAUI_SPM.DataModels
                       
 
         }
+
 
 
         

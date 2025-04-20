@@ -10,15 +10,24 @@ namespace SPM_WINFM.GlobalFunctions
 {
     public static class Extensions
     {
-        public static Single ConvertToSingle(this string InputString)
+        public static double ConvertToDouble(this string InputString)
         {
-            if (InputString.IsNumber())
+            if (double.TryParse(InputString, out var result))
             {
-                return Convert.ToSingle(InputString);
+                return Convert.ToDouble(InputString);
+            }
+            else
+                throw new Exception($"{InputString} Is a invalid Single precission Number Extension");            
+        }
+
+        public static Int16 ConvertToInt(this string InputString)
+        {
+            if (int.TryParse(InputString, out var result))
+            {
+                return Convert.ToInt16(result);
             }
             else
                 throw new Exception($"{InputString} Is a invalid Single precission Number Extension");
-            
         }
 
 

@@ -24,9 +24,7 @@ namespace SPM_WINFM
             DataParamsModel._QueryToTime = Dtp_QueryTo.Value;
             DataParamsModel._bpContinutyTestPeriod = TimeSpan.FromMinutes(15);
 
-            //  FrmDataAnalysis Frm = new FrmDataAnalysis(DataParamsModel);
-            //  Frm.Show(this);
-
+            
             InputDataValidation();
 
         }
@@ -43,7 +41,7 @@ namespace SPM_WINFM
             String LPdesignation_Depot = Txt_LpDegn_Depot.Text;
             String Grade_Experiance = Txt_LpGrade_Experiance.Text;
             String NliName_Depot = Txt_NliName_Depot.Text;
-            Single TrainStartKms = Txt_TrainStartKMnumber.Text.ConvertToSingle();
+            double TrainStartKms = Txt_TrainStartKMnumber.Text.ConvertToDouble();
             String LocoConsist = Txt_LocoConsist.Text;
             String TrainNumber = Txt_TrainNumber.Text;
             String TrainLoad = Txt_TrainLoad.Text;
@@ -305,7 +303,113 @@ namespace SPM_WINFM
             return true;
         }
 
+        /// <summary>
+        /// Get the Sectional Speed Grid
+        /// </summary>
+        /// <returns>SecionalSpeedModel</returns>
+        private List<Models.SectionalSpeedModel> Get_SectionalSpeedList()
+        {
+                        
+            List<Models.SectionalSpeedModel> sectionalSpeedList = new List<Models.SectionalSpeedModel>();
 
+            double  FromKms, ToKms;
+            Int16 speed;
+            
+            foreach (DataGridViewRow r in Dgv_SectionalSpeed.Rows)
+            {
+                if (!r.IsNewRow)
+                {
+                    FromKms = r.Cells["DgvCol_SectionSpeedFrom"].Value.ToString().ConvertToDouble();
+                    ToKms = r.Cells["DgvCol_SectionSpeedTo"].Value.ToString().ConvertToDouble();
+                    speed = r.Cells["DgvCol_SectionSpeed"].Value.ToString().ConvertToInt();
+
+                    sectionalSpeedList.Add(
+                        new Models.SectionalSpeedModel
+                        {
+                            SectionalSpeedFromKms = FromKms,
+                            SectionalSpeedToKms = ToKms,
+                            SectionalSpeed = speed
+                        }
+                        );
+                }
+               
+            }
+
+            return sectionalSpeedList;
+
+        }
+
+        /// <summary>
+        /// Get the caution orders Grid
+        /// </summary>
+        /// <returns>CautionOrderModel</returns>
+        private List<Models.CautionOrderModel> Get_CautionOrderList()
+        {
+
+            List<Models.CautionOrderModel> cautionorderList = new List<Models.CautionOrderModel>();
+
+            double cdFromKms, cdToKms;
+            Int16 speed;
+
+            foreach (DataGridViewRow r in DGV_CautionOrders.Rows)
+            {
+                if (!r.IsNewRow)
+                {
+                    cdFromKms = r.Cells["DgvCol_CDkmFrom"].Value.ToString().ConvertToDouble();
+                    cdToKms = r.Cells["DgvCol_CDkmTo"].Value.ToString().ConvertToDouble();
+                    speed = r.Cells["DgvCol_CDspeed"].Value.ToString().ConvertToInt();
+
+                    cautionorderList.Add(
+                        new Models.CautionOrderModel
+                        {
+                            CautionOrderFrom = cdFromKms,
+                            CautionOrderTo = cdToKms,
+                            SpeedRestriction = speed
+                        }
+                        );
+                }
+
+            }
+
+            return cautionorderList;
+
+        }
+
+        /// <summary>
+        /// Get the Block section Partition
+        /// </summary>
+        /// <returns>BlockSecionModel</returns>
+        private List<Models.BlockSecionModel> Get_BlockSectionPartitionList()
+        {
+
+            List<Models.BlockSecionModel> blockSectionModelList = new List<Models.BlockSecionModel>();
+
+            double FromKms, ToKms;
+            String BlockSectionName;
+
+            foreach (DataGridViewRow r in Dgv_BlockSectionPartition.Rows)
+            {
+                if (!r.IsNewRow)
+                {
+                    FromKms = r.Cells["DgvCol_BlockSectionStartKm"].Value.ToString().ConvertToDouble();
+                    ToKms = r.Cells["DgvCol_BlockSectionToKm"].Value.ToString().ConvertToDouble();
+                    BlockSectionName = r.Cells["DgvCol_BlockSectionName"].Value.ToString();
+
+                    blockSectionModelList.Add(
+                        new Models.BlockSecionModel
+                        {
+                            BlockStartKms = FromKms,
+                            BlockEndKms = ToKms,
+                            BlockSectionName = BlockSectionName
+                        }
+                        );
+                }
+
+            }
+
+            return blockSectionModelList;
+
+        }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {

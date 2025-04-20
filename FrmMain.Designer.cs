@@ -79,10 +79,10 @@
             groupBox1 = new GroupBox();
             groupBox4 = new GroupBox();
             Dgv_BlockSectionPartition = new DataGridView();
-            DgcCol_BlockSectionName = new DataGridViewTextBoxColumn();
-            DgcCol_BlockSectionStartKm = new DataGridViewTextBoxColumn();
-            DgcCol_BlockSectionToKm = new DataGridViewTextBoxColumn();
-            DgcCol_DropBlock = new DataGridViewButtonColumn();
+            DgvCol_BlockSectionName = new DataGridViewTextBoxColumn();
+            DgvCol_BlockSectionStartKm = new DataGridViewTextBoxColumn();
+            DgvCol_BlockSectionToKm = new DataGridViewTextBoxColumn();
+            DgvCol_DropBlock = new DataGridViewButtonColumn();
             groupBox3 = new GroupBox();
             Dgv_SectionalSpeed = new DataGridView();
             DgvCol_SectionSpeedFrom = new DataGridViewTextBoxColumn();
@@ -196,7 +196,7 @@
             Btn_LoadForAnlysis.Margin = new Padding(3, 4, 3, 4);
             Btn_LoadForAnlysis.Name = "Btn_LoadForAnlysis";
             Btn_LoadForAnlysis.Size = new Size(338, 74);
-            Btn_LoadForAnlysis.TabIndex = 3;
+            Btn_LoadForAnlysis.TabIndex = 18;
             Btn_LoadForAnlysis.Text = "&Load Data File For Analysis";
             Btn_LoadForAnlysis.UseVisualStyleBackColor = false;
             Btn_LoadForAnlysis.Click += Btn_LoadForAnlysis_Click;
@@ -204,6 +204,7 @@
             // Txt_TrainStartKMnumber
             // 
             Txt_TrainStartKMnumber.BorderStyle = BorderStyle.FixedSingle;
+            Txt_TrainStartKMnumber.CharacterCasing = CharacterCasing.Upper;
             Txt_TrainStartKMnumber.Dock = DockStyle.Fill;
             Txt_TrainStartKMnumber.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_TrainStartKMnumber.ForeColor = Color.Blue;
@@ -211,7 +212,7 @@
             Txt_TrainStartKMnumber.Margin = new Padding(3, 4, 3, 4);
             Txt_TrainStartKMnumber.Name = "Txt_TrainStartKMnumber";
             Txt_TrainStartKMnumber.Size = new Size(213, 32);
-            Txt_TrainStartKMnumber.TabIndex = 33;
+            Txt_TrainStartKMnumber.TabIndex = 4;
             // 
             // label17
             // 
@@ -237,7 +238,7 @@
             Dtp_QueryTo.Margin = new Padding(11, 4, 3, 4);
             Dtp_QueryTo.Name = "Dtp_QueryTo";
             Dtp_QueryTo.Size = new Size(330, 34);
-            Dtp_QueryTo.TabIndex = 24;
+            Dtp_QueryTo.TabIndex = 13;
             // 
             // label11
             // 
@@ -257,6 +258,7 @@
             // Txt_TrainLoad
             // 
             Txt_TrainLoad.BorderStyle = BorderStyle.FixedSingle;
+            Txt_TrainLoad.CharacterCasing = CharacterCasing.Upper;
             Txt_TrainLoad.Dock = DockStyle.Fill;
             Txt_TrainLoad.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_TrainLoad.ForeColor = Color.Blue;
@@ -264,11 +266,12 @@
             Txt_TrainLoad.Margin = new Padding(3, 4, 3, 4);
             Txt_TrainLoad.Name = "Txt_TrainLoad";
             Txt_TrainLoad.Size = new Size(213, 32);
-            Txt_TrainLoad.TabIndex = 15;
+            Txt_TrainLoad.TabIndex = 7;
             // 
             // Txt_TrainNumber
             // 
             Txt_TrainNumber.BorderStyle = BorderStyle.FixedSingle;
+            Txt_TrainNumber.CharacterCasing = CharacterCasing.Upper;
             Txt_TrainNumber.Dock = DockStyle.Fill;
             Txt_TrainNumber.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_TrainNumber.ForeColor = Color.Blue;
@@ -276,19 +279,21 @@
             Txt_TrainNumber.Margin = new Padding(3, 4, 3, 4);
             Txt_TrainNumber.Name = "Txt_TrainNumber";
             Txt_TrainNumber.Size = new Size(213, 32);
-            Txt_TrainNumber.TabIndex = 14;
+            Txt_TrainNumber.TabIndex = 6;
             // 
             // Txt_LocoPilotName
             // 
             Txt_LocoPilotName.BorderStyle = BorderStyle.FixedSingle;
+            Txt_LocoPilotName.CharacterCasing = CharacterCasing.Upper;
             Txt_LocoPilotName.Dock = DockStyle.Fill;
             Txt_LocoPilotName.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LocoPilotName.ForeColor = Color.Blue;
             Txt_LocoPilotName.Location = new Point(421, 11);
             Txt_LocoPilotName.Margin = new Padding(3, 4, 3, 4);
             Txt_LocoPilotName.Name = "Txt_LocoPilotName";
+            Txt_LocoPilotName.PlaceholderText = "Loco pilot name";
             Txt_LocoPilotName.Size = new Size(213, 32);
-            Txt_LocoPilotName.TabIndex = 11;
+            Txt_LocoPilotName.TabIndex = 0;
             // 
             // label4
             // 
@@ -424,6 +429,7 @@
             // Txt_LpDegn_Depot
             // 
             Txt_LpDegn_Depot.BorderStyle = BorderStyle.FixedSingle;
+            Txt_LpDegn_Depot.CharacterCasing = CharacterCasing.Upper;
             Txt_LpDegn_Depot.Dock = DockStyle.Fill;
             Txt_LpDegn_Depot.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LpDegn_Depot.ForeColor = Color.Blue;
@@ -431,11 +437,12 @@
             Txt_LpDegn_Depot.Margin = new Padding(3, 4, 3, 4);
             Txt_LpDegn_Depot.Name = "Txt_LpDegn_Depot";
             Txt_LpDegn_Depot.Size = new Size(213, 32);
-            Txt_LpDegn_Depot.TabIndex = 10;
+            Txt_LpDegn_Depot.TabIndex = 1;
             // 
             // Txt_LpGrade_Experiance
             // 
             Txt_LpGrade_Experiance.BorderStyle = BorderStyle.FixedSingle;
+            Txt_LpGrade_Experiance.CharacterCasing = CharacterCasing.Upper;
             Txt_LpGrade_Experiance.Dock = DockStyle.Fill;
             Txt_LpGrade_Experiance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LpGrade_Experiance.ForeColor = Color.Blue;
@@ -443,11 +450,12 @@
             Txt_LpGrade_Experiance.Margin = new Padding(3, 4, 3, 4);
             Txt_LpGrade_Experiance.Name = "Txt_LpGrade_Experiance";
             Txt_LpGrade_Experiance.Size = new Size(213, 32);
-            Txt_LpGrade_Experiance.TabIndex = 12;
+            Txt_LpGrade_Experiance.TabIndex = 2;
             // 
             // Txt_NliName_Depot
             // 
             Txt_NliName_Depot.BorderStyle = BorderStyle.FixedSingle;
+            Txt_NliName_Depot.CharacterCasing = CharacterCasing.Upper;
             Txt_NliName_Depot.Dock = DockStyle.Fill;
             Txt_NliName_Depot.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_NliName_Depot.ForeColor = Color.Blue;
@@ -455,7 +463,7 @@
             Txt_NliName_Depot.Margin = new Padding(3, 4, 3, 4);
             Txt_NliName_Depot.Name = "Txt_NliName_Depot";
             Txt_NliName_Depot.Size = new Size(213, 32);
-            Txt_NliName_Depot.TabIndex = 13;
+            Txt_NliName_Depot.TabIndex = 3;
             // 
             // label10
             // 
@@ -475,6 +483,7 @@
             // Txt_MajorSection
             // 
             Txt_MajorSection.BorderStyle = BorderStyle.FixedSingle;
+            Txt_MajorSection.CharacterCasing = CharacterCasing.Upper;
             Txt_MajorSection.Dock = DockStyle.Fill;
             Txt_MajorSection.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_MajorSection.ForeColor = Color.Blue;
@@ -482,11 +491,12 @@
             Txt_MajorSection.Margin = new Padding(3, 4, 3, 4);
             Txt_MajorSection.Name = "Txt_MajorSection";
             Txt_MajorSection.Size = new Size(213, 32);
-            Txt_MajorSection.TabIndex = 16;
+            Txt_MajorSection.TabIndex = 8;
             // 
             // Txt_AnalysedSection
             // 
             Txt_AnalysedSection.BorderStyle = BorderStyle.FixedSingle;
+            Txt_AnalysedSection.CharacterCasing = CharacterCasing.Upper;
             Txt_AnalysedSection.Dock = DockStyle.Fill;
             Txt_AnalysedSection.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_AnalysedSection.ForeColor = Color.Blue;
@@ -494,11 +504,12 @@
             Txt_AnalysedSection.Margin = new Padding(3, 4, 3, 4);
             Txt_AnalysedSection.Name = "Txt_AnalysedSection";
             Txt_AnalysedSection.Size = new Size(213, 32);
-            Txt_AnalysedSection.TabIndex = 17;
+            Txt_AnalysedSection.TabIndex = 9;
             // 
             // txt_StockType
             // 
             txt_StockType.BorderStyle = BorderStyle.FixedSingle;
+            txt_StockType.CharacterCasing = CharacterCasing.Upper;
             txt_StockType.Dock = DockStyle.Fill;
             txt_StockType.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_StockType.ForeColor = Color.Blue;
@@ -506,11 +517,12 @@
             txt_StockType.Margin = new Padding(3, 4, 3, 4);
             txt_StockType.Name = "txt_StockType";
             txt_StockType.Size = new Size(213, 32);
-            txt_StockType.TabIndex = 18;
+            txt_StockType.TabIndex = 10;
             // 
             // Txt_BrakePower
             // 
             Txt_BrakePower.BorderStyle = BorderStyle.FixedSingle;
+            Txt_BrakePower.CharacterCasing = CharacterCasing.Upper;
             Txt_BrakePower.Dock = DockStyle.Fill;
             Txt_BrakePower.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_BrakePower.ForeColor = Color.Blue;
@@ -518,7 +530,7 @@
             Txt_BrakePower.Margin = new Padding(3, 4, 3, 4);
             Txt_BrakePower.Name = "Txt_BrakePower";
             Txt_BrakePower.Size = new Size(213, 32);
-            Txt_BrakePower.TabIndex = 19;
+            Txt_BrakePower.TabIndex = 11;
             // 
             // label12
             // 
@@ -560,7 +572,7 @@
             Dtp_QueryFrom.Margin = new Padding(11, 4, 3, 4);
             Dtp_QueryFrom.Name = "Dtp_QueryFrom";
             Dtp_QueryFrom.Size = new Size(330, 34);
-            Dtp_QueryFrom.TabIndex = 23;
+            Dtp_QueryFrom.TabIndex = 12;
             // 
             // Cbo_SpeedometerType
             // 
@@ -572,7 +584,7 @@
             Cbo_SpeedometerType.Margin = new Padding(11, 4, 3, 4);
             Cbo_SpeedometerType.Name = "Cbo_SpeedometerType";
             Cbo_SpeedometerType.Size = new Size(330, 36);
-            Cbo_SpeedometerType.TabIndex = 25;
+            Cbo_SpeedometerType.TabIndex = 14;
             // 
             // label16
             // 
@@ -606,6 +618,7 @@
             // Txt_LocoConsist
             // 
             Txt_LocoConsist.BorderStyle = BorderStyle.FixedSingle;
+            Txt_LocoConsist.CharacterCasing = CharacterCasing.Upper;
             Txt_LocoConsist.Dock = DockStyle.Fill;
             Txt_LocoConsist.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LocoConsist.ForeColor = Color.Blue;
@@ -613,7 +626,7 @@
             Txt_LocoConsist.Margin = new Padding(3, 4, 3, 4);
             Txt_LocoConsist.Name = "Txt_LocoConsist";
             Txt_LocoConsist.Size = new Size(213, 32);
-            Txt_LocoConsist.TabIndex = 35;
+            Txt_LocoConsist.TabIndex = 5;
             // 
             // label14
             // 
@@ -633,13 +646,14 @@
             // label15
             // 
             label15.AutoSize = true;
+            label15.Dock = DockStyle.Fill;
             label15.FlatStyle = FlatStyle.Flat;
             label15.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
             label15.Location = new Point(1088, 215);
             label15.Margin = new Padding(11, 0, 3, 0);
             label15.Name = "label15";
-            label15.Size = new Size(177, 28);
+            label15.Size = new Size(198, 40);
             label15.TabIndex = 37;
             label15.Text = "ANALYSER DEGN :";
             label15.TextAlign = ContentAlignment.MiddleRight;
@@ -647,6 +661,7 @@
             // Txt_Analyser
             // 
             Txt_Analyser.BorderStyle = BorderStyle.FixedSingle;
+            Txt_Analyser.CharacterCasing = CharacterCasing.Upper;
             Txt_Analyser.Dock = DockStyle.Fill;
             Txt_Analyser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_Analyser.ForeColor = Color.Blue;
@@ -654,11 +669,12 @@
             Txt_Analyser.Margin = new Padding(11, 4, 3, 4);
             Txt_Analyser.Name = "Txt_Analyser";
             Txt_Analyser.Size = new Size(330, 32);
-            Txt_Analyser.TabIndex = 38;
+            Txt_Analyser.TabIndex = 16;
             // 
             // Txt_AnalyserDegn
             // 
             Txt_AnalyserDegn.BorderStyle = BorderStyle.FixedSingle;
+            Txt_AnalyserDegn.CharacterCasing = CharacterCasing.Upper;
             Txt_AnalyserDegn.Dock = DockStyle.Fill;
             Txt_AnalyserDegn.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_AnalyserDegn.ForeColor = Color.Blue;
@@ -666,7 +682,7 @@
             Txt_AnalyserDegn.Margin = new Padding(11, 4, 3, 4);
             Txt_AnalyserDegn.Name = "Txt_AnalyserDegn";
             Txt_AnalyserDegn.Size = new Size(330, 32);
-            Txt_AnalyserDegn.TabIndex = 39;
+            Txt_AnalyserDegn.TabIndex = 17;
             // 
             // Txt_ExcelPath
             // 
@@ -679,7 +695,7 @@
             Txt_ExcelPath.Name = "Txt_ExcelPath";
             Txt_ExcelPath.ReadOnly = true;
             Txt_ExcelPath.Size = new Size(330, 32);
-            Txt_ExcelPath.TabIndex = 31;
+            Txt_ExcelPath.TabIndex = 15;
             // 
             // groupBox1
             // 
@@ -714,7 +730,7 @@
             Dgv_BlockSectionPartition.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Dgv_BlockSectionPartition.BorderStyle = BorderStyle.None;
             Dgv_BlockSectionPartition.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Dgv_BlockSectionPartition.Columns.AddRange(new DataGridViewColumn[] { DgcCol_BlockSectionName, DgcCol_BlockSectionStartKm, DgcCol_BlockSectionToKm, DgcCol_DropBlock });
+            Dgv_BlockSectionPartition.Columns.AddRange(new DataGridViewColumn[] { DgvCol_BlockSectionName, DgvCol_BlockSectionStartKm, DgvCol_BlockSectionToKm, DgvCol_DropBlock });
             Dgv_BlockSectionPartition.Dock = DockStyle.Fill;
             Dgv_BlockSectionPartition.Location = new Point(3, 30);
             Dgv_BlockSectionPartition.Margin = new Padding(11, 13, 11, 13);
@@ -722,48 +738,50 @@
             Dgv_BlockSectionPartition.RowHeadersWidth = 51;
             Dgv_BlockSectionPartition.Size = new Size(671, 301);
             Dgv_BlockSectionPartition.TabIndex = 0;
+            Dgv_BlockSectionPartition.TabStop = false;
             Dgv_BlockSectionPartition.CellContentClick += Dgv_BlockSectionPartition_CellContentClick;
             // 
-            // DgcCol_BlockSectionName
+            // DgvCol_BlockSectionName
             // 
-            DgcCol_BlockSectionName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DgvCol_BlockSectionName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.NullValue = null;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            DgcCol_BlockSectionName.DefaultCellStyle = dataGridViewCellStyle1;
-            DgcCol_BlockSectionName.HeaderText = "BLOCK NAME";
-            DgcCol_BlockSectionName.MaxInputLength = 10;
-            DgcCol_BlockSectionName.MinimumWidth = 6;
-            DgcCol_BlockSectionName.Name = "DgcCol_BlockSectionName";
+            DgvCol_BlockSectionName.DefaultCellStyle = dataGridViewCellStyle1;
+            DgvCol_BlockSectionName.HeaderText = "BLOCK NAME";
+            DgvCol_BlockSectionName.MaxInputLength = 10;
+            DgvCol_BlockSectionName.MinimumWidth = 6;
+            DgvCol_BlockSectionName.Name = "DgvCol_BlockSectionName";
             // 
-            // DgcCol_BlockSectionStartKm
+            // DgvCol_BlockSectionStartKm
             // 
-            DgcCol_BlockSectionStartKm.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DgvCol_BlockSectionStartKm.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle2.Format = "N2";
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            DgcCol_BlockSectionStartKm.DefaultCellStyle = dataGridViewCellStyle2;
-            DgcCol_BlockSectionStartKm.HeaderText = "KM START";
-            DgcCol_BlockSectionStartKm.MaxInputLength = 10;
-            DgcCol_BlockSectionStartKm.MinimumWidth = 6;
-            DgcCol_BlockSectionStartKm.Name = "DgcCol_BlockSectionStartKm";
+            DgvCol_BlockSectionStartKm.DefaultCellStyle = dataGridViewCellStyle2;
+            DgvCol_BlockSectionStartKm.HeaderText = "KM START";
+            DgvCol_BlockSectionStartKm.MaxInputLength = 10;
+            DgvCol_BlockSectionStartKm.MinimumWidth = 6;
+            DgvCol_BlockSectionStartKm.Name = "DgvCol_BlockSectionStartKm";
             // 
-            // DgcCol_BlockSectionToKm
+            // DgvCol_BlockSectionToKm
             // 
-            DgcCol_BlockSectionToKm.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DgvCol_BlockSectionToKm.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle3.Format = "N2";
             dataGridViewCellStyle3.NullValue = null;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            DgcCol_BlockSectionToKm.DefaultCellStyle = dataGridViewCellStyle3;
-            DgcCol_BlockSectionToKm.HeaderText = "KM END";
-            DgcCol_BlockSectionToKm.MaxInputLength = 3;
-            DgcCol_BlockSectionToKm.MinimumWidth = 6;
-            DgcCol_BlockSectionToKm.Name = "DgcCol_BlockSectionToKm";
+            DgvCol_BlockSectionToKm.DefaultCellStyle = dataGridViewCellStyle3;
+            DgvCol_BlockSectionToKm.HeaderText = "KM END";
+            DgvCol_BlockSectionToKm.MaxInputLength = 3;
+            DgvCol_BlockSectionToKm.MinimumWidth = 6;
+            DgvCol_BlockSectionToKm.Name = "DgvCol_BlockSectionToKm";
             // 
-            // DgcCol_DropBlock
+            // DgvCol_DropBlock
             // 
-            DgcCol_DropBlock.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            DgcCol_DropBlock.HeaderText = "DROP";
-            DgcCol_DropBlock.MinimumWidth = 6;
-            DgcCol_DropBlock.Name = "DgcCol_DropBlock";
+            DgvCol_DropBlock.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DgvCol_DropBlock.HeaderText = "DROP";
+            DgvCol_DropBlock.MinimumWidth = 6;
+            DgvCol_DropBlock.Name = "DgvCol_DropBlock";
             // 
             // groupBox3
             // 
@@ -789,6 +807,7 @@
             Dgv_SectionalSpeed.RowHeadersWidth = 51;
             Dgv_SectionalSpeed.Size = new Size(497, 301);
             Dgv_SectionalSpeed.TabIndex = 0;
+            Dgv_SectionalSpeed.TabStop = false;
             Dgv_SectionalSpeed.CellContentClick += Dgv_SectionalSpeed_CellContentClick;
             // 
             // DgvCol_SectionSpeedFrom
@@ -857,6 +876,7 @@
             DGV_CautionOrders.RowHeadersWidth = 51;
             DGV_CautionOrders.Size = new Size(556, 301);
             DGV_CautionOrders.TabIndex = 0;
+            DGV_CautionOrders.TabStop = false;
             DGV_CautionOrders.CellContentClick += DGV_CautionOrders_CellContentClick;
             // 
             // DgvCol_CDkmFrom
@@ -977,10 +997,6 @@
         private DataGridViewTextBoxColumn DgvCol_SectionSpeedTo;
         private DataGridViewTextBoxColumn DgvCol_SectionSpeed;
         private DataGridViewButtonColumn DgvCol_Drop_SectionSpeed;
-        private DataGridViewTextBoxColumn DgcCol_BlockSectionName;
-        private DataGridViewTextBoxColumn DgcCol_BlockSectionStartKm;
-        private DataGridViewTextBoxColumn DgcCol_BlockSectionToKm;
-        private DataGridViewButtonColumn DgcCol_DropBlock;
         private DataGridViewTextBoxColumn DgvCol_CDkmFrom;
         private DataGridViewTextBoxColumn DgvCol_CDkmTo;
         private DataGridViewTextBoxColumn DgvCol_CDspeed;
@@ -989,5 +1005,9 @@
         private Label label15;
         private TextBox Txt_Analyser;
         private TextBox Txt_AnalyserDegn;
+        private DataGridViewTextBoxColumn DgvCol_BlockSectionName;
+        private DataGridViewTextBoxColumn DgvCol_BlockSectionStartKm;
+        private DataGridViewTextBoxColumn DgvCol_BlockSectionToKm;
+        private DataGridViewButtonColumn DgvCol_DropBlock;
     }
 }
