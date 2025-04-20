@@ -1,4 +1,5 @@
 ﻿using MAUI_SPM.ApplicationTools;
+using MAUI_SPM.DataModels;
 
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,14 @@ namespace SPM_WINFM
 {
     public partial class FrmDataAnalysis : Form
     {
-        public FrmDataAnalysis(DataFilterParams datafilterparams)
+        public FrmDataAnalysis(Models.TrainInformationModel trainInformationModel)
         {
             InitializeComponent();
-            this._FilterParams = datafilterparams;
-            _dataRepository = new DataRepositoryManager(_FilterParams);
+           
+            this._TrainInfoModel = trainInformationModel;
         }
 
-        private DataFilterParams _FilterParams = new DataFilterParams();
+        private Models.TrainInformationModel _TrainInfoModel;
         private DataRepositoryManager _dataRepository;
         
         private void FrmDataAnalysis_Load(object sender, EventArgs e)

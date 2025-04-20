@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
@@ -10,20 +12,13 @@ namespace MAUI_SPM.DataModels
     public class Models
     {
         public class LaxvenSpeedometerModel
-        {
+        {          
 
-            public LaxvenSpeedometerModel(Boolean IsPressureinPSI = true)
-            {
-                this._IsPressureinPSI = IsPressureinPSI;
-            }
-
-            bool _IsPressureinPSI = false;
-
+           
             public DateTime RunDateAndTime { get; set; }
             public Single TrainSpeed { get; set; }
-            public Single DistanceCounter { get; set; }
-            public Single TractiveEffort { get; set; }
-            public Single GeneratedPower { get; set; }
+            public Single CumulativeDistanceCounter { get; set; }
+            public Single TractiveEffort { get; set; }            
             public Single BPpressure { get; set; }
             public Single BCpressure { get; set; }
             public Single TL24voltage { get; set; }
@@ -36,23 +31,18 @@ namespace MAUI_SPM.DataModels
             public Boolean PCS { get; set; }
             public Boolean PENALTY { get; set; }
 
-            public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure, _IsPressureinPSI); } }
-            public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure, _IsPressureinPSI); } }
+            public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
+            public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
         }
 
         public class MedhaSpeedometerModel
         {
-            public MedhaSpeedometerModel(Boolean IsPressureinPSI = true)
-            {
-                this._IsPressureinPSI = IsPressureinPSI;
-            }
-
-            bool _IsPressureinPSI = false;
-
+            
+            
             public DateTime Rundate { get; set; }
             public TimeSpan Runtime { get; set; }
             public Single TrainSpeed { get; set; }
-            public Single DistanceCounter { get; set; }
+            public Single RotationalDistanceCounter { get; set; }
             public Single TractiveEffort { get; set; }
             public Single GeneratedPower { get; set; }
             public Single BPpressure { get; set; }
@@ -72,18 +62,16 @@ namespace MAUI_SPM.DataModels
 
             public DateTime RunDateAndTime { get { return Rundate.Add(Runtime); } }
 
-            public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure, _IsPressureinPSI); } }
-            public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure, _IsPressureinPSI); } }
+            public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
+            public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
 
         }
 
-        private static double PressureModifierToMetric(Single PressureInPSI, Boolean IsBritishSystem)
+        private static double PressureModifierToMetric(Single PressureInPSI)
         {
-            if (IsBritishSystem)
-            {
+            
                 return Math.Round((PressureInPSI * 0.070307), 2);
-            }
-            else return PressureInPSI;
+            
         }
 
         public class TrainInformationModel
@@ -98,13 +86,13 @@ namespace MAUI_SPM.DataModels
                 String majorSection,
                 String analysedSection,
                 String stockType,
-                String brakePower,
+                String brakePower_KBDpercentage,                
                 DateTime queryStartFromTime,
                 DateTime queryEndTime,
-                String spmType,
-                double trainStartTolerance,
-                int totalLoopLines,
-                String excelPath)
+                String spmType,                
+                String excelPath,
+                String analyserName,
+                String analyserDegn, Boolean isDataValidated)
             {
                 this._LocoPilotName = locopilotName;
                 this._LPdesignation_Depot = lPdesignation_Depot;
@@ -115,14 +103,14 @@ namespace MAUI_SPM.DataModels
                 this._MajorSection = majorSection;
                 this._AnalysedSection = analysedSection;
                 this._StockType = stockType;
-                this._BrakePower = brakePower;
+                this._BrakePower = brakePower_KBDpercentage;
                 this._QueryStartFromTime = queryStartFromTime;
                 this._QueryEndTime = queryEndTime;
                 this._SPMtype = spmType;
-                this._TrainStartTolerance = trainStartTolerance;
-                this._TotalLoopLines = totalLoopLines;
+                this._AnalyserName = analyserName;
+                this._AnalyserDegn = analyserDegn;
                 this._ExcelFilePath = excelPath;
-
+                this.IsDataValidated = isDataValidated;
             }
 
             private String _LocoPilotName;
@@ -138,10 +126,10 @@ namespace MAUI_SPM.DataModels
             private String _BrakePower;
             private DateTime _QueryStartFromTime;
             private DateTime _QueryEndTime;
-            private String _SPMtype;
-            private double _TrainStartTolerance = 0.0;
-            private int _TotalLoopLines = 0;
+            private String _SPMtype;            
             private string _ExcelFilePath;
+            private String _AnalyserName;
+            private String _AnalyserDegn;
 
             public String Get_LocoPilotName { get { return _LocoPilotName; } }
             public String Get_LPdesignation_Depot { get { return _LPdesignation_Depot; } }
@@ -156,13 +144,20 @@ namespace MAUI_SPM.DataModels
             public String Get_BrakePower { get { return _BrakePower; } }
             public DateTime Get_QueryStartFromTime { get { return _QueryStartFromTime; } }
             public DateTime Get_QueryEndTime { get { return _QueryEndTime; } }
-            public String Get_SPMtype { get { return _SPMtype; } }
-            public double Get_TrainStartTolerance { get { return _TrainStartTolerance; } }
-            public int Get_TotalLoopLines { get { return _TotalLoopLines; } }
+            public String Get_SPMtype { get { return _SPMtype; } }           
             public String Get_ExcelPath { get { return _ExcelFilePath; } }
+            public String Get_AnalyserName { get { return _AnalyserName; } }
+            public String Get_AnalyserDegn { get { return _AnalyserDegn; } }
+            public Boolean IsDataValidated { get; set; }
 
 
+        }
 
+        public class SecionalSpeedModel
+        {
+            public double SectionKmFrom { get; set; }
+            public double SectionKmTo { get; set; }
+            public Int16 SectionalSpeed { get; set; }
         }
 
         public class CautionOrderModel
@@ -171,6 +166,26 @@ namespace MAUI_SPM.DataModels
             public Single CautionOrderTo { get; set; }
             public int SpeedRestriction { get; set; }
         }
+
+        public class BlockSecionModel
+        {
+            public string BlockSectionName { get; set; }
+            public Single BlockStartKms { get; set; }
+            public Single BlockEndKms { get; set; }
+        }
+
+        public static class EventDataTypesModel {
+
+            public static List<String> EventDataModelTypesList()
+            {
+                return new List<String> { "MEDHA-MRT","MEDHA-MLC","LAXVEN"};
+            }                
+                      
+
+        }
+
+
+        
     }
 }
 

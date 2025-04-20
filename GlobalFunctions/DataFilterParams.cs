@@ -11,7 +11,7 @@ namespace MAUI_SPM.ApplicationTools
 
        
         public String _excelFilePath { get; set; }
-        public SpeedometerTypes.SPMtypes _speedoMeterType { get; set; }
+        public String _speedoMeterType { get; set; }
         public DateTime _QueryTime { get; set; }
         public DateTime _QueryToTime { get; set; }
         public TimeSpan _bpContinutyTestPeriod { get; set; }
