@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="8.0.2" />
     <PackageReference Include="LinqToExcel_x64" Version="1.10.1" />
   </ItemGroup>
 

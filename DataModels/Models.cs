@@ -16,21 +16,13 @@ namespace MAUI_SPM.DataModels
 
            
             public DateTime RunDateAndTime { get; set; }
-            public Single TrainSpeed { get; set; }
-            public Single CumulativeDistanceCounter { get; set; }
-            public Single TractiveEffort { get; set; }            
-            public Single BPpressure { get; set; }
-            public Single BCpressure { get; set; }
-            public Single TL24voltage { get; set; }
-            public Boolean GeneraterRequest { get; set; }
-            public string ReverserPosition { get; set; }
-            public string Throttle { get; set; }
-            public Boolean Horn { get; set; }
-            public Boolean Headlight1 { get; set; }
-            public Boolean Headlight2 { get; set; }
-            public Boolean PCS { get; set; }
-            public Boolean PENALTY { get; set; }
-
+            public double TrainSpeed { get; set; }
+            public double CumulativeDistanceCounter { get; set; }
+            public double TractiveEffort { get; set; }            
+            public double BPpressure { get; set; }
+            public double BCpressure { get; set; }            
+            public int Throttle { get; set; }
+            public string Horn { get; set; }            
             public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
             public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
         }
@@ -45,29 +37,17 @@ namespace MAUI_SPM.DataModels
             public Single RotationalDistanceCounter { get; set; }
             public Single TractiveEffort { get; set; }
             public Single GeneratedPower { get; set; }
-            public Single BPpressure { get; set; }
-            public Single BCpressure { get; set; }
-            public Single TL24voltage { get; set; }
-
-            public string Throttle { get; set; }
-            public string ReverserPosition { get; set; }
-
-            public string GeneraterRequest { get; set; }
-
-            public Boolean Horn { get; set; }
-            public Boolean Headlight1 { get; set; }
-            public Boolean Headlight2 { get; set; }
-            public Boolean PCS { get; set; }
-            public Boolean PENALTY { get; set; }
-
+            public Double BPpressure { get; set; }
+            public Double BCpressure { get; set; }
+            public String Horn { get; set; }
+            public int Throttle { get; set; }    
             public DateTime RunDateAndTime { get { return Rundate.Add(Runtime); } }
-
             public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
             public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
 
         }
 
-        private static double PressureModifierToMetric(Single PressureInPSI)
+        private static double PressureModifierToMetric(double PressureInPSI)
         {
             
                 return Math.Round((PressureInPSI * 0.070307), 2);
