@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -7,41 +9,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
 
+using static OfficeOpenXml.ExcelErrorValue;
+
 namespace MAUI_SPM.DataModels
 {
     public class Models
     {
-        public class LaxvenSpeedometerModel
-        {          
+        public class LaxvenSpeedometerModel 
+        {
 
-           
             public DateTime RunDateAndTime { get; set; }
             public double TrainSpeed { get; set; }
+            public double RotationalDistanceCounter { get; set; }
             public double CumulativeDistanceCounter { get; set; }
-            public double TractiveEffort { get; set; }            
+            public double TractiveEffort { get; set; }
             public double BPpressure { get; set; }
-            public double BCpressure { get; set; }            
+            public double BCpressure { get; set; }
             public int Throttle { get; set; }
-            public string Horn { get; set; }            
+            public string Horn { get; set; }
+
             public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
             public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
+
         }
 
         public class MedhaSpeedometerModel
         {
-            
-            
+                        
             public DateTime Rundate { get; set; }
             public TimeSpan Runtime { get; set; }
+            public DateTime RunDateAndTime { get { return Rundate.Add(Runtime); } }
             public Single TrainSpeed { get; set; }
             public Single RotationalDistanceCounter { get; set; }
-            public Single TractiveEffort { get; set; }
-            public Single GeneratedPower { get; set; }
+           // public Single RotationalDistance { get; set; }
+            public Single CumulativeDistanceCounter { get; set; }
+            public Single TractiveEffort { get; set; }           
             public Double BPpressure { get; set; }
             public Double BCpressure { get; set; }
             public String Horn { get; set; }
             public int Throttle { get; set; }    
-            public DateTime RunDateAndTime { get { return Rundate.Add(Runtime); } }
+            
             public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
             public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
 
@@ -164,7 +171,19 @@ namespace MAUI_SPM.DataModels
 
         }
 
+        interface ICommonProperties
+        {
 
+            public DateTime RunDateAndTime { get; set; }
+            public Double TrainSpeed { get; set; }            
+            public double CumulativeDistanceCounter { get; set; }
+            public Double TractiveEffort { get; set; }            
+            public String Horn { get; set; }
+            public int Throttle { get; set; }
+           
+            public double BPpressureMetric { get; set; } 
+            public double BCpressureMetric { get; set; }
+        }
 
         
     }

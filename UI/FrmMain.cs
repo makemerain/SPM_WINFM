@@ -15,17 +15,23 @@ namespace SPM_WINFM
         }
 
         private Models.TrainInformationModel trainInformationModel;
-        private DataFilterParams DataParamsModel = new DataFilterParams();
+        private List<Models.CautionOrderModel> cautionOrderModelList = new();
+        private List<Models.SectionalSpeedModel> sectionalSpeedList = new();
+        private List<Models.BlockSecionModel> blockSectionList = new();
+
         private void Btn_LoadForAnlysis_Click(object sender, EventArgs e)
         {
 
-            DataParamsModel._speedoMeterType = Cbo_SpeedometerType.Text;
-            DataParamsModel._QueryTime = Dtp_QueryFrom.Value;
-            DataParamsModel._QueryToTime = Dtp_QueryTo.Value;
-            DataParamsModel._bpContinutyTestPeriod = TimeSpan.FromMinutes(15);
+            trainInformationModel = InputDataValidation();
 
-            
-            InputDataValidation();
+            if (trainInformationModel == null) return;
+            if (Validate_CautionOrderGrid()) { cautionOrderModelList = Get_CautionOrderList(); } else return;
+            if (Validate_SectionalSpeedGrid()) { sectionalSpeedList = Get_SectionalSpeedList(); } else return;
+            if (Validate_BlockSectioningGrid()) { blockSectionList = Get_BlockSectionPartitionList(); } else return;
+
+
+            FrmDataAnalysis f = new FrmDataAnalysis(trainInformationModel, cautionOrderModelList, sectionalSpeedList, blockSectionList);
+            f.Show(this);
 
         }
 
@@ -51,7 +57,7 @@ namespace SPM_WINFM
             String BrakePower_Kbd = Txt_BrakePower.Text;
             DateTime QueryFromTime = Dtp_QueryFrom.Value;
             DateTime QueryToTime = Dtp_QueryTo.Value;
-            String SPMtype = Cbo_SpeedometerType.SelectedText;
+            String SPMtype = Cbo_SpeedometerType.Text; 
             String ExcelPath = Txt_ExcelPath.Text;
             String AnalyserName = Txt_Analyser.Text;
             String Analyserdesignation = Txt_AnalyserDegn.Text;
@@ -128,13 +134,13 @@ namespace SPM_WINFM
                 Dtp_QueryFrom.Focus();
                 return null;
             }
-            else if (SPMtype == "" || Cbo_SpeedometerType.SelectedIndex < 0)
+            else if (Cbo_SpeedometerType.SelectedIndex < 0)
             {
                 Display.InfoMessage("Select proper SPM type");
                 Cbo_SpeedometerType.Focus();
                 return null;
             }
-            else if (ExcelPath == "" || File.Exists(ExcelPath))
+            else if (ExcelPath == "" || !File.Exists(ExcelPath))
             {
                 Display.InfoMessage("Invalid Excel path OR the file Doesn't exists");
                 Txt_ExcelPath.Focus();
@@ -152,7 +158,7 @@ namespace SPM_WINFM
                 Txt_TrainNumber.Focus();
                 return null;
             }
-            else if (!Validate_CautionOrderGrid() || !Validate_SectionalSpeedGrid() || !Validate_BlockSectioningGrid() )
+            else if (!Validate_CautionOrderGrid() || !Validate_SectionalSpeedGrid() || !Validate_BlockSectioningGrid())
             {
                 Display.InfoMessage("Invalid Grid Configurations noticed");
                 return null;
@@ -220,7 +226,8 @@ namespace SPM_WINFM
                     }
                     else return true;
                 }
-            } return true;
+            }
+            return true;
         }
 
         /// <summary>
@@ -309,12 +316,12 @@ namespace SPM_WINFM
         /// <returns>SecionalSpeedModel</returns>
         private List<Models.SectionalSpeedModel> Get_SectionalSpeedList()
         {
-                        
+
             List<Models.SectionalSpeedModel> sectionalSpeedList = new List<Models.SectionalSpeedModel>();
 
-            double  FromKms, ToKms;
+            double FromKms, ToKms;
             Int16 speed;
-            
+
             foreach (DataGridViewRow r in Dgv_SectionalSpeed.Rows)
             {
                 if (!r.IsNewRow)
@@ -332,7 +339,7 @@ namespace SPM_WINFM
                         }
                         );
                 }
-               
+
             }
 
             return sectionalSpeedList;
@@ -443,6 +450,30 @@ namespace SPM_WINFM
                 Display.InfoDecission("Delete Block section row ?") == true)
             {
                 Dgv_BlockSectionPartition.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void Txt_ExcelPath_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Txt_ExcelPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog O = new OpenFileDialog();
+            O.Filter = "Excel files|*.xls;*.xlsx;";
+            O.Multiselect = false;
+            O.Title = "Direct to Event data file";
+
+
+            if (O.ShowDialog() == DialogResult.OK)
+            {
+                Txt_ExcelPath.Text = O.FileName;
+            }
+            else
+            {
+                Txt_ExcelPath.Text = "";
+                O.Dispose();
             }
         }
     }

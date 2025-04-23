@@ -82,6 +82,7 @@ namespace SPM_WINFM.GlobalFunctions
                         MedhaModel.Runtime = runTime;
                         MedhaModel.TrainSpeed = speed;
                         MedhaModel.RotationalDistanceCounter = rotationalDistance;
+                        MedhaModel.CumulativeDistanceCounter += rotationalDistance;
                         MedhaModel.BPpressure = bpPressure;
                         MedhaModel.BCpressure = bcPressure;
                         MedhaModel.Throttle = throttle;
@@ -122,7 +123,10 @@ namespace SPM_WINFM.GlobalFunctions
             int StartRow = 7;
             DateTime runDateAndTime; // Col 1            
             int speed; // col C
-            int cumulativelDistance; // Col D
+            double rotationalDistance;
+            double rotationalDistanceNextRow;
+            double NetRotation;
+            double cumulativelDistance = 0; // Col D
             double tractiveEffort; // Col E
             double bpPressure; // Col G
             double bcPressure; // Col H
@@ -137,14 +141,25 @@ namespace SPM_WINFM.GlobalFunctions
                 {
                     runDateAndTime = Ws.Cells[1, i].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");                    
                     speed = Ws.Cells[3, i].Value.ToString().ConvertToInt();
-                    cumulativelDistance = Ws.Cells[4, i].Value.ToString().ConvertToInt();
+                    rotationalDistance = Ws.Cells[4, i].Value.ToString().ConvertToDouble();
+
+                    // Get the next row distance
+                    if (!String.IsNullOrWhiteSpace(Ws.Cells[1, i + 1].Value?.ToString()))
+                    {
+                        rotationalDistanceNextRow = Ws.Cells[4, i].Value.ToString().ConvertToDouble();
+                    }
+                    else rotationalDistanceNextRow = 0;
+
+                    NetRotation = rotationalDistanceNextRow - rotationalDistance;
+                    cumulativelDistance += NetRotation;
+
                     tractiveEffort = Ws.Cells[5, i].Value.ToString().ConvertToDouble();
                     bpPressure = Ws.Cells[7, i].Value.ToString().ConvertToDouble();
                     bcPressure = Ws.Cells[8, i].Value.ToString().ConvertToDouble();
                     throttle = Ws.Cells[8, i].Value.ToString().GetThrottle();
                     horn = Ws.Cells[8, i].Value.ToString();
-                  
 
+                    
                     if (runDateAndTime < QueryFromTime)
                     {
                         continue;
@@ -157,6 +172,7 @@ namespace SPM_WINFM.GlobalFunctions
                     {
                         LaxvenModel.RunDateAndTime = runDateAndTime;                       
                         LaxvenModel.TrainSpeed = speed;
+                        LaxvenModel.RotationalDistanceCounter = rotationalDistance;
                         LaxvenModel.CumulativeDistanceCounter = cumulativelDistance;
                         LaxvenModel.BPpressure = bpPressure;
                         LaxvenModel.BCpressure = bcPressure;
