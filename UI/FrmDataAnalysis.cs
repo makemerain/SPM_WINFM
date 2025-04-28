@@ -1,12 +1,15 @@
 ﻿using MAUI_SPM.ApplicationTools;
 using MAUI_SPM.DataModels;
 
+using SPM_WINFM.GlobalFunctions;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,49 +20,66 @@ namespace SPM_WINFM
     {
         public FrmDataAnalysis(
             Models.TrainInformationModel trainInformationModel,
-            List<Models.CautionOrderModel> cautionOrderList,
-            List<Models.SectionalSpeedModel> sectionalSpeedList,
+            List<Models.CautionOrderModel> cautionOrderList,            
             List<Models.BlockSecionModel> blockSectionList)
         {
             InitializeComponent();
+            Dgv_Analysis.AutoGenerateColumns = false;
+            Dgv_Analysis.Columns[0].DefaultCellStyle.Format = "dd/MM/yy HH:mm:ss";
 
             this._TrainInfoModel = trainInformationModel;
-            _CautionOrderList = cautionOrderList;
-            _SectionalSpeedList = sectionalSpeedList;
+            _CautionOrderList = cautionOrderList;    
+            _BlockSecionList = blockSectionList;
+                        
         }
 
         private Models.TrainInformationModel _TrainInfoModel;
-        private List<Models.CautionOrderModel> _CautionOrderList;
-        private List<Models.SectionalSpeedModel> _SectionalSpeedList;
+        private List<Models.CautionOrderModel> _CautionOrderList = new();
+        private List<Models.BlockSecionModel> _BlockSecionList = new();
 
-        private List<Models.MedhaSpeedometerModel> _MedhaSpeedometerList = new();
-        private List<Models.LaxvenSpeedometerModel> _LaxvenSpeedomedterList = new();
-        
+        private List<Models.MedhaSpeedometerModel> _MedhaEventDataList = new();
+        private List<Models.LaxvenSpeedometerModel> _LaxvenEventDataList = new();
+
+        private List<Models.MedhaSpeedometerModel> _MedhaBindableEventDataList = new();
+        private List<Models.LaxvenSpeedometerModel> _LaxvenBindableEventDataList = new();
 
 
-        private async void InitializeData()
+
+        private void InitializeData()
         {
-            if(_TrainInfoModel.Get_SPMtype == "MEDHA-MRT")
-            {
-                 _MedhaSpeedometerList = GlobalFunctions.EpexcelDataManager.Get_MedhaEventDataList(_TrainInfoModel.Get_QueryStartFromTime, _TrainInfoModel.Get_QueryEndTime,
-                    _TrainInfoModel.Get_ExcelPath).Result;
+            ConnectionManager.ExcelConnectionFactory excelConnectionFactory = new ConnectionManager.ExcelConnectionFactory();
 
-                Dgv_Analysis.DataSource = _MedhaSpeedometerList;
+            if (_TrainInfoModel.Get_SPMtype == "MEDHA-MRT")
+            {
+                _MedhaEventDataList = excelConnectionFactory.GetMedhaEventList(_TrainInfoModel.Get_QueryStartFromTime,
+                                                                                 _TrainInfoModel.Get_QueryEndTime,
+                                                                                 _TrainInfoModel.Get_ExcelPath);
+
+                EventSectionConfiguration e = new EventSectionConfiguration(_MedhaEventDataList, _BlockSecionList, _CautionOrderList);
+                _MedhaBindableEventDataList =  e.GetConfigured_MedhaEventDataList();
+
+                Dgv_Analysis.DataSource = _MedhaBindableEventDataList;
 
             }
-            else if (_TrainInfoModel.Get_SPMtype == "LAXVEN")
-            {
-                _LaxvenSpeedomedterList = GlobalFunctions.EpexcelDataManager.Get_LaxvenEventDataList(_TrainInfoModel.Get_QueryStartFromTime, _TrainInfoModel.Get_QueryEndTime,
-                    _TrainInfoModel.Get_ExcelPath).Result;
-                Dgv_Analysis.DataSource = _LaxvenSpeedomedterList;
-            }
+            
+
+
+            
+
+            
         }
 
-        private void FrmDataAnalysis_Load(object sender, EventArgs e)
+        private   void FrmDataAnalysis_Load(object sender, EventArgs e)
         {
-            InitializeData();
+           
+             InitializeData();        
+
+
         }
 
-       
+        private void Btn_IdentifyTrainDeparture_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using LinqToExcel.Extensions;
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -59,20 +58,60 @@ namespace SPM_WINFM.GlobalFunctions
 
         public static int GetThrottle(this string InputString)
         {
+            String x = InputString.Replace("TH", "").Trim();
 
-            if (InputString == "IDLE")
+            if (x == "IDLE")
             {
                 return 0;
             }
-            else if (InputString == "DB")
+            else if (x == "DB")
             {
                 return -1;
             }
-            else return InputString.ConvertToInt();
+            else return x.ConvertToInt();
             
         }
 
+        /// <summary>
+        /// Identify the number is Double
+        /// </summary>
+        /// <param name="InputString"></param>
+        /// <returns>Boolean</returns>
+        public static Boolean IsNumeric(this String InputString)
+        {
+            Boolean IsNumeric = false;
 
+            if (Double.TryParse(InputString,out _))
+            {
+                IsNumeric = true;
+            }
+            else if (int.TryParse(InputString,out _))
+            {
+                IsNumeric = true;
+            }
+
+
+            return IsNumeric;
+        }
+
+        public static String GetTrainStatus(double prevSpeed, double nextSpeed)
+        {
+            String status = "None";
+
+            if (prevSpeed > 0 && nextSpeed == 0)
+            {
+                status = "STOP";
+            }
+            else if (prevSpeed == 0 && nextSpeed > 0)
+            {
+                status = "START";
+            }
+            else if (prevSpeed > 0 && nextSpeed > 0)
+            {
+                status = "RUN";
+            } else status = "None";
+            return status;
+        }
 
 
 

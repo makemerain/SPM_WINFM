@@ -36,16 +36,18 @@
             Btn_IdentifyTrainDeparture = new Button();
             Dgv_Analysis = new DataGridView();
             RunDateAndTime = new DataGridViewTextBoxColumn();
+            BlockSection = new DataGridViewTextBoxColumn();
             RotationalDistanceCounter = new DataGridViewTextBoxColumn();
             CumulativeDistanceCounter = new DataGridViewTextBoxColumn();
-            HectometerNumber = new DataGridViewTextBoxColumn();
-            TrainSpeed = new DataGridViewTextBoxColumn();
+            Hectometer = new DataGridViewTextBoxColumn();
             SectionalSpeed = new DataGridViewTextBoxColumn();
-            CautionSpotSpeed = new DataGridViewTextBoxColumn();
+            CautionSpeed = new DataGridViewTextBoxColumn();
+            TrainSpeed = new DataGridViewTextBoxColumn();
             TractiveEffort = new DataGridViewTextBoxColumn();
+            RunStatus = new DataGridViewTextBoxColumn();
             BPpressureMetric = new DataGridViewTextBoxColumn();
             BCpressureMetric = new DataGridViewTextBoxColumn();
-            Throttle = new DataGridViewTextBoxColumn();
+            ThrottleInt = new DataGridViewTextBoxColumn();
             Horn = new DataGridViewTextBoxColumn();
             Observation = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
@@ -108,6 +110,7 @@
             Btn_IdentifyTrainDeparture.TabIndex = 2;
             Btn_IdentifyTrainDeparture.Text = "Find Train Departure";
             Btn_IdentifyTrainDeparture.UseVisualStyleBackColor = true;
+            Btn_IdentifyTrainDeparture.Click += Btn_IdentifyTrainDeparture_Click;
             // 
             // Dgv_Analysis
             // 
@@ -120,7 +123,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             Dgv_Analysis.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             Dgv_Analysis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Dgv_Analysis.Columns.AddRange(new DataGridViewColumn[] { RunDateAndTime, RotationalDistanceCounter, CumulativeDistanceCounter, HectometerNumber, TrainSpeed, SectionalSpeed, CautionSpotSpeed, TractiveEffort, BPpressureMetric, BCpressureMetric, Throttle, Horn, Observation });
+            Dgv_Analysis.Columns.AddRange(new DataGridViewColumn[] { RunDateAndTime, BlockSection, RotationalDistanceCounter, CumulativeDistanceCounter, Hectometer, SectionalSpeed, CautionSpeed, TrainSpeed, TractiveEffort, RunStatus, BPpressureMetric, BCpressureMetric, ThrottleInt, Horn, Observation });
             Dgv_Analysis.Dock = DockStyle.Fill;
             Dgv_Analysis.EnableHeadersVisualStyles = false;
             Dgv_Analysis.Location = new Point(0, 91);
@@ -137,6 +140,12 @@
             RunDateAndTime.Name = "RunDateAndTime";
             RunDateAndTime.ReadOnly = true;
             RunDateAndTime.Width = 125;
+            // 
+            // BlockSection
+            // 
+            BlockSection.DataPropertyName = "BlockSection";
+            BlockSection.HeaderText = "SECTION";
+            BlockSection.Name = "BlockSection";
             // 
             // RotationalDistanceCounter
             // 
@@ -156,14 +165,29 @@
             CumulativeDistanceCounter.ReadOnly = true;
             CumulativeDistanceCounter.Width = 125;
             // 
-            // HectometerNumber
+            // Hectometer
             // 
-            HectometerNumber.DataPropertyName = "HectometerNumber";
-            HectometerNumber.HeaderText = "HECTO";
-            HectometerNumber.MinimumWidth = 6;
-            HectometerNumber.Name = "HectometerNumber";
-            HectometerNumber.ReadOnly = true;
-            HectometerNumber.Width = 125;
+            Hectometer.DataPropertyName = "Hectometer";
+            Hectometer.HeaderText = "HECTO";
+            Hectometer.MinimumWidth = 6;
+            Hectometer.Name = "Hectometer";
+            Hectometer.ReadOnly = true;
+            Hectometer.Width = 125;
+            // 
+            // SectionalSpeed
+            // 
+            SectionalSpeed.DataPropertyName = "SectionalSpeed";
+            SectionalSpeed.HeaderText = "SEC-SP";
+            SectionalSpeed.MinimumWidth = 6;
+            SectionalSpeed.Name = "SectionalSpeed";
+            SectionalSpeed.ReadOnly = true;
+            SectionalSpeed.Width = 125;
+            // 
+            // CautionSpeed
+            // 
+            CautionSpeed.DataPropertyName = "CautionSpeed";
+            CautionSpeed.HeaderText = "CD";
+            CautionSpeed.Name = "CautionSpeed";
             // 
             // TrainSpeed
             // 
@@ -174,22 +198,6 @@
             TrainSpeed.ReadOnly = true;
             TrainSpeed.Width = 125;
             // 
-            // SectionalSpeed
-            // 
-            SectionalSpeed.HeaderText = "SEC-SP";
-            SectionalSpeed.MinimumWidth = 6;
-            SectionalSpeed.Name = "SectionalSpeed";
-            SectionalSpeed.ReadOnly = true;
-            SectionalSpeed.Width = 125;
-            // 
-            // CautionSpotSpeed
-            // 
-            CautionSpotSpeed.HeaderText = "CD-SP";
-            CautionSpotSpeed.MinimumWidth = 6;
-            CautionSpotSpeed.Name = "CautionSpotSpeed";
-            CautionSpotSpeed.ReadOnly = true;
-            CautionSpotSpeed.Width = 125;
-            // 
             // TractiveEffort
             // 
             TractiveEffort.DataPropertyName = "TractiveEffort";
@@ -198,6 +206,12 @@
             TractiveEffort.Name = "TractiveEffort";
             TractiveEffort.ReadOnly = true;
             TractiveEffort.Width = 125;
+            // 
+            // RunStatus
+            // 
+            RunStatus.DataPropertyName = "RunStatus";
+            RunStatus.HeaderText = "STATE";
+            RunStatus.Name = "RunStatus";
             // 
             // BPpressureMetric
             // 
@@ -217,14 +231,14 @@
             BCpressureMetric.ReadOnly = true;
             BCpressureMetric.Width = 125;
             // 
-            // Throttle
+            // ThrottleInt
             // 
-            Throttle.DataPropertyName = "Throttle";
-            Throttle.HeaderText = "THROT";
-            Throttle.MinimumWidth = 6;
-            Throttle.Name = "Throttle";
-            Throttle.ReadOnly = true;
-            Throttle.Width = 125;
+            ThrottleInt.DataPropertyName = "ThrottleInt";
+            ThrottleInt.HeaderText = "THROT";
+            ThrottleInt.MinimumWidth = 6;
+            ThrottleInt.Name = "ThrottleInt";
+            ThrottleInt.ReadOnly = true;
+            ThrottleInt.Width = 125;
             // 
             // Horn
             // 
@@ -268,17 +282,20 @@
         private DateTimePicker Dtp_TrainDepartureTime;
         private Button Btn_IdentifyTrainDeparture;
         private DataGridViewTextBoxColumn RunDateAndTime;
+        private DataGridViewTextBoxColumn BlockSection;
         private DataGridViewTextBoxColumn RotationalDistanceCounter;
         private DataGridViewTextBoxColumn CumulativeDistanceCounter;
-        private DataGridViewTextBoxColumn HectometerNumber;
-        private DataGridViewTextBoxColumn TrainSpeed;
+        private DataGridViewTextBoxColumn Hectometer;
         private DataGridViewTextBoxColumn SectionalSpeed;
-        private DataGridViewTextBoxColumn CautionSpotSpeed;
+        private DataGridViewTextBoxColumn CautionSpeed;
+        private DataGridViewTextBoxColumn TrainSpeed;
         private DataGridViewTextBoxColumn TractiveEffort;
+        private DataGridViewTextBoxColumn RunStatus;
         private DataGridViewTextBoxColumn BPpressureMetric;
         private DataGridViewTextBoxColumn BCpressureMetric;
         private DataGridViewTextBoxColumn Throttle;
         private DataGridViewTextBoxColumn Horn;
         private DataGridViewTextBoxColumn Observation;
+        private DataGridViewTextBoxColumn ThrottleInt;
     }
 }

@@ -1,9 +1,13 @@
-using LinqToExcel.Extensions;
+
+
+using LinqToExcelModern.Extensions;
 
 using MAUI_SPM.ApplicationTools;
 using MAUI_SPM.DataModels;
 
 using SPM_WINFM.GlobalFunctions;
+
+using System.Windows.Forms;
 
 namespace SPM_WINFM
 {
@@ -16,7 +20,6 @@ namespace SPM_WINFM
 
         private Models.TrainInformationModel trainInformationModel;
         private List<Models.CautionOrderModel> cautionOrderModelList = new();
-        private List<Models.SectionalSpeedModel> sectionalSpeedList = new();
         private List<Models.BlockSecionModel> blockSectionList = new();
 
         private void Btn_LoadForAnlysis_Click(object sender, EventArgs e)
@@ -26,11 +29,11 @@ namespace SPM_WINFM
 
             if (trainInformationModel == null) return;
             if (Validate_CautionOrderGrid()) { cautionOrderModelList = Get_CautionOrderList(); } else return;
-            if (Validate_SectionalSpeedGrid()) { sectionalSpeedList = Get_SectionalSpeedList(); } else return;
+
             if (Validate_BlockSectioningGrid()) { blockSectionList = Get_BlockSectionPartitionList(); } else return;
 
 
-            FrmDataAnalysis f = new FrmDataAnalysis(trainInformationModel, cautionOrderModelList, sectionalSpeedList, blockSectionList);
+            FrmDataAnalysis f = new FrmDataAnalysis(trainInformationModel, cautionOrderModelList, blockSectionList);
             f.Show(this);
 
         }
@@ -57,7 +60,7 @@ namespace SPM_WINFM
             String BrakePower_Kbd = Txt_BrakePower.Text;
             DateTime QueryFromTime = Dtp_QueryFrom.Value;
             DateTime QueryToTime = Dtp_QueryTo.Value;
-            String SPMtype = Cbo_SpeedometerType.Text; 
+            String SPMtype = Cbo_SpeedometerType.Text;
             String ExcelPath = Txt_ExcelPath.Text;
             String AnalyserName = Txt_Analyser.Text;
             String Analyserdesignation = Txt_AnalyserDegn.Text;
@@ -158,7 +161,7 @@ namespace SPM_WINFM
                 Txt_TrainNumber.Focus();
                 return null;
             }
-            else if (!Validate_CautionOrderGrid() || !Validate_SectionalSpeedGrid() || !Validate_BlockSectioningGrid())
+            else if (!Validate_CautionOrderGrid() || !Validate_BlockSectioningGrid())
             {
                 Display.InfoMessage("Invalid Grid Configurations noticed");
                 return null;
@@ -199,6 +202,7 @@ namespace SPM_WINFM
             String CDto = "";
             String CDspeed = "";
 
+
             DGV_CautionOrders.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
             foreach (DataGridViewRow r in DGV_CautionOrders.Rows)
@@ -209,17 +213,17 @@ namespace SPM_WINFM
                     CDto = r.Cells["DgvCol_CDkmTo"].Value.ToString() ?? "";
                     CDspeed = r.Cells["DgvCol_CDspeed"].Value.ToString() ?? "";
 
-                    if (!CDfrom.IsNumber())
+                    if (!CDfrom.IsNumeric())
                     {
                         Display.InfoMessage($"Invalid CD from Km {CDfrom} @ Row {r.Index + 1}");
                         return false;
                     }
-                    else if (!CDto.IsNumber())
+                    else if (!CDto.IsNumeric())
                     {
                         Display.InfoMessage($"Invalid CD to Km {CDto} @ Row {r.Index + 1}");
                         return false;
                     }
-                    else if (!CDspeed.IsNumber())
+                    else if (!CDspeed.IsNumeric())
                     {
                         Display.InfoMessage($"Invalid CD speed {CDspeed} @ Row {r.Index + 1}");
                         return false;
@@ -230,45 +234,7 @@ namespace SPM_WINFM
             return true;
         }
 
-        /// <summary>
-        /// Validate Sectional speed Grid
-        /// </summary> 
-        private Boolean Validate_SectionalSpeedGrid()
-        {
-            String SectionKmfrom = "";
-            String SectionKmTo = "";
-            String SectionSpeed = "";
 
-            Dgv_SectionalSpeed.CommitEdit(DataGridViewDataErrorContexts.Commit);
-
-            foreach (DataGridViewRow r in Dgv_SectionalSpeed.Rows)
-            {
-                if (!r.IsNewRow)
-                {
-                    SectionKmfrom = r.Cells["DgvCol_SectionSpeedFrom"].Value.ToString() ?? "";
-                    SectionKmTo = r.Cells["DgvCol_SectionSpeedTo"].Value.ToString() ?? "";
-                    SectionSpeed = r.Cells["DgvCol_SectionSpeed"].Value.ToString() ?? "";
-
-                    if (!SectionKmfrom.IsNumber())
-                    {
-                        Display.InfoMessage($"Invalid Section from Km {SectionKmfrom} @ Row {r.Index + 1}");
-                        return false;
-                    }
-                    else if (!SectionKmTo.IsNumber())
-                    {
-                        Display.InfoMessage($"Invalid Section to Km {SectionKmTo} @ Row {r.Index + 1}");
-                        return false;
-                    }
-                    else if (!SectionSpeed.IsNumber())
-                    {
-                        Display.InfoMessage($"Invalid Section speed {SectionSpeed} @ Row {r.Index + 1}");
-                        return false;
-                    }
-                    else return true;
-                }
-            }
-            return true;
-        }
 
         /// <summary>
         /// Validate Block sectioning grid
@@ -278,6 +244,7 @@ namespace SPM_WINFM
             String BlockSectionName = "";
             String SectionKmFrom = "";
             String SectionKmTo = "";
+            String sectionalSpeed = "";
 
             Dgv_BlockSectionPartition.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
@@ -285,9 +252,10 @@ namespace SPM_WINFM
             {
                 if (!r.IsNewRow)
                 {
-                    BlockSectionName = r.Cells["DgvCol_SectionSpeedFrom"].Value.ToString() ?? "";
-                    SectionKmFrom = r.Cells["DgvCol_SectionSpeedTo"].Value.ToString() ?? "";
-                    SectionKmFrom = r.Cells["DgvCol_SectionSpeed"].Value.ToString() ?? "";
+                    BlockSectionName = r.Cells["DgvCol_BlockSectionName"].Value.ToString() ?? "";
+                    SectionKmFrom = r.Cells["DgvCol_BlockSectionStartKm"].Value.ToString() ?? "";
+                    SectionKmTo = r.Cells["DgvCol_BlockSectionToKm"].Value.ToString() ?? "";
+                    sectionalSpeed = r.Cells["DgvCol_BlockSectionalSpeed"].Value?.ToString() ?? "";
 
                     if (BlockSectionName == "")
                     {
@@ -310,41 +278,6 @@ namespace SPM_WINFM
             return true;
         }
 
-        /// <summary>
-        /// Get the Sectional Speed Grid
-        /// </summary>
-        /// <returns>SecionalSpeedModel</returns>
-        private List<Models.SectionalSpeedModel> Get_SectionalSpeedList()
-        {
-
-            List<Models.SectionalSpeedModel> sectionalSpeedList = new List<Models.SectionalSpeedModel>();
-
-            double FromKms, ToKms;
-            Int16 speed;
-
-            foreach (DataGridViewRow r in Dgv_SectionalSpeed.Rows)
-            {
-                if (!r.IsNewRow)
-                {
-                    FromKms = r.Cells["DgvCol_SectionSpeedFrom"].Value.ToString().ConvertToDouble();
-                    ToKms = r.Cells["DgvCol_SectionSpeedTo"].Value.ToString().ConvertToDouble();
-                    speed = r.Cells["DgvCol_SectionSpeed"].Value.ToString().ConvertToInt();
-
-                    sectionalSpeedList.Add(
-                        new Models.SectionalSpeedModel
-                        {
-                            SectionalSpeedFromKms = FromKms,
-                            SectionalSpeedToKms = ToKms,
-                            SectionalSpeed = speed
-                        }
-                        );
-                }
-
-            }
-
-            return sectionalSpeedList;
-
-        }
 
         /// <summary>
         /// Get the caution orders Grid
@@ -392,6 +325,7 @@ namespace SPM_WINFM
             List<Models.BlockSecionModel> blockSectionModelList = new List<Models.BlockSecionModel>();
 
             double FromKms, ToKms;
+            int SectionalSpeed;
             String BlockSectionName;
 
             foreach (DataGridViewRow r in Dgv_BlockSectionPartition.Rows)
@@ -401,13 +335,16 @@ namespace SPM_WINFM
                     FromKms = r.Cells["DgvCol_BlockSectionStartKm"].Value.ToString().ConvertToDouble();
                     ToKms = r.Cells["DgvCol_BlockSectionToKm"].Value.ToString().ConvertToDouble();
                     BlockSectionName = r.Cells["DgvCol_BlockSectionName"].Value.ToString();
+                    SectionalSpeed = r.Cells["DgvCol_BlockSectionalSpeed"].Value.ToString().ConvertToInt();
 
                     blockSectionModelList.Add(
                         new Models.BlockSecionModel
                         {
                             BlockStartKms = FromKms,
                             BlockEndKms = ToKms,
-                            BlockSectionName = BlockSectionName
+                            BlockSectionName = BlockSectionName,
+                            SectionalSpeed = SectionalSpeed
+
                         }
                         );
                 }
@@ -433,19 +370,10 @@ namespace SPM_WINFM
             }
         }
 
-        private void Dgv_SectionalSpeed_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 3 &&
-                !Dgv_SectionalSpeed.Rows[e.RowIndex].IsNewRow &&
-                Display.InfoDecission("Delete the Sectional Speed row ?") == true)
-            {
-                Dgv_SectionalSpeed.Rows.RemoveAt(e.RowIndex);
-            }
-        }
 
         private void Dgv_BlockSectionPartition_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3 &&
+            if (e.ColumnIndex == 4 &&
                 !Dgv_BlockSectionPartition.Rows[e.RowIndex].IsNewRow &&
                 Display.InfoDecission("Delete Block section row ?") == true)
             {
@@ -455,7 +383,7 @@ namespace SPM_WINFM
 
         private void Txt_ExcelPath_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Txt_ExcelPath_Click(object sender, EventArgs e)
@@ -474,6 +402,48 @@ namespace SPM_WINFM
             {
                 Txt_ExcelPath.Text = "";
                 O.Dispose();
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // 1. Copy rows from Excel to clipboard
+
+            // 2. Retrieve data from clipboard
+            string clipboardData = Clipboard.GetText();
+
+            // 3. Parse the clipboard data
+            string[] rows = clipboardData.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            // 4. Add rows to DataGridView
+            Dgv_BlockSectionPartition.Rows.Clear(); // Clear the grid if it has existing data
+
+
+            foreach (string row in rows)
+            {
+                string[] cells = row.Split(new[] { "\t" }, StringSplitOptions.None);
+                Dgv_BlockSectionPartition.Rows.Add(cells);
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            // 1. Copy rows from Excel to clipboard
+
+            // 2. Retrieve data from clipboard
+            string clipboardData = Clipboard.GetText();
+
+            // 3. Parse the clipboard data
+            string[] rows = clipboardData.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            // 4. Add rows to DataGridView
+            DGV_CautionOrders.Rows.Clear(); // Clear the grid if it has existing data
+
+
+            foreach (string row in rows)
+            {
+                string[] cells = row.Split(new[] { "\t" }, StringSplitOptions.None);
+                DGV_CautionOrders.Rows.Add(cells);
             }
         }
     }

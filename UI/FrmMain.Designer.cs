@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             toolStrip1 = new ToolStrip();
             tableLayoutPanel1 = new TableLayoutPanel();
             Btn_LoadForAnlysis = new Button();
@@ -82,27 +80,26 @@
             DgvCol_BlockSectionName = new DataGridViewTextBoxColumn();
             DgvCol_BlockSectionStartKm = new DataGridViewTextBoxColumn();
             DgvCol_BlockSectionToKm = new DataGridViewTextBoxColumn();
+            DgvCol_BlockSectionalSpeed = new DataGridViewTextBoxColumn();
             DgvCol_DropBlock = new DataGridViewButtonColumn();
-            groupBox3 = new GroupBox();
-            Dgv_SectionalSpeed = new DataGridView();
-            DgvCol_SectionSpeedFrom = new DataGridViewTextBoxColumn();
-            DgvCol_SectionSpeedTo = new DataGridViewTextBoxColumn();
-            DgvCol_SectionSpeed = new DataGridViewTextBoxColumn();
-            DgvCol_Drop_SectionSpeed = new DataGridViewButtonColumn();
+            ContextMenu_BlockSection = new ContextMenuStrip(components);
+            toolStripMenuItem1 = new ToolStripMenuItem();
             groupBox2 = new GroupBox();
             DGV_CautionOrders = new DataGridView();
             DgvCol_CDkmFrom = new DataGridViewTextBoxColumn();
             DgvCol_CDkmTo = new DataGridViewTextBoxColumn();
             DgvCol_CDspeed = new DataGridViewTextBoxColumn();
             DgvCol_DropCDrow = new DataGridViewButtonColumn();
+            ContextMenu_CautionOrder = new ContextMenuStrip(components);
+            toolStripMenuItem2 = new ToolStripMenuItem();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Dgv_BlockSectionPartition).BeginInit();
-            groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Dgv_SectionalSpeed).BeginInit();
+            ContextMenu_BlockSection.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGV_CautionOrders).BeginInit();
+            ContextMenu_CautionOrder.SuspendLayout();
             SuspendLayout();
             // 
             // toolStrip1
@@ -241,6 +238,7 @@
             Dtp_QueryTo.Name = "Dtp_QueryTo";
             Dtp_QueryTo.Size = new Size(265, 29);
             Dtp_QueryTo.TabIndex = 13;
+            Dtp_QueryTo.Value = new DateTime(2025, 4, 26, 5, 45, 0, 0);
             // 
             // label11
             // 
@@ -589,6 +587,7 @@
             Dtp_QueryFrom.Name = "Dtp_QueryFrom";
             Dtp_QueryFrom.Size = new Size(265, 29);
             Dtp_QueryFrom.TabIndex = 12;
+            Dtp_QueryFrom.Value = new DateTime(2025, 4, 26, 2, 17, 0, 0);
             // 
             // Cbo_SpeedometerType
             // 
@@ -716,14 +715,13 @@
             Txt_ExcelPath.ReadOnly = true;
             Txt_ExcelPath.Size = new Size(265, 27);
             Txt_ExcelPath.TabIndex = 15;
-            Txt_ExcelPath.Text = "C:\\Users\\Balu Subbu\\Desktop\\SPM\\MEDHA_MODEL.xlsx";
+            Txt_ExcelPath.Text = "C:\\Users\\Balu Subbu\\Desktop\\SPM\\RAW-DATA\\04-25\\12083-145-girish-26042.xlsx";
             Txt_ExcelPath.Click += Txt_ExcelPath_Click;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.Honeydew;
             groupBox1.Controls.Add(groupBox4);
-            groupBox1.Controls.Add(groupBox3);
             groupBox1.Controls.Add(groupBox2);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.FlatStyle = FlatStyle.Flat;
@@ -740,11 +738,11 @@
             // 
             groupBox4.Controls.Add(Dgv_BlockSectionPartition);
             groupBox4.Dock = DockStyle.Left;
-            groupBox4.Location = new Point(854, 25);
+            groupBox4.Location = new Point(683, 25);
             groupBox4.Margin = new Padding(2);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(2);
-            groupBox4.Size = new Size(542, 262);
+            groupBox4.Size = new Size(687, 262);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Block Section Partition (In order of run)";
@@ -754,13 +752,14 @@
             Dgv_BlockSectionPartition.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Dgv_BlockSectionPartition.BorderStyle = BorderStyle.None;
             Dgv_BlockSectionPartition.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Dgv_BlockSectionPartition.Columns.AddRange(new DataGridViewColumn[] { DgvCol_BlockSectionName, DgvCol_BlockSectionStartKm, DgvCol_BlockSectionToKm, DgvCol_DropBlock });
+            Dgv_BlockSectionPartition.Columns.AddRange(new DataGridViewColumn[] { DgvCol_BlockSectionName, DgvCol_BlockSectionStartKm, DgvCol_BlockSectionToKm, DgvCol_BlockSectionalSpeed, DgvCol_DropBlock });
+            Dgv_BlockSectionPartition.ContextMenuStrip = ContextMenu_BlockSection;
             Dgv_BlockSectionPartition.Dock = DockStyle.Fill;
             Dgv_BlockSectionPartition.Location = new Point(2, 24);
             Dgv_BlockSectionPartition.Margin = new Padding(9, 10, 9, 10);
             Dgv_BlockSectionPartition.Name = "Dgv_BlockSectionPartition";
             Dgv_BlockSectionPartition.RowHeadersWidth = 51;
-            Dgv_BlockSectionPartition.Size = new Size(538, 236);
+            Dgv_BlockSectionPartition.Size = new Size(683, 236);
             Dgv_BlockSectionPartition.TabIndex = 0;
             Dgv_BlockSectionPartition.TabStop = false;
             Dgv_BlockSectionPartition.CellContentClick += Dgv_BlockSectionPartition_CellContentClick;
@@ -800,6 +799,11 @@
             DgvCol_BlockSectionToKm.MinimumWidth = 6;
             DgvCol_BlockSectionToKm.Name = "DgvCol_BlockSectionToKm";
             // 
+            // DgvCol_BlockSectionalSpeed
+            // 
+            DgvCol_BlockSectionalSpeed.HeaderText = "SECTIONAL SPEED";
+            DgvCol_BlockSectionalSpeed.Name = "DgvCol_BlockSectionalSpeed";
+            // 
             // DgvCol_DropBlock
             // 
             DgvCol_DropBlock.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -807,76 +811,20 @@
             DgvCol_DropBlock.MinimumWidth = 6;
             DgvCol_DropBlock.Name = "DgvCol_DropBlock";
             // 
-            // groupBox3
+            // ContextMenu_BlockSection
             // 
-            groupBox3.Controls.Add(Dgv_SectionalSpeed);
-            groupBox3.Dock = DockStyle.Left;
-            groupBox3.Location = new Point(452, 25);
-            groupBox3.Margin = new Padding(2);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(2);
-            groupBox3.Size = new Size(402, 262);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Sectional Speed List";
+            ContextMenu_BlockSection.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
+            ContextMenu_BlockSection.Name = "ContextMenu_BlockSection";
+            ContextMenu_BlockSection.Size = new Size(275, 30);
             // 
-            // Dgv_SectionalSpeed
+            // toolStripMenuItem1
             // 
-            Dgv_SectionalSpeed.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Dgv_SectionalSpeed.BorderStyle = BorderStyle.None;
-            Dgv_SectionalSpeed.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Dgv_SectionalSpeed.Columns.AddRange(new DataGridViewColumn[] { DgvCol_SectionSpeedFrom, DgvCol_SectionSpeedTo, DgvCol_SectionSpeed, DgvCol_Drop_SectionSpeed });
-            Dgv_SectionalSpeed.Dock = DockStyle.Fill;
-            Dgv_SectionalSpeed.Location = new Point(2, 24);
-            Dgv_SectionalSpeed.Margin = new Padding(9, 10, 9, 10);
-            Dgv_SectionalSpeed.Name = "Dgv_SectionalSpeed";
-            Dgv_SectionalSpeed.RowHeadersWidth = 51;
-            Dgv_SectionalSpeed.Size = new Size(398, 236);
-            Dgv_SectionalSpeed.TabIndex = 0;
-            Dgv_SectionalSpeed.TabStop = false;
-            Dgv_SectionalSpeed.CellContentClick += Dgv_SectionalSpeed_CellContentClick;
-            // 
-            // DgvCol_SectionSpeedFrom
-            // 
-            DgvCol_SectionSpeedFrom.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            DgvCol_SectionSpeedFrom.DefaultCellStyle = dataGridViewCellStyle4;
-            DgvCol_SectionSpeedFrom.HeaderText = "Km From";
-            DgvCol_SectionSpeedFrom.MaxInputLength = 10;
-            DgvCol_SectionSpeedFrom.MinimumWidth = 6;
-            DgvCol_SectionSpeedFrom.Name = "DgvCol_SectionSpeedFrom";
-            // 
-            // DgvCol_SectionSpeedTo
-            // 
-            DgvCol_SectionSpeedTo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            DgvCol_SectionSpeedTo.DefaultCellStyle = dataGridViewCellStyle5;
-            DgvCol_SectionSpeedTo.HeaderText = "Km To";
-            DgvCol_SectionSpeedTo.MaxInputLength = 10;
-            DgvCol_SectionSpeedTo.MinimumWidth = 6;
-            DgvCol_SectionSpeedTo.Name = "DgvCol_SectionSpeedTo";
-            // 
-            // DgvCol_SectionSpeed
-            // 
-            DgvCol_SectionSpeed.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            DgvCol_SectionSpeed.DefaultCellStyle = dataGridViewCellStyle6;
-            DgvCol_SectionSpeed.HeaderText = "Speed";
-            DgvCol_SectionSpeed.MaxInputLength = 3;
-            DgvCol_SectionSpeed.MinimumWidth = 6;
-            DgvCol_SectionSpeed.Name = "DgvCol_SectionSpeed";
-            // 
-            // DgvCol_Drop_SectionSpeed
-            // 
-            DgvCol_Drop_SectionSpeed.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            DgvCol_Drop_SectionSpeed.HeaderText = "DROP";
-            DgvCol_Drop_SectionSpeed.MinimumWidth = 6;
-            DgvCol_Drop_SectionSpeed.Name = "DgvCol_Drop_SectionSpeed";
+            toolStripMenuItem1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripMenuItem1.Image = Properties.Resources.YDK_GRADIENT;
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(274, 26);
+            toolStripMenuItem1.Text = "PASTE FROM EXCEL ROWS";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // groupBox2
             // 
@@ -886,7 +834,7 @@
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
-            groupBox2.Size = new Size(450, 262);
+            groupBox2.Size = new Size(681, 262);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Caution Order Speed";
@@ -897,12 +845,13 @@
             DGV_CautionOrders.BorderStyle = BorderStyle.None;
             DGV_CautionOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGV_CautionOrders.Columns.AddRange(new DataGridViewColumn[] { DgvCol_CDkmFrom, DgvCol_CDkmTo, DgvCol_CDspeed, DgvCol_DropCDrow });
+            DGV_CautionOrders.ContextMenuStrip = ContextMenu_CautionOrder;
             DGV_CautionOrders.Dock = DockStyle.Fill;
             DGV_CautionOrders.Location = new Point(2, 24);
             DGV_CautionOrders.Margin = new Padding(9, 10, 9, 10);
             DGV_CautionOrders.Name = "DGV_CautionOrders";
             DGV_CautionOrders.RowHeadersWidth = 51;
-            DGV_CautionOrders.Size = new Size(446, 236);
+            DGV_CautionOrders.Size = new Size(677, 236);
             DGV_CautionOrders.TabIndex = 0;
             DGV_CautionOrders.TabStop = false;
             DGV_CautionOrders.CellContentClick += DGV_CautionOrders_CellContentClick;
@@ -910,10 +859,10 @@
             // DgvCol_CDkmFrom
             // 
             DgvCol_CDkmFrom.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = null;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            DgvCol_CDkmFrom.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            DgvCol_CDkmFrom.DefaultCellStyle = dataGridViewCellStyle4;
             DgvCol_CDkmFrom.HeaderText = "CD FROM KM";
             DgvCol_CDkmFrom.MaxInputLength = 10;
             DgvCol_CDkmFrom.MinimumWidth = 6;
@@ -922,9 +871,9 @@
             // DgvCol_CDkmTo
             // 
             DgvCol_CDkmTo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            DgvCol_CDkmTo.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            DgvCol_CDkmTo.DefaultCellStyle = dataGridViewCellStyle5;
             DgvCol_CDkmTo.HeaderText = "CD TO KM";
             DgvCol_CDkmTo.MaxInputLength = 10;
             DgvCol_CDkmTo.MinimumWidth = 6;
@@ -933,10 +882,10 @@
             // DgvCol_CDspeed
             // 
             DgvCol_CDspeed.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            DgvCol_CDspeed.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            DgvCol_CDspeed.DefaultCellStyle = dataGridViewCellStyle6;
             DgvCol_CDspeed.HeaderText = "CD SPEED";
             DgvCol_CDspeed.MaxInputLength = 3;
             DgvCol_CDspeed.MinimumWidth = 6;
@@ -948,6 +897,21 @@
             DgvCol_DropCDrow.HeaderText = "DROP";
             DgvCol_DropCDrow.MinimumWidth = 6;
             DgvCol_DropCDrow.Name = "DgvCol_DropCDrow";
+            // 
+            // ContextMenu_CautionOrder
+            // 
+            ContextMenu_CautionOrder.Items.AddRange(new ToolStripItem[] { toolStripMenuItem2 });
+            ContextMenu_CautionOrder.Name = "ContextMenu_BlockSection";
+            ContextMenu_CautionOrder.Size = new Size(275, 30);
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            toolStripMenuItem2.Image = Properties.Resources.YDK_GRADIENT;
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(274, 26);
+            toolStripMenuItem2.Text = "PASTE FROM EXCEL ROWS";
+            toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
             // FrmMain
             // 
@@ -969,10 +933,10 @@
             groupBox1.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Dgv_BlockSectionPartition).EndInit();
-            groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Dgv_SectionalSpeed).EndInit();
+            ContextMenu_BlockSection.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DGV_CautionOrders).EndInit();
+            ContextMenu_CautionOrder.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1017,14 +981,8 @@
         private DataGridView DGV_CautionOrders;
         private Button Btn_LoadForAnlysis;
         private GroupBox groupBox2;
-        private GroupBox groupBox3;
-        private DataGridView Dgv_SectionalSpeed;
         private GroupBox groupBox4;
         private DataGridView Dgv_BlockSectionPartition;
-        private DataGridViewTextBoxColumn DgvCol_SectionSpeedFrom;
-        private DataGridViewTextBoxColumn DgvCol_SectionSpeedTo;
-        private DataGridViewTextBoxColumn DgvCol_SectionSpeed;
-        private DataGridViewButtonColumn DgvCol_Drop_SectionSpeed;
         private DataGridViewTextBoxColumn DgvCol_CDkmFrom;
         private DataGridViewTextBoxColumn DgvCol_CDkmTo;
         private DataGridViewTextBoxColumn DgvCol_CDspeed;
@@ -1033,9 +991,14 @@
         private Label label15;
         private TextBox Txt_Analyser;
         private TextBox Txt_AnalyserDegn;
+        private ContextMenuStrip ContextMenu_BlockSection;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ContextMenuStrip ContextMenu_CautionOrder;
+        private ToolStripMenuItem toolStripMenuItem2;
         private DataGridViewTextBoxColumn DgvCol_BlockSectionName;
         private DataGridViewTextBoxColumn DgvCol_BlockSectionStartKm;
         private DataGridViewTextBoxColumn DgvCol_BlockSectionToKm;
+        private DataGridViewTextBoxColumn DgvCol_BlockSectionalSpeed;
         private DataGridViewButtonColumn DgvCol_DropBlock;
     }
 }
