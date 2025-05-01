@@ -174,6 +174,9 @@ namespace MAUI_SPM.DataModels
             public double  BlockStartKms { get; set; }
             public double BlockEndKms { get; set; }
             public int SectionalSpeed { get; set; }
+            public DateTime LpJournal_DepTime { get; set; }
+            public DateTime LpJournal_ArrTime { get; set; }
+
         }
         
         public static class EventDataTypesModel {
