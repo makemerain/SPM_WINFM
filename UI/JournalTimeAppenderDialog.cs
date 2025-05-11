@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace SPM_WINFM.UI
 {
@@ -22,23 +23,53 @@ namespace SPM_WINFM.UI
         }
 
         private String _blockSection { get; set; }
-        public DateTime _GetDepartureTime { get { if (ValidateTimings()) return Dtp_DepartureTime.Value; } }
+        public DateTime GetDepartureTime()
+        {
+            if (TimingsValidated())
+            {
+                return Dtp_DepartureTime.Value;
+            }
+            else return DateTime.Now;
+
+        }
 
         public DateTime _GetArrivalTime { get { return Dtp_ArrivalTime.Value; } }
+
+        private Boolean _isCancelled = false;
+        public Boolean Cancelled { get { return _isCancelled; } }
 
         private void JournalTimeAppenderDialog_Load(object sender, EventArgs e)
         {
             Lbl_BlockSection.Text = $"Block Section : {_blockSection}";
         }
 
-        private Boolean ValidateTimings()
+        public Boolean TimingsValidated()
         {
             if (Dtp_ArrivalTime.Value < Dtp_DepartureTime.Value)
             {
+                _isCancelled = true;
                 Display.InfoMessage("Train Arrival Time is More than the Departure time");
+
                 return false;
             }
-            else return true;
+            else
+            {
+                _isCancelled = false;
+                return true;
+            }
+
+        }
+
+        private void Btn_Cancel_Click(object sender, EventArgs e)
+        {
+            _isCancelled = true;
+            this.Close();
+        }
+
+        private void Btn_Save_Click(object sender, EventArgs e)
+        {
+                       this.Close();
+
         }
     }
 }

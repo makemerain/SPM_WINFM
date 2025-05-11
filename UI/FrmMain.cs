@@ -6,6 +6,7 @@ using MAUI_SPM.ApplicationTools;
 using MAUI_SPM.DataModels;
 
 using SPM_WINFM.GlobalFunctions;
+using SPM_WINFM.UI;
 
 using System.Windows.Forms;
 
@@ -245,8 +246,22 @@ namespace SPM_WINFM
             String SectionKmFrom = "";
             String SectionKmTo = "";
             String sectionalSpeed = "";
+            DateTime DepartedTime, ArrivedTime;
 
             Dgv_BlockSectionPartition.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
+            // Block timings validation
+            foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
+            {
+                DepartedTime = rx.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+                ArrivedTime = rx.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+
+                for (int i = 0; i < Dgv_BlockSectionPartition.RowCount -1; i++)
+                {
+
+                }
+            }
+
 
             foreach (DataGridViewRow r in Dgv_BlockSectionPartition.Rows)
             {
@@ -256,6 +271,8 @@ namespace SPM_WINFM
                     SectionKmFrom = r.Cells["DgvCol_BlockSectionStartKm"].Value.ToString() ?? "";
                     SectionKmTo = r.Cells["DgvCol_BlockSectionToKm"].Value.ToString() ?? "";
                     sectionalSpeed = r.Cells["DgvCol_BlockSectionalSpeed"].Value?.ToString() ?? "";
+                    DepartedTime = r.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+                    ArrivedTime = r.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
 
                     if (BlockSectionName == "")
                     {
@@ -270,6 +287,11 @@ namespace SPM_WINFM
                     else if (!SectionKmFrom.IsNumber())
                     {
                         Display.InfoMessage($"Invalid Block Section to km {SectionKmFrom} @ Row {r.Index + 1}");
+                        return false;
+                    }
+                    else if (DepartedTime > ArrivedTime)
+                    {
+                        Display.InfoMessage($"Departure time Can't be more than the Arrival time @ row {r.Index + 1}");
                         return false;
                     }
                     else return true;
@@ -368,18 +390,12 @@ namespace SPM_WINFM
             {
                 DGV_CautionOrders.Rows.RemoveAt(e.RowIndex);
             }
+
+
         }
 
 
-        private void Dgv_BlockSectionPartition_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 4 &&
-                !Dgv_BlockSectionPartition.Rows[e.RowIndex].IsNewRow &&
-                Display.InfoDecission("Delete Block section row ?") == true)
-            {
-                Dgv_BlockSectionPartition.Rows.RemoveAt(e.RowIndex);
-            }
-        }
+     
 
         private void Txt_ExcelPath_TextChanged(object sender, EventArgs e)
         {
@@ -444,6 +460,28 @@ namespace SPM_WINFM
             {
                 string[] cells = row.Split(new[] { "\t" }, StringSplitOptions.None);
                 DGV_CautionOrders.Rows.Add(cells);
+            }
+        }
+
+        private void Dgv_BlockSectionPartition_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6 &&
+               !Dgv_BlockSectionPartition.Rows[e.RowIndex].IsNewRow &&
+               Display.InfoDecission("Delete Block section row ?") == true)
+            {
+                Dgv_BlockSectionPartition.Rows.RemoveAt(e.RowIndex);
+            }
+
+            if ((e.ColumnIndex == 4 || e.ColumnIndex == 5) && !Dgv_BlockSectionPartition.Rows[e.RowIndex].IsNewRow)
+            {
+                JournalTimeAppenderDialog j = new JournalTimeAppenderDialog(Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                j.ShowDialog(this);
+
+                if (!j.Cancelled && j.TimingsValidated())
+                {
+                    Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells["DgvCol_LpJournalDepTime"].Value = j.GetDepartureTime();
+                    Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells["DgvCol_LpJournalArrTime"].Value = j._GetArrivalTime;
+                }
             }
         }
     }

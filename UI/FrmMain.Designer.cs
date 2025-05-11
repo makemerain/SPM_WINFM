@@ -766,7 +766,7 @@
             Dgv_BlockSectionPartition.Size = new Size(1004, 302);
             Dgv_BlockSectionPartition.TabIndex = 0;
             Dgv_BlockSectionPartition.TabStop = false;
-            Dgv_BlockSectionPartition.CellContentClick += Dgv_BlockSectionPartition_CellContentClick;
+            Dgv_BlockSectionPartition.CellClick += Dgv_BlockSectionPartition_CellClick;
             // 
             // DgvCol_BlockSectionName
             // 
@@ -813,22 +813,28 @@
             // 
             // DgvCol_LpJournalDepTime
             // 
+            DgvCol_LpJournalDepTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle4.Format = "F";
             dataGridViewCellStyle4.NullValue = null;
             DgvCol_LpJournalDepTime.DefaultCellStyle = dataGridViewCellStyle4;
             DgvCol_LpJournalDepTime.HeaderText = "LPJ_Dep Time";
             DgvCol_LpJournalDepTime.MinimumWidth = 6;
             DgvCol_LpJournalDepTime.Name = "DgvCol_LpJournalDepTime";
-            DgvCol_LpJournalDepTime.Width = 125;
+            DgvCol_LpJournalDepTime.ReadOnly = true;
+            DgvCol_LpJournalDepTime.ToolTipText = "LP Journal Departure time";
+            DgvCol_LpJournalDepTime.Width = 152;
             // 
             // DgvCol_LpJournalArrTime
             // 
+            DgvCol_LpJournalArrTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle5.Format = "F";
             DgvCol_LpJournalArrTime.DefaultCellStyle = dataGridViewCellStyle5;
             DgvCol_LpJournalArrTime.HeaderText = "LPJ_Arr Time";
             DgvCol_LpJournalArrTime.MinimumWidth = 6;
             DgvCol_LpJournalArrTime.Name = "DgvCol_LpJournalArrTime";
-            DgvCol_LpJournalArrTime.Width = 125;
+            DgvCol_LpJournalArrTime.ReadOnly = true;
+            DgvCol_LpJournalArrTime.ToolTipText = "LP Journal Arrival Time";
+            DgvCol_LpJournalArrTime.Width = 143;
             // 
             // DgvCol_DropBlock
             // 
@@ -1019,6 +1025,10 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ContextMenuStrip ContextMenu_CautionOrder;
         private ToolStripMenuItem toolStripMenuItem2;
+        private DataGridViewTextBoxColumn DgvCol_CDkmFrom;
+        private DataGridViewTextBoxColumn DgvCol_CDkmTo;
+        private DataGridViewTextBoxColumn DgvCol_CDspeed;
+        private DataGridViewButtonColumn DgvCol_DropCDrow;
         private DataGridViewTextBoxColumn DgvCol_BlockSectionName;
         private DataGridViewTextBoxColumn DgvCol_BlockSectionStartKm;
         private DataGridViewTextBoxColumn DgvCol_BlockSectionToKm;
@@ -1026,9 +1036,5 @@
         private DataGridViewTextBoxColumn DgvCol_LpJournalDepTime;
         private DataGridViewTextBoxColumn DgvCol_LpJournalArrTime;
         private DataGridViewButtonColumn DgvCol_DropBlock;
-        private DataGridViewTextBoxColumn DgvCol_CDkmFrom;
-        private DataGridViewTextBoxColumn DgvCol_CDkmTo;
-        private DataGridViewTextBoxColumn DgvCol_CDspeed;
-        private DataGridViewButtonColumn DgvCol_DropCDrow;
     }
 }
