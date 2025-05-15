@@ -23,7 +23,7 @@ namespace SPM_WINFM.UI
         }
 
         private String _blockSection { get; set; }
-        public DateTime GetDepartureTime()
+        private  DateTime GetDepartureTime()
         {
             if (TimingsValidated())
             {
@@ -34,6 +34,7 @@ namespace SPM_WINFM.UI
         }
 
         public DateTime _GetArrivalTime { get { return Dtp_ArrivalTime.Value; } }
+        public DateTime _GetDepartureTime { get { return GetDepartureTime(); } }
 
         private Boolean _isCancelled = false;
         public Boolean Cancelled { get { return _isCancelled; } }
@@ -62,8 +63,14 @@ namespace SPM_WINFM.UI
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
         {
+            
             _isCancelled = true;
             this.Close();
+            
+
+          //  MessageBox.Show(Dtp_ArrivalTime.Value.ToString("dd/MM/yy HH:mm:ss").ConvertToDateTime("dd/MM/yy HH:mm:ss").ToString());
+
+
         }
 
         private void Btn_Save_Click(object sender, EventArgs e)

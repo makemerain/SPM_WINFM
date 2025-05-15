@@ -162,11 +162,7 @@ namespace SPM_WINFM
                 Txt_TrainNumber.Focus();
                 return null;
             }
-            else if (!Validate_CautionOrderGrid() || !Validate_BlockSectioningGrid())
-            {
-                Display.InfoMessage("Invalid Grid Configurations noticed");
-                return null;
-            }
+            
             else
             {
                 trainInformationModel = new Models.TrainInformationModel(
@@ -203,6 +199,7 @@ namespace SPM_WINFM
             String CDto = "";
             String CDspeed = "";
 
+            if (Validate_NullFieldsInCautionGrid() == false) return false;
 
             DGV_CautionOrders.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
@@ -235,13 +232,116 @@ namespace SPM_WINFM
             return true;
         }
 
+        /// <summary>
+        /// Validate the Block run timings
+        /// </summary>
+        /// <returns>Boolean if validated</returns>
+        private Boolean Validate_BlockTimings()
+        {
 
+            if (!Validate_NullFieldsInBockGrid()) return false;
 
+            DateTime DepartedTime, ArrivedTime;
+            List<DateTime> RuntimeList = new List<DateTime>();
+
+            Dgv_BlockSectionPartition.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
+            // Block timings validation
+            foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
+            {
+                if (!rx.IsNewRow)
+                {
+                    DepartedTime = rx.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+                    ArrivedTime = rx.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+
+                    RuntimeList.Add(DepartedTime);
+                    RuntimeList.Add(ArrivedTime);
+                }               
+                
+            }
+
+            int loopCount = 0;
+            foreach (var item in RuntimeList)
+            {
+                var Q = RuntimeList.Where(x => x < item).Count();
+
+                if (Q > loopCount)
+                {
+                    Display.InfoMessage($"Invalid time value {item}, Check for proper sequence of timings");
+                    return false;
+                }
+                loopCount++;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Null check in caution order grid
+        /// </summary>
+        /// <returns>Boolean</returns>
+        private Boolean Validate_NullFieldsInCautionGrid()
+        {
+            foreach (DataGridViewRow rx in DGV_CautionOrders.Rows)
+            {
+                if (!rx.IsNewRow)
+                {
+                    foreach (DataGridViewCell cx in rx.Cells)
+                    {
+                       
+                   
+                        if (string.IsNullOrEmpty(cx.Value?.ToString()) && DGV_CautionOrders.Columns[ cx.ColumnIndex].Name != "DgvCol_DropCDrow")
+                        {
+                            Display.InfoMessage($"Invalid Value in the Caution order Grid at Row {rx.Index + 1} Column {cx.ColumnIndex + 1}");
+                            return false;
+                        }
+                    
+                    }
+                }
+               
+
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Validate DGV block for null values
+        /// </summary>
+        /// <returns>Boolean</returns>
+        private Boolean Validate_NullFieldsInBockGrid()
+        {
+            foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
+            {
+             if (!rx.IsNewRow)
+              {
+                    
+
+                    foreach (DataGridViewCell cx in rx.Cells)
+                {                   
+                    
+                        if (string.IsNullOrEmpty(cx.Value?.ToString()) && Dgv_BlockSectionPartition.Columns[cx.ColumnIndex].Name != "DgvCol_DropBlock")
+                        {
+                            Display.InfoMessage($"Invalid Value in the Block section Formatting Grid at Row {rx.Index + 1} Col {cx.ColumnIndex + 1}");
+                            return false;
+                        }                   
+                }
+             }
+
+            }
+            return true;
+        }
         /// <summary>
         /// Validate Block sectioning grid
         /// </summary> 
         private Boolean Validate_BlockSectioningGrid()
         {
+
+            // Check for the null fioelds in the first
+            if (!Validate_NullFieldsInBockGrid())
+            {
+                return false;
+            }
+
             String BlockSectionName = "";
             String SectionKmFrom = "";
             String SectionKmTo = "";
@@ -250,26 +350,16 @@ namespace SPM_WINFM
 
             Dgv_BlockSectionPartition.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
-            // Block timings validation
-            foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
-            {
-                DepartedTime = rx.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
-                ArrivedTime = rx.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
-
-                for (int i = 0; i < Dgv_BlockSectionPartition.RowCount -1; i++)
-                {
-
-                }
-            }
-
+            // Validate Block timings
+            if (Validate_BlockTimings() == false) return false;
 
             foreach (DataGridViewRow r in Dgv_BlockSectionPartition.Rows)
             {
                 if (!r.IsNewRow)
                 {
-                    BlockSectionName = r.Cells["DgvCol_BlockSectionName"].Value.ToString() ?? "";
-                    SectionKmFrom = r.Cells["DgvCol_BlockSectionStartKm"].Value.ToString() ?? "";
-                    SectionKmTo = r.Cells["DgvCol_BlockSectionToKm"].Value.ToString() ?? "";
+                    BlockSectionName = r.Cells["DgvCol_BlockSectionName"].Value?.ToString() ?? "";
+                    SectionKmFrom = r.Cells["DgvCol_BlockSectionStartKm"].Value?.ToString() ?? "";
+                    SectionKmTo = r.Cells["DgvCol_BlockSectionToKm"].Value?.ToString() ?? "";
                     sectionalSpeed = r.Cells["DgvCol_BlockSectionalSpeed"].Value?.ToString() ?? "";
                     DepartedTime = r.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
                     ArrivedTime = r.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
@@ -279,14 +369,14 @@ namespace SPM_WINFM
                         Display.InfoMessage($"Invalid Bock section name {BlockSectionName} @ Row {r.Index + 1}");
                         return false;
                     }
-                    else if (!SectionKmFrom.IsNumber())
+                    else if (!SectionKmFrom.ToString().IsNumeric())
                     {
-                        Display.InfoMessage($"Invalid Block Section to Km {SectionKmFrom} @ Row {r.Index + 1}");
+                        Display.InfoMessage($"Invalid Block Section FROM Km {SectionKmFrom} @ Row {r.Index + 1}");
                         return false;
                     }
-                    else if (!SectionKmFrom.IsNumber())
+                    else if (!SectionKmTo.ToString().IsNumeric())
                     {
-                        Display.InfoMessage($"Invalid Block Section to km {SectionKmFrom} @ Row {r.Index + 1}");
+                        Display.InfoMessage($"Invalid Block Section TO km {SectionKmTo} @ Row {r.Index + 1}");
                         return false;
                     }
                     else if (DepartedTime > ArrivedTime)
@@ -349,6 +439,7 @@ namespace SPM_WINFM
             double FromKms, ToKms;
             int SectionalSpeed;
             String BlockSectionName;
+            DateTime LPJdeptime, LPJarrtime;
 
             foreach (DataGridViewRow r in Dgv_BlockSectionPartition.Rows)
             {
@@ -358,6 +449,9 @@ namespace SPM_WINFM
                     ToKms = r.Cells["DgvCol_BlockSectionToKm"].Value.ToString().ConvertToDouble();
                     BlockSectionName = r.Cells["DgvCol_BlockSectionName"].Value.ToString();
                     SectionalSpeed = r.Cells["DgvCol_BlockSectionalSpeed"].Value.ToString().ConvertToInt();
+                    LPJdeptime = r.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+                    LPJarrtime = r.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+
 
                     blockSectionModelList.Add(
                         new Models.BlockSecionModel
@@ -365,8 +459,9 @@ namespace SPM_WINFM
                             BlockStartKms = FromKms,
                             BlockEndKms = ToKms,
                             BlockSectionName = BlockSectionName,
-                            SectionalSpeed = SectionalSpeed
-
+                            SectionalSpeed = SectionalSpeed,
+                            LpJournal_DepTime = LPJdeptime ,
+                            LpJournal_ArrTime = LPJarrtime
                         }
                         );
                 }
@@ -479,8 +574,8 @@ namespace SPM_WINFM
 
                 if (!j.Cancelled && j.TimingsValidated())
                 {
-                    Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells["DgvCol_LpJournalDepTime"].Value = j.GetDepartureTime();
-                    Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells["DgvCol_LpJournalArrTime"].Value = j._GetArrivalTime;
+                    Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells["DgvCol_LpJournalDepTime"].Value = j._GetDepartureTime.ToString("dd/MM/yy HH:mm:ss");
+                    Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells["DgvCol_LpJournalArrTime"].Value = j._GetArrivalTime.ToString("dd/MM/yy HH:mm:ss");
                 }
             }
         }

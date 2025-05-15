@@ -42,6 +42,8 @@ namespace SPM_WINFM.GlobalFunctions
             int TtlEventCount = _medhaEventList.Count;
             double CurrentRowDistance = 0;
             int eventListRowCounter = 0;
+            DateTime LPJdepartureTime, LPJarrivalTime;
+            DateTime EventRuntime;
 
             Boolean IsnextEventExists = false;
             Double CurrentSpeed = 0;
@@ -56,7 +58,10 @@ namespace SPM_WINFM.GlobalFunctions
                     Fromkm = blockSection.BlockStartKms;
                     Tokm = blockSection.BlockEndKms;
                     Diff = Fromkm - Tokm;
+                    LPJdepartureTime = blockSection.LpJournal_DepTime;
+                    LPJarrivalTime = blockSection.LpJournal_ArrTime;
 
+                   
                     for (int i = eventListRowCounter; i <= TtlEventCount; i++)
                     {
                         IsnextEventExists = eventListRowCounter < (TtlEventCount - 1);
@@ -77,10 +82,17 @@ namespace SPM_WINFM.GlobalFunctions
 
                         if (IsnextEventExists)
                         {
-                        CurrentRowDistance = (_medhaEventList[eventListRowCounter].RotationalDistanceCounter / 1000);
-                        _medhaEventList[eventListRowCounter].BlockSection = blockSection.BlockSectionName;
+                            // Mark the Block section name based on LPJ time
+                            EventRuntime = _medhaEventList[eventListRowCounter].RunDateAndTime;
+                            if (EventRuntime >= LPJdepartureTime && EventRuntime <= LPJarrivalTime)
+                            {
+                                _medhaEventList[eventListRowCounter].BlockSection = blockSection.BlockSectionName;
+                            }
+
+                        CurrentRowDistance = (_medhaEventList[eventListRowCounter].RotationalDistanceCounter / 1000);                       
                             _medhaEventList[eventListRowCounter].SectionalSpeed = blockSection.SectionalSpeed;
                             _medhaEventList[eventListRowCounter].Rowid = eventListRowCounter;
+                          
                             
 
                             if (Diff > 0)

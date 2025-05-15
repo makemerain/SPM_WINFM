@@ -72,7 +72,7 @@ namespace SPM_WINFM
         private   void FrmDataAnalysis_Load(object sender, EventArgs e)
         {
            
-             InitializeData();        
+             InitializeData(); 
 
 
         }

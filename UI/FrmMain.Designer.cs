@@ -113,7 +113,7 @@
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1924, 25);
+            toolStrip1.Size = new Size(1539, 25);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
@@ -169,9 +169,9 @@
             tableLayoutPanel1.Controls.Add(Txt_ExcelPath, 5, 3);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 25);
-            tableLayoutPanel1.Margin = new Padding(2, 4, 2, 4);
+            tableLayoutPanel1.Margin = new Padding(2, 3, 2, 3);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(6, 8, 6, 8);
+            tableLayoutPanel1.Padding = new Padding(5, 6, 5, 6);
             tableLayoutPanel1.RowCount = 7;
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
@@ -180,8 +180,8 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            tableLayoutPanel1.Size = new Size(1924, 348);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 22F));
+            tableLayoutPanel1.Size = new Size(1539, 278);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // Btn_LoadForAnlysis
@@ -193,10 +193,10 @@
             Btn_LoadForAnlysis.FlatStyle = FlatStyle.Flat;
             Btn_LoadForAnlysis.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Btn_LoadForAnlysis.ForeColor = Color.White;
-            Btn_LoadForAnlysis.Location = new Point(1283, 260);
-            Btn_LoadForAnlysis.Margin = new Padding(2, 4, 2, 4);
+            Btn_LoadForAnlysis.Location = new Point(1031, 213);
+            Btn_LoadForAnlysis.Margin = new Padding(2, 3, 2, 3);
             Btn_LoadForAnlysis.Name = "Btn_LoadForAnlysis";
-            Btn_LoadForAnlysis.Size = new Size(338, 74);
+            Btn_LoadForAnlysis.Size = new Size(270, 59);
             Btn_LoadForAnlysis.TabIndex = 18;
             Btn_LoadForAnlysis.Text = "&Load Data File For Analysis";
             Btn_LoadForAnlysis.UseVisualStyleBackColor = false;
@@ -209,10 +209,10 @@
             Txt_TrainStartKMnumber.Dock = DockStyle.Fill;
             Txt_TrainStartKMnumber.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_TrainStartKMnumber.ForeColor = Color.Blue;
-            Txt_TrainStartKMnumber.Location = new Point(418, 180);
-            Txt_TrainStartKMnumber.Margin = new Padding(2, 4, 2, 4);
+            Txt_TrainStartKMnumber.Location = new Point(336, 147);
+            Txt_TrainStartKMnumber.Margin = new Padding(2, 3, 2, 3);
             Txt_TrainStartKMnumber.Name = "Txt_TrainStartKMnumber";
-            Txt_TrainStartKMnumber.Size = new Size(213, 32);
+            Txt_TrainStartKMnumber.Size = new Size(171, 27);
             Txt_TrainStartKMnumber.TabIndex = 4;
             Txt_TrainStartKMnumber.Text = "42.400";
             // 
@@ -223,10 +223,10 @@
             label17.FlatStyle = FlatStyle.Flat;
             label17.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.Navy;
-            label17.Location = new Point(8, 176);
+            label17.Location = new Point(7, 144);
             label17.Margin = new Padding(2, 0, 2, 0);
             label17.Name = "label17";
-            label17.Size = new Size(406, 40);
+            label17.Size = new Size(325, 33);
             label17.TabIndex = 32;
             label17.Text = "TRAIN START HECTO NO :";
             label17.TextAlign = ContentAlignment.MiddleRight;
@@ -237,10 +237,10 @@
             Dtp_QueryTo.Dock = DockStyle.Fill;
             Dtp_QueryTo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Dtp_QueryTo.Format = DateTimePickerFormat.Custom;
-            Dtp_QueryTo.Location = new Point(1292, 54);
-            Dtp_QueryTo.Margin = new Padding(11, 4, 2, 4);
+            Dtp_QueryTo.Location = new Point(1038, 44);
+            Dtp_QueryTo.Margin = new Padding(9, 3, 2, 3);
             Dtp_QueryTo.Name = "Dtp_QueryTo";
-            Dtp_QueryTo.Size = new Size(331, 34);
+            Dtp_QueryTo.Size = new Size(266, 29);
             Dtp_QueryTo.TabIndex = 13;
             Dtp_QueryTo.Value = new DateTime(2025, 4, 26, 5, 45, 0, 0);
             // 
@@ -251,10 +251,10 @@
             label11.FlatStyle = FlatStyle.Flat;
             label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Navy;
-            label11.Location = new Point(1081, 8);
-            label11.Margin = new Padding(11, 0, 2, 0);
+            label11.Location = new Point(869, 6);
+            label11.Margin = new Padding(9, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(198, 42);
+            label11.Size = new Size(158, 35);
             label11.TabIndex = 20;
             label11.Text = "QUERY TIME FROM :";
             label11.TextAlign = ContentAlignment.MiddleRight;
@@ -266,10 +266,10 @@
             Txt_TrainLoad.Dock = DockStyle.Fill;
             Txt_TrainLoad.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_TrainLoad.ForeColor = Color.Blue;
-            Txt_TrainLoad.Location = new Point(855, 54);
-            Txt_TrainLoad.Margin = new Padding(2, 4, 2, 4);
+            Txt_TrainLoad.Location = new Point(687, 44);
+            Txt_TrainLoad.Margin = new Padding(2, 3, 2, 3);
             Txt_TrainLoad.Name = "Txt_TrainLoad";
-            Txt_TrainLoad.Size = new Size(213, 32);
+            Txt_TrainLoad.Size = new Size(171, 27);
             Txt_TrainLoad.TabIndex = 7;
             Txt_TrainLoad.Text = "5400";
             // 
@@ -280,10 +280,10 @@
             Txt_TrainNumber.Dock = DockStyle.Fill;
             Txt_TrainNumber.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_TrainNumber.ForeColor = Color.Blue;
-            Txt_TrainNumber.Location = new Point(855, 12);
-            Txt_TrainNumber.Margin = new Padding(2, 4, 2, 4);
+            Txt_TrainNumber.Location = new Point(687, 9);
+            Txt_TrainNumber.Margin = new Padding(2, 3, 2, 3);
             Txt_TrainNumber.Name = "Txt_TrainNumber";
-            Txt_TrainNumber.Size = new Size(213, 32);
+            Txt_TrainNumber.Size = new Size(171, 27);
             Txt_TrainNumber.TabIndex = 6;
             Txt_TrainNumber.Text = "JSWT";
             // 
@@ -294,11 +294,11 @@
             Txt_LocoPilotName.Dock = DockStyle.Fill;
             Txt_LocoPilotName.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LocoPilotName.ForeColor = Color.Blue;
-            Txt_LocoPilotName.Location = new Point(418, 12);
-            Txt_LocoPilotName.Margin = new Padding(2, 4, 2, 4);
+            Txt_LocoPilotName.Location = new Point(336, 9);
+            Txt_LocoPilotName.Margin = new Padding(2, 3, 2, 3);
             Txt_LocoPilotName.Name = "Txt_LocoPilotName";
             Txt_LocoPilotName.PlaceholderText = "Loco pilot name";
-            Txt_LocoPilotName.Size = new Size(213, 32);
+            Txt_LocoPilotName.Size = new Size(171, 27);
             Txt_LocoPilotName.TabIndex = 0;
             Txt_LocoPilotName.Text = "BALASUBBU";
             // 
@@ -309,10 +309,10 @@
             label4.FlatStyle = FlatStyle.Flat;
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Navy;
-            label4.Location = new Point(8, 136);
+            label4.Location = new Point(7, 111);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(406, 40);
+            label4.Size = new Size(325, 33);
             label4.TabIndex = 3;
             label4.Text = "NLI / DEPOT :";
             label4.TextAlign = ContentAlignment.MiddleRight;
@@ -324,10 +324,10 @@
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(8, 8);
+            label1.Location = new Point(7, 6);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(406, 42);
+            label1.Size = new Size(325, 35);
             label1.TabIndex = 0;
             label1.Text = "LP NAME :";
             label1.TextAlign = ContentAlignment.MiddleRight;
@@ -339,10 +339,10 @@
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Navy;
-            label2.Location = new Point(8, 50);
+            label2.Location = new Point(7, 41);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(406, 42);
+            label2.Size = new Size(325, 35);
             label2.TabIndex = 1;
             label2.Text = "DEGN / DEPOT :";
             label2.TextAlign = ContentAlignment.MiddleRight;
@@ -354,10 +354,10 @@
             label3.FlatStyle = FlatStyle.Flat;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Navy;
-            label3.Location = new Point(8, 92);
+            label3.Location = new Point(7, 76);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(406, 44);
+            label3.Size = new Size(325, 35);
             label3.TabIndex = 2;
             label3.Text = "GRADE / EXPERIANCE IN CURRENT GRADE :";
             label3.TextAlign = ContentAlignment.MiddleRight;
@@ -369,10 +369,10 @@
             label5.FlatStyle = FlatStyle.Flat;
             label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(644, 8);
-            label5.Margin = new Padding(11, 0, 2, 0);
+            label5.Location = new Point(518, 6);
+            label5.Margin = new Padding(9, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(207, 42);
+            label5.Size = new Size(165, 35);
             label5.TabIndex = 4;
             label5.Text = "TRAIN NUMBER :";
             label5.TextAlign = ContentAlignment.MiddleRight;
@@ -384,10 +384,10 @@
             label6.FlatStyle = FlatStyle.Flat;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Navy;
-            label6.Location = new Point(644, 50);
-            label6.Margin = new Padding(11, 0, 2, 0);
+            label6.Location = new Point(518, 41);
+            label6.Margin = new Padding(9, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(207, 42);
+            label6.Size = new Size(165, 35);
             label6.TabIndex = 5;
             label6.Text = "TRAIN LOAD :";
             label6.TextAlign = ContentAlignment.MiddleRight;
@@ -399,10 +399,10 @@
             label7.FlatStyle = FlatStyle.Flat;
             label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Navy;
-            label7.Location = new Point(644, 92);
-            label7.Margin = new Padding(11, 0, 2, 0);
+            label7.Location = new Point(518, 76);
+            label7.Margin = new Padding(9, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(207, 44);
+            label7.Size = new Size(165, 35);
             label7.TabIndex = 6;
             label7.Text = "MAJOR SECTION :";
             label7.TextAlign = ContentAlignment.MiddleRight;
@@ -414,10 +414,10 @@
             label8.FlatStyle = FlatStyle.Flat;
             label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Navy;
-            label8.Location = new Point(644, 136);
-            label8.Margin = new Padding(11, 0, 2, 0);
+            label8.Location = new Point(518, 111);
+            label8.Margin = new Padding(9, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(207, 40);
+            label8.Size = new Size(165, 33);
             label8.TabIndex = 7;
             label8.Text = "ANALYZED SECTION :";
             label8.TextAlign = ContentAlignment.MiddleRight;
@@ -429,10 +429,10 @@
             label9.FlatStyle = FlatStyle.Flat;
             label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Navy;
-            label9.Location = new Point(644, 176);
-            label9.Margin = new Padding(11, 0, 2, 0);
+            label9.Location = new Point(518, 144);
+            label9.Margin = new Padding(9, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(207, 40);
+            label9.Size = new Size(165, 33);
             label9.TabIndex = 8;
             label9.Text = "STOCK TYPE :";
             label9.TextAlign = ContentAlignment.MiddleRight;
@@ -444,10 +444,10 @@
             Txt_LpDegn_Depot.Dock = DockStyle.Fill;
             Txt_LpDegn_Depot.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LpDegn_Depot.ForeColor = Color.Blue;
-            Txt_LpDegn_Depot.Location = new Point(418, 54);
-            Txt_LpDegn_Depot.Margin = new Padding(2, 4, 2, 4);
+            Txt_LpDegn_Depot.Location = new Point(336, 44);
+            Txt_LpDegn_Depot.Margin = new Padding(2, 3, 2, 3);
             Txt_LpDegn_Depot.Name = "Txt_LpDegn_Depot";
-            Txt_LpDegn_Depot.Size = new Size(213, 32);
+            Txt_LpDegn_Depot.Size = new Size(171, 27);
             Txt_LpDegn_Depot.TabIndex = 1;
             Txt_LpDegn_Depot.Text = "CLI/SKLR";
             // 
@@ -458,10 +458,10 @@
             Txt_LpGrade_Experiance.Dock = DockStyle.Fill;
             Txt_LpGrade_Experiance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LpGrade_Experiance.ForeColor = Color.Blue;
-            Txt_LpGrade_Experiance.Location = new Point(418, 96);
-            Txt_LpGrade_Experiance.Margin = new Padding(2, 4, 2, 4);
+            Txt_LpGrade_Experiance.Location = new Point(336, 79);
+            Txt_LpGrade_Experiance.Margin = new Padding(2, 3, 2, 3);
             Txt_LpGrade_Experiance.Name = "Txt_LpGrade_Experiance";
-            Txt_LpGrade_Experiance.Size = new Size(213, 32);
+            Txt_LpGrade_Experiance.Size = new Size(171, 27);
             Txt_LpGrade_Experiance.TabIndex = 2;
             Txt_LpGrade_Experiance.Text = "A/14";
             // 
@@ -472,10 +472,10 @@
             Txt_NliName_Depot.Dock = DockStyle.Fill;
             Txt_NliName_Depot.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_NliName_Depot.ForeColor = Color.Blue;
-            Txt_NliName_Depot.Location = new Point(418, 140);
-            Txt_NliName_Depot.Margin = new Padding(2, 4, 2, 4);
+            Txt_NliName_Depot.Location = new Point(336, 114);
+            Txt_NliName_Depot.Margin = new Padding(2, 3, 2, 3);
             Txt_NliName_Depot.Name = "Txt_NliName_Depot";
-            Txt_NliName_Depot.Size = new Size(213, 32);
+            Txt_NliName_Depot.Size = new Size(171, 27);
             Txt_NliName_Depot.TabIndex = 3;
             Txt_NliName_Depot.Text = "BALU/SKLR";
             // 
@@ -486,10 +486,10 @@
             label10.FlatStyle = FlatStyle.Flat;
             label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Navy;
-            label10.Location = new Point(644, 216);
-            label10.Margin = new Padding(11, 0, 2, 0);
+            label10.Location = new Point(518, 177);
+            label10.Margin = new Padding(9, 0, 2, 0);
             label10.Name = "label10";
-            label10.Size = new Size(207, 40);
+            label10.Size = new Size(165, 33);
             label10.TabIndex = 9;
             label10.Text = "BP % And KBD % :";
             label10.TextAlign = ContentAlignment.MiddleRight;
@@ -501,10 +501,10 @@
             Txt_MajorSection.Dock = DockStyle.Fill;
             Txt_MajorSection.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_MajorSection.ForeColor = Color.Blue;
-            Txt_MajorSection.Location = new Point(855, 96);
-            Txt_MajorSection.Margin = new Padding(2, 4, 2, 4);
+            Txt_MajorSection.Location = new Point(687, 79);
+            Txt_MajorSection.Margin = new Padding(2, 3, 2, 3);
             Txt_MajorSection.Name = "Txt_MajorSection";
-            Txt_MajorSection.Size = new Size(213, 32);
+            Txt_MajorSection.Size = new Size(171, 27);
             Txt_MajorSection.TabIndex = 8;
             Txt_MajorSection.Text = "SKLR-SBHR";
             // 
@@ -515,10 +515,10 @@
             Txt_AnalysedSection.Dock = DockStyle.Fill;
             Txt_AnalysedSection.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_AnalysedSection.ForeColor = Color.Blue;
-            Txt_AnalysedSection.Location = new Point(855, 140);
-            Txt_AnalysedSection.Margin = new Padding(2, 4, 2, 4);
+            Txt_AnalysedSection.Location = new Point(687, 114);
+            Txt_AnalysedSection.Margin = new Padding(2, 3, 2, 3);
             Txt_AnalysedSection.Name = "Txt_AnalysedSection";
-            Txt_AnalysedSection.Size = new Size(213, 32);
+            Txt_AnalysedSection.Size = new Size(171, 27);
             Txt_AnalysedSection.TabIndex = 9;
             Txt_AnalysedSection.Text = "SKLR-SBHR";
             // 
@@ -529,10 +529,10 @@
             txt_StockType.Dock = DockStyle.Fill;
             txt_StockType.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_StockType.ForeColor = Color.Blue;
-            txt_StockType.Location = new Point(855, 180);
-            txt_StockType.Margin = new Padding(2, 4, 2, 4);
+            txt_StockType.Location = new Point(687, 147);
+            txt_StockType.Margin = new Padding(2, 3, 2, 3);
             txt_StockType.Name = "txt_StockType";
-            txt_StockType.Size = new Size(213, 32);
+            txt_StockType.Size = new Size(171, 27);
             txt_StockType.TabIndex = 10;
             txt_StockType.Text = "BOXN LOAD";
             // 
@@ -543,10 +543,10 @@
             Txt_BrakePower.Dock = DockStyle.Fill;
             Txt_BrakePower.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_BrakePower.ForeColor = Color.Blue;
-            Txt_BrakePower.Location = new Point(855, 220);
-            Txt_BrakePower.Margin = new Padding(2, 4, 2, 4);
+            Txt_BrakePower.Location = new Point(687, 180);
+            Txt_BrakePower.Margin = new Padding(2, 3, 2, 3);
             Txt_BrakePower.Name = "Txt_BrakePower";
-            Txt_BrakePower.Size = new Size(213, 32);
+            Txt_BrakePower.Size = new Size(171, 27);
             Txt_BrakePower.TabIndex = 11;
             Txt_BrakePower.Text = "93/41";
             // 
@@ -557,10 +557,10 @@
             label12.FlatStyle = FlatStyle.Flat;
             label12.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.Navy;
-            label12.Location = new Point(1081, 50);
-            label12.Margin = new Padding(11, 0, 2, 0);
+            label12.Location = new Point(869, 41);
+            label12.Margin = new Padding(9, 0, 2, 0);
             label12.Name = "label12";
-            label12.Size = new Size(198, 42);
+            label12.Size = new Size(158, 35);
             label12.TabIndex = 21;
             label12.Text = "QUERY TIME TO :";
             label12.TextAlign = ContentAlignment.MiddleRight;
@@ -572,10 +572,10 @@
             label13.FlatStyle = FlatStyle.Flat;
             label13.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.Navy;
-            label13.Location = new Point(1081, 92);
-            label13.Margin = new Padding(11, 0, 2, 0);
+            label13.Location = new Point(869, 76);
+            label13.Margin = new Padding(9, 0, 2, 0);
             label13.Name = "label13";
-            label13.Size = new Size(198, 44);
+            label13.Size = new Size(158, 35);
             label13.TabIndex = 22;
             label13.Text = "SPM TYPE :";
             label13.TextAlign = ContentAlignment.MiddleRight;
@@ -586,10 +586,10 @@
             Dtp_QueryFrom.Dock = DockStyle.Fill;
             Dtp_QueryFrom.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Dtp_QueryFrom.Format = DateTimePickerFormat.Custom;
-            Dtp_QueryFrom.Location = new Point(1292, 12);
-            Dtp_QueryFrom.Margin = new Padding(11, 4, 2, 4);
+            Dtp_QueryFrom.Location = new Point(1038, 9);
+            Dtp_QueryFrom.Margin = new Padding(9, 3, 2, 3);
             Dtp_QueryFrom.Name = "Dtp_QueryFrom";
-            Dtp_QueryFrom.Size = new Size(331, 34);
+            Dtp_QueryFrom.Size = new Size(266, 29);
             Dtp_QueryFrom.TabIndex = 12;
             Dtp_QueryFrom.Value = new DateTime(2025, 4, 26, 2, 17, 0, 0);
             // 
@@ -599,10 +599,10 @@
             Cbo_SpeedometerType.Dock = DockStyle.Fill;
             Cbo_SpeedometerType.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Cbo_SpeedometerType.FormattingEnabled = true;
-            Cbo_SpeedometerType.Location = new Point(1292, 96);
-            Cbo_SpeedometerType.Margin = new Padding(11, 4, 2, 4);
+            Cbo_SpeedometerType.Location = new Point(1038, 79);
+            Cbo_SpeedometerType.Margin = new Padding(9, 3, 2, 3);
             Cbo_SpeedometerType.Name = "Cbo_SpeedometerType";
-            Cbo_SpeedometerType.Size = new Size(331, 36);
+            Cbo_SpeedometerType.Size = new Size(266, 29);
             Cbo_SpeedometerType.TabIndex = 14;
             // 
             // label16
@@ -612,10 +612,10 @@
             label16.FlatStyle = FlatStyle.Flat;
             label16.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label16.ForeColor = Color.Navy;
-            label16.Location = new Point(1081, 136);
-            label16.Margin = new Padding(11, 0, 2, 0);
+            label16.Location = new Point(869, 111);
+            label16.Margin = new Padding(9, 0, 2, 0);
             label16.Name = "label16";
-            label16.Size = new Size(198, 40);
+            label16.Size = new Size(158, 33);
             label16.TabIndex = 30;
             label16.Text = "EVENT FILE PATH :";
             label16.TextAlign = ContentAlignment.MiddleRight;
@@ -627,10 +627,10 @@
             label18.FlatStyle = FlatStyle.Flat;
             label18.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label18.ForeColor = Color.Navy;
-            label18.Location = new Point(8, 216);
+            label18.Location = new Point(7, 177);
             label18.Margin = new Padding(2, 0, 2, 0);
             label18.Name = "label18";
-            label18.Size = new Size(406, 40);
+            label18.Size = new Size(325, 33);
             label18.TabIndex = 34;
             label18.Text = "LOCO NUMBER :";
             label18.TextAlign = ContentAlignment.MiddleRight;
@@ -642,10 +642,10 @@
             Txt_LocoConsist.Dock = DockStyle.Fill;
             Txt_LocoConsist.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_LocoConsist.ForeColor = Color.Blue;
-            Txt_LocoConsist.Location = new Point(418, 220);
-            Txt_LocoConsist.Margin = new Padding(2, 4, 2, 4);
+            Txt_LocoConsist.Location = new Point(336, 180);
+            Txt_LocoConsist.Margin = new Padding(2, 3, 2, 3);
             Txt_LocoConsist.Name = "Txt_LocoConsist";
-            Txt_LocoConsist.Size = new Size(213, 32);
+            Txt_LocoConsist.Size = new Size(171, 27);
             Txt_LocoConsist.TabIndex = 5;
             Txt_LocoConsist.Text = "12055+12055";
             // 
@@ -656,10 +656,10 @@
             label14.FlatStyle = FlatStyle.Flat;
             label14.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Navy;
-            label14.Location = new Point(1081, 176);
-            label14.Margin = new Padding(11, 0, 2, 0);
+            label14.Location = new Point(869, 144);
+            label14.Margin = new Padding(9, 0, 2, 0);
             label14.Name = "label14";
-            label14.Size = new Size(198, 40);
+            label14.Size = new Size(158, 33);
             label14.TabIndex = 36;
             label14.Text = "ANALYSED BY :";
             label14.TextAlign = ContentAlignment.MiddleRight;
@@ -671,10 +671,10 @@
             label15.FlatStyle = FlatStyle.Flat;
             label15.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Navy;
-            label15.Location = new Point(1081, 216);
-            label15.Margin = new Padding(11, 0, 2, 0);
+            label15.Location = new Point(869, 177);
+            label15.Margin = new Padding(9, 0, 2, 0);
             label15.Name = "label15";
-            label15.Size = new Size(198, 40);
+            label15.Size = new Size(158, 33);
             label15.TabIndex = 37;
             label15.Text = "ANALYSER DEGN :";
             label15.TextAlign = ContentAlignment.MiddleRight;
@@ -686,10 +686,10 @@
             Txt_Analyser.Dock = DockStyle.Fill;
             Txt_Analyser.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_Analyser.ForeColor = Color.Blue;
-            Txt_Analyser.Location = new Point(1292, 180);
-            Txt_Analyser.Margin = new Padding(11, 4, 2, 4);
+            Txt_Analyser.Location = new Point(1038, 147);
+            Txt_Analyser.Margin = new Padding(9, 3, 2, 3);
             Txt_Analyser.Name = "Txt_Analyser";
-            Txt_Analyser.Size = new Size(331, 32);
+            Txt_Analyser.Size = new Size(266, 27);
             Txt_Analyser.TabIndex = 16;
             Txt_Analyser.Text = "BALU";
             // 
@@ -700,10 +700,10 @@
             Txt_AnalyserDegn.Dock = DockStyle.Fill;
             Txt_AnalyserDegn.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_AnalyserDegn.ForeColor = Color.Blue;
-            Txt_AnalyserDegn.Location = new Point(1292, 220);
-            Txt_AnalyserDegn.Margin = new Padding(11, 4, 2, 4);
+            Txt_AnalyserDegn.Location = new Point(1038, 180);
+            Txt_AnalyserDegn.Margin = new Padding(9, 3, 2, 3);
             Txt_AnalyserDegn.Name = "Txt_AnalyserDegn";
-            Txt_AnalyserDegn.Size = new Size(331, 32);
+            Txt_AnalyserDegn.Size = new Size(266, 27);
             Txt_AnalyserDegn.TabIndex = 17;
             Txt_AnalyserDegn.Text = "CLI-SKLR";
             // 
@@ -713,11 +713,11 @@
             Txt_ExcelPath.Dock = DockStyle.Fill;
             Txt_ExcelPath.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Txt_ExcelPath.ForeColor = Color.Blue;
-            Txt_ExcelPath.Location = new Point(1292, 140);
-            Txt_ExcelPath.Margin = new Padding(11, 4, 2, 4);
+            Txt_ExcelPath.Location = new Point(1038, 114);
+            Txt_ExcelPath.Margin = new Padding(9, 3, 2, 3);
             Txt_ExcelPath.Name = "Txt_ExcelPath";
             Txt_ExcelPath.ReadOnly = true;
-            Txt_ExcelPath.Size = new Size(331, 32);
+            Txt_ExcelPath.Size = new Size(266, 27);
             Txt_ExcelPath.TabIndex = 15;
             Txt_ExcelPath.Text = "C:\\Users\\Balu Subbu\\Desktop\\SPM\\RAW-DATA\\04-25\\12083-145-girish-26042.xlsx";
             Txt_ExcelPath.Click += Txt_ExcelPath_Click;
@@ -730,23 +730,23 @@
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(0, 373);
-            groupBox1.Margin = new Padding(2, 4, 2, 4);
+            groupBox1.Location = new Point(0, 303);
+            groupBox1.Margin = new Padding(2, 3, 2, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 4, 2, 4);
-            groupBox1.Size = new Size(1924, 368);
+            groupBox1.Padding = new Padding(2, 3, 2, 3);
+            groupBox1.Size = new Size(1539, 290);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             // 
             // groupBox4
             // 
             groupBox4.Controls.Add(Dgv_BlockSectionPartition);
-            groupBox4.Dock = DockStyle.Left;
-            groupBox4.Location = new Point(615, 31);
+            groupBox4.Dock = DockStyle.Fill;
+            groupBox4.Location = new Point(538, 25);
             groupBox4.Margin = new Padding(2);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(2);
-            groupBox4.Size = new Size(1008, 333);
+            groupBox4.Size = new Size(999, 262);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Block Section Partition (In order of run)";
@@ -759,11 +759,12 @@
             Dgv_BlockSectionPartition.Columns.AddRange(new DataGridViewColumn[] { DgvCol_BlockSectionName, DgvCol_BlockSectionStartKm, DgvCol_BlockSectionToKm, DgvCol_BlockSectionalSpeed, DgvCol_LpJournalDepTime, DgvCol_LpJournalArrTime, DgvCol_DropBlock });
             Dgv_BlockSectionPartition.ContextMenuStrip = ContextMenu_BlockSection;
             Dgv_BlockSectionPartition.Dock = DockStyle.Fill;
-            Dgv_BlockSectionPartition.Location = new Point(2, 29);
-            Dgv_BlockSectionPartition.Margin = new Padding(11, 12, 11, 12);
+            Dgv_BlockSectionPartition.EnableHeadersVisualStyles = false;
+            Dgv_BlockSectionPartition.Location = new Point(2, 24);
+            Dgv_BlockSectionPartition.Margin = new Padding(9, 10, 9, 10);
             Dgv_BlockSectionPartition.Name = "Dgv_BlockSectionPartition";
             Dgv_BlockSectionPartition.RowHeadersWidth = 51;
-            Dgv_BlockSectionPartition.Size = new Size(1004, 302);
+            Dgv_BlockSectionPartition.Size = new Size(995, 236);
             Dgv_BlockSectionPartition.TabIndex = 0;
             Dgv_BlockSectionPartition.TabStop = false;
             Dgv_BlockSectionPartition.CellClick += Dgv_BlockSectionPartition_CellClick;
@@ -772,7 +773,6 @@
             // 
             DgvCol_BlockSectionName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.NullValue = null;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             DgvCol_BlockSectionName.DefaultCellStyle = dataGridViewCellStyle1;
             DgvCol_BlockSectionName.HeaderText = "BLOCK NAME";
@@ -795,7 +795,6 @@
             // 
             DgvCol_BlockSectionToKm.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             DgvCol_BlockSectionToKm.DefaultCellStyle = dataGridViewCellStyle3;
             DgvCol_BlockSectionToKm.HeaderText = "KM END";
@@ -814,48 +813,52 @@
             // DgvCol_LpJournalDepTime
             // 
             DgvCol_LpJournalDepTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "F";
-            dataGridViewCellStyle4.NullValue = null;
-            DgvCol_LpJournalDepTime.DefaultCellStyle = dataGridViewCellStyle4;
             DgvCol_LpJournalDepTime.HeaderText = "LPJ_Dep Time";
             DgvCol_LpJournalDepTime.MinimumWidth = 6;
             DgvCol_LpJournalDepTime.Name = "DgvCol_LpJournalDepTime";
             DgvCol_LpJournalDepTime.ReadOnly = true;
             DgvCol_LpJournalDepTime.ToolTipText = "LP Journal Departure time";
-            DgvCol_LpJournalDepTime.Width = 152;
+            DgvCol_LpJournalDepTime.Width = 123;
             // 
             // DgvCol_LpJournalArrTime
             // 
             DgvCol_LpJournalArrTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Format = "F";
-            DgvCol_LpJournalArrTime.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.NullValue = null;
+            DgvCol_LpJournalArrTime.DefaultCellStyle = dataGridViewCellStyle4;
             DgvCol_LpJournalArrTime.HeaderText = "LPJ_Arr Time";
             DgvCol_LpJournalArrTime.MinimumWidth = 6;
             DgvCol_LpJournalArrTime.Name = "DgvCol_LpJournalArrTime";
             DgvCol_LpJournalArrTime.ReadOnly = true;
             DgvCol_LpJournalArrTime.ToolTipText = "LP Journal Arrival Time";
-            DgvCol_LpJournalArrTime.Width = 143;
+            DgvCol_LpJournalArrTime.Width = 116;
             // 
             // DgvCol_DropBlock
             // 
             DgvCol_DropBlock.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.Yellow;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(192, 0, 0);
+            DgvCol_DropBlock.DefaultCellStyle = dataGridViewCellStyle5;
             DgvCol_DropBlock.HeaderText = "DROP";
             DgvCol_DropBlock.MinimumWidth = 6;
             DgvCol_DropBlock.Name = "DgvCol_DropBlock";
+            DgvCol_DropBlock.Text = "DROP ROW";
+            DgvCol_DropBlock.ToolTipText = "Delete row";
             // 
             // ContextMenu_BlockSection
             // 
             ContextMenu_BlockSection.ImageScalingSize = new Size(20, 20);
             ContextMenu_BlockSection.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
             ContextMenu_BlockSection.Name = "ContextMenu_BlockSection";
-            ContextMenu_BlockSection.Size = new Size(336, 36);
+            ContextMenu_BlockSection.Size = new Size(279, 30);
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             toolStripMenuItem1.Image = Properties.Resources.YDK_GRADIENT;
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(335, 32);
+            toolStripMenuItem1.Size = new Size(278, 26);
             toolStripMenuItem1.Text = "PASTE FROM EXCEL ROWS";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
@@ -863,11 +866,11 @@
             // 
             groupBox2.Controls.Add(DGV_CautionOrders);
             groupBox2.Dock = DockStyle.Left;
-            groupBox2.Location = new Point(2, 31);
+            groupBox2.Location = new Point(2, 25);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
-            groupBox2.Size = new Size(613, 333);
+            groupBox2.Size = new Size(536, 262);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Caution Order Speed";
@@ -880,11 +883,11 @@
             DGV_CautionOrders.Columns.AddRange(new DataGridViewColumn[] { DgvCol_CDkmFrom, DgvCol_CDkmTo, DgvCol_CDspeed, DgvCol_DropCDrow });
             DGV_CautionOrders.ContextMenuStrip = ContextMenu_CautionOrder;
             DGV_CautionOrders.Dock = DockStyle.Fill;
-            DGV_CautionOrders.Location = new Point(2, 29);
-            DGV_CautionOrders.Margin = new Padding(11, 12, 11, 12);
+            DGV_CautionOrders.Location = new Point(2, 24);
+            DGV_CautionOrders.Margin = new Padding(9, 10, 9, 10);
             DGV_CautionOrders.Name = "DGV_CautionOrders";
             DGV_CautionOrders.RowHeadersWidth = 51;
-            DGV_CautionOrders.Size = new Size(609, 302);
+            DGV_CautionOrders.Size = new Size(532, 236);
             DGV_CautionOrders.TabIndex = 0;
             DGV_CautionOrders.TabStop = false;
             DGV_CautionOrders.CellContentClick += DGV_CautionOrders_CellContentClick;
@@ -930,33 +933,36 @@
             DgvCol_DropCDrow.HeaderText = "DROP";
             DgvCol_DropCDrow.MinimumWidth = 6;
             DgvCol_DropCDrow.Name = "DgvCol_DropCDrow";
+            DgvCol_DropCDrow.Text = "DROP ROW";
+            DgvCol_DropCDrow.ToolTipText = "Delete row";
             // 
             // ContextMenu_CautionOrder
             // 
             ContextMenu_CautionOrder.ImageScalingSize = new Size(20, 20);
             ContextMenu_CautionOrder.Items.AddRange(new ToolStripItem[] { toolStripMenuItem2 });
             ContextMenu_CautionOrder.Name = "ContextMenu_BlockSection";
-            ContextMenu_CautionOrder.Size = new Size(336, 36);
+            ContextMenu_CautionOrder.Size = new Size(279, 30);
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             toolStripMenuItem2.Image = Properties.Resources.YDK_GRADIENT;
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(335, 32);
+            toolStripMenuItem2.Size = new Size(278, 26);
             toolStripMenuItem2.Text = "PASTE FROM EXCEL ROWS";
             toolStripMenuItem2.Click += toolStripMenuItem2_Click;
             // 
             // FrmMain
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(1924, 741);
+            AutoSize = true;
+            ClientSize = new Size(1539, 593);
             Controls.Add(groupBox1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(toolStrip1);
-            Margin = new Padding(2, 4, 2, 4);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
