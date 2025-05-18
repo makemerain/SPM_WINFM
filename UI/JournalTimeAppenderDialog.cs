@@ -15,14 +15,25 @@ namespace SPM_WINFM.UI
 {
     public partial class JournalTimeAppenderDialog : Form
     {
-        public JournalTimeAppenderDialog(String BlockSection)
+        public JournalTimeAppenderDialog(String BlockSection, DateTime? minmumTimeLock)
         {
             InitializeComponent();
 
             _blockSection = BlockSection;
+            _mininmumTimeLoc = minmumTimeLock;
+
+            if (minmumTimeLock != null)
+            {
+                Dtp_DepartureTime.Value = _mininmumTimeLoc ?? DateTime.MinValue;
+                Dtp_DepartureTime.MinDate = _mininmumTimeLoc ?? DateTime.MinValue;
+            }
+            
+
         }
 
         private String _blockSection { get; set; }
+        private DateTime? _mininmumTimeLoc { get; set; }
+
         private  DateTime GetDepartureTime()
         {
             if (TimingsValidated())

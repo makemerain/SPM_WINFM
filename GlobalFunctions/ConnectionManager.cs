@@ -101,8 +101,8 @@ namespace MAUI_SPM.ApplicationTools
 
 
                 var FilterQ = (from l in Q
-                               where l.RunDateTime <= QueryToTime &&
-                               l.RunDateTime >= QueryFromTime
+                               where l.RunDateAndTime <= QueryToTime &&
+                               l.RunDateAndTime >= QueryFromTime
                                select l).ToList();
                 double runningTotal = 0;
 
@@ -110,7 +110,7 @@ namespace MAUI_SPM.ApplicationTools
                 {
                     NextValue = index < FilterQ.Count - 1 ? FilterQ[index + 1].CumulativeDistanceCounter : (double?)null,
                     RotationalDistanceCounter = index < FilterQ.Count - 1 ? (double?)(x.CumulativeDistanceCounter - FilterQ[index + 1].CumulativeDistanceCounter) : null,
-                    x.RunDateTime,
+                    x.RunDateAndTime,
                     x.TrainSpeed,
                     x.CumulativeDistanceCounter,
                     x.TractiveEffort,

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-
+using AutoMapper;
 
 namespace SPM_WINFM.GlobalFunctions
 {
@@ -18,21 +18,61 @@ namespace SPM_WINFM.GlobalFunctions
 
         public EventSectionConfiguration(List<Models.MedhaSpeedometerModel> medhaeventdatalist,
                                                List<Models.BlockSecionModel> blocksectionlist,                                              
-                                               List<Models.CautionOrderModel> cautionorderlist)
+                                               List<Models.CautionOrderModel> cautionorderlist,
+                                               String SPMtype)
         {
              _medhaEventList = medhaeventdatalist;
             _blockSectionModellist = blocksectionlist;
             _cautionOrderList = cautionorderlist;
+            _spmType = SPMtype;
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Models.MedhaSpeedometerModel , Models.CommonDieselBindingEventDataModel>();
+            });
+
+            var mapper = config.CreateMapper();
+
+            _commonDieselBindingEventList = mapper.Map<List<Models.CommonDieselBindingEventDataModel>>(_medhaEventList);
+
+
+        }
+
+
+        public EventSectionConfiguration(List<Models.LaxvenSpeedometerModel> laxvenventdatalist,
+                                               List<Models.BlockSecionModel> blocksectionlist,
+                                               List<Models.CautionOrderModel> cautionorderlist,
+                                               String SPMtype)
+        {
+            _laxvelEventlist = laxvenventdatalist;
+            _blockSectionModellist = blocksectionlist;
+            _cautionOrderList = cautionorderlist;
+            _spmType = SPMtype;
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Models.LaxvenSpeedometerModel, Models.CommonDieselBindingEventDataModel>();
+            });
+
+            var mapper = config.CreateMapper();
+
+            _commonDieselBindingEventList = mapper.Map<List<Models.CommonDieselBindingEventDataModel>>(_laxvelEventlist);
+
+
         }
 
         private List<Models.MedhaSpeedometerModel> _medhaEventList = new();
+        private List<Models.LaxvenSpeedometerModel> _laxvelEventlist = new();
+
         private List<Models.BlockSecionModel> _blockSectionModellist = new();
         private List<Models.CautionOrderModel> _cautionOrderList = new();
+        private List<Models.CommonDieselBindingEventDataModel> _commonDieselBindingEventList = new();
+        private String _spmType;
         
         /// <summary>
         /// Configure the Block section , Hecto meter & rowid
         /// </summary>
-        private  void  MedhaSectionConfiguration()                                                                                
+        private  void  BlockSectionSectionConfiguration()                                                                                
         {  
             // Block sectioning and sectional speed
             double Fromkm = 0;
@@ -50,7 +90,7 @@ namespace SPM_WINFM.GlobalFunctions
             Double NextSpeed = 0;
             string Status;
 
-            if (_medhaEventList != null && _blockSectionModellist != null)
+            if (_commonDieselBindingEventList != null && _blockSectionModellist != null)
             {
 
                 foreach (var blockSection in _blockSectionModellist)
@@ -70,11 +110,11 @@ namespace SPM_WINFM.GlobalFunctions
                         // Mark Run status STOP, START, RUN
                         if (IsnextEventExists)
                         {
-                            CurrentSpeed = _medhaEventList[eventListRowCounter].TrainSpeed;
-                            NextSpeed = _medhaEventList[eventListRowCounter + 1].TrainSpeed;
+                            CurrentSpeed = _commonDieselBindingEventList[eventListRowCounter].TrainSpeed;
+                            NextSpeed = _commonDieselBindingEventList[eventListRowCounter + 1].TrainSpeed;
                             Status = Extensions.GetTrainStatus(CurrentSpeed, NextSpeed);
 
-                            _medhaEventList[eventListRowCounter + 1].RunStatus = Status;                          
+                            _commonDieselBindingEventList[eventListRowCounter + 1].RunStatus = Status;                          
 
                         }
 
@@ -83,32 +123,39 @@ namespace SPM_WINFM.GlobalFunctions
                         if (IsnextEventExists)
                         {
                             // Mark the Block section name based on LPJ time
-                            EventRuntime = _medhaEventList[eventListRowCounter].RunDateAndTime;
-                            if (EventRuntime >= LPJdepartureTime && EventRuntime <= LPJarrivalTime)
+                            EventRuntime = _commonDieselBindingEventList[eventListRowCounter].RunDateAndTime;
+
+                            if (EventRuntime > LPJarrivalTime)
                             {
-                                _medhaEventList[eventListRowCounter].BlockSection = blockSection.BlockSectionName;
+                                break;
                             }
 
-                        CurrentRowDistance = (_medhaEventList[eventListRowCounter].RotationalDistanceCounter / 1000);                       
-                            _medhaEventList[eventListRowCounter].SectionalSpeed = blockSection.SectionalSpeed;
-                            _medhaEventList[eventListRowCounter].Rowid = eventListRowCounter;
-                          
-                            
+                            if (EventRuntime >= LPJdepartureTime && EventRuntime <= LPJarrivalTime)
+                            {
+                                _commonDieselBindingEventList[eventListRowCounter].Rowid = eventListRowCounter;
+                                _commonDieselBindingEventList[eventListRowCounter].BlockSection = blockSection.BlockSectionName;
+                                _commonDieselBindingEventList[eventListRowCounter].SectionalSpeed = blockSection.SectionalSpeed;
 
-                            if (Diff > 0)
-                        {
-                                Fromkm -= CurrentRowDistance;
+                                CurrentRowDistance = (_commonDieselBindingEventList[eventListRowCounter].RotationalDistanceCounter / 1000);
 
-                                _medhaEventList[eventListRowCounter].Hectometer = Math.Round(Fromkm, 3);
+                                if (Diff > 0)
+                                {
+                                    Fromkm -= CurrentRowDistance;
 
-                            if (Fromkm <= Tokm) break;
-                        }
-                        else if (Diff < 0)
-                        {
-                                Fromkm += CurrentRowDistance;
-                                _medhaEventList[eventListRowCounter].Hectometer = Math.Round(Fromkm, 3);
+                                    _commonDieselBindingEventList[eventListRowCounter].Hectometer = Math.Round(Fromkm, 3);
 
-                                if (Fromkm >= Tokm) break;
+                                   // if (Fromkm <= Tokm) break;
+                                }
+                                else if (Diff < 0)
+                                {
+                                    Fromkm += CurrentRowDistance;
+                                    _commonDieselBindingEventList[eventListRowCounter].Hectometer = Math.Round(Fromkm, 3);
+
+                                   // if (Fromkm >= Tokm) break;
+
+                                }
+
+                         
                         }
                         }
                         
@@ -129,13 +176,13 @@ namespace SPM_WINFM.GlobalFunctions
         /// <summary>
         /// Configures the Section Caution order
         /// </summary>
-        private  void MedhaCautionOrderConfiguration()
+        private  void CautionOrderConfiguration()
         {
             double CautionFrom;
             double CautionTo;
             int cautionSpeed;
 
-            if (_medhaEventList != null && _cautionOrderList != null)
+            if (_commonDieselBindingEventList != null && _cautionOrderList != null)
             {
                 foreach (var item in _cautionOrderList)
                 {
@@ -149,7 +196,7 @@ namespace SPM_WINFM.GlobalFunctions
 
                     foreach (var Qrow in Q)
                     {
-                        _medhaEventList[Qrow.Rowid].CautionSpeed = cautionSpeed;
+                        _commonDieselBindingEventList[Qrow.Rowid].CautionSpeed = cautionSpeed;
                     }
 
                 }
@@ -157,12 +204,12 @@ namespace SPM_WINFM.GlobalFunctions
             
         }
 
-        public List<Models.MedhaSpeedometerModel> GetConfigured_MedhaEventDataList()
+        public List<Models.CommonDieselBindingEventDataModel> GetConfigured_EventDataList()
         {
-            MedhaSectionConfiguration();
-            MedhaCautionOrderConfiguration();
+            BlockSectionSectionConfiguration();
+            CautionOrderConfiguration();
 
-            return _medhaEventList;
+            return _commonDieselBindingEventList;
         }
     }
 

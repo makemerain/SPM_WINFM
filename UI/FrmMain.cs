@@ -25,6 +25,7 @@ namespace SPM_WINFM
 
         private void Btn_LoadForAnlysis_Click(object sender, EventArgs e)
         {
+            Update_LPjournal_MinMax_Timings_ToQueryCriteria(); // Update the Block section Min & Max Lp rough journal time to Query criteria
 
             trainInformationModel = InputDataValidation();
 
@@ -36,6 +37,35 @@ namespace SPM_WINFM
 
             FrmDataAnalysis f = new FrmDataAnalysis(trainInformationModel, cautionOrderModelList, blockSectionList);
             f.Show(this);
+
+        }
+        /// <summary>
+        /// Update the Block section grid Min and max time to Dtp Query time
+        /// </summary>
+        private void Update_LPjournal_MinMax_Timings_ToQueryCriteria()
+        {
+            if (Dgv_BlockSectionPartition.RowCount > 0)
+            {
+                List<DateTime> TimeList = new();
+                
+
+                foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
+                {
+                    if (!rx.IsNewRow)
+                    {
+                    TimeList.Add(rx.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss"));
+                    TimeList.Add(rx.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss"));
+                    }
+                    
+                }
+
+                if (TimeList != null)
+                {
+                    Dtp_QueryFrom.Value = TimeList.Min();
+                    Dtp_QueryTo.Value = TimeList.Max();
+                }
+
+            }
 
         }
 
@@ -567,9 +597,21 @@ namespace SPM_WINFM
                 Dgv_BlockSectionPartition.Rows.RemoveAt(e.RowIndex);
             }
 
+            DateTime? PrevArrivalTime = DateTime.Now;
+            String SectionName = "";
+
+            int Rowid = Dgv_BlockSectionPartition.RowCount - 1;
+
+            if (Rowid > 0)
+            {
+                PrevArrivalTime = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_LpJournalArrTime"].Value?.ToString().ConvertToDateTime("dd/MM/yy HH:mm;ss");
+                SectionName = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_BlockSectionName"].Value?.ToString();
+            }
+            
+
             if ((e.ColumnIndex == 4 || e.ColumnIndex == 5) && !Dgv_BlockSectionPartition.Rows[e.RowIndex].IsNewRow)
             {
-                JournalTimeAppenderDialog j = new JournalTimeAppenderDialog(Dgv_BlockSectionPartition.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                JournalTimeAppenderDialog j = new JournalTimeAppenderDialog(SectionName, PrevArrivalTime);
                 j.ShowDialog(this);
 
                 if (!j.Cancelled && j.TimingsValidated())

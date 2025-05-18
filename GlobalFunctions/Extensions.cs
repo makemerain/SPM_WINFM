@@ -113,7 +113,18 @@ namespace SPM_WINFM.GlobalFunctions
             return status;
         }
 
-
+     public static Boolean ConvertToBoolean(this String BoolString)
+        {
+            if (BoolString == "True" || BoolString == "Y" || BoolString == "Yes")
+            {
+                return true;
+            }
+            else if (BoolString == "False" || BoolString == "N" || BoolString == "No")
+            {
+                return false;
+            }
+            else return false;
+        }
 
     }
 

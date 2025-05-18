@@ -798,7 +798,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             DgvCol_BlockSectionToKm.DefaultCellStyle = dataGridViewCellStyle3;
             DgvCol_BlockSectionToKm.HeaderText = "KM END";
-            DgvCol_BlockSectionToKm.MaxInputLength = 3;
+            DgvCol_BlockSectionToKm.MaxInputLength = 5;
             DgvCol_BlockSectionToKm.MinimumWidth = 6;
             DgvCol_BlockSectionToKm.Name = "DgvCol_BlockSectionToKm";
             // 

@@ -16,9 +16,9 @@ namespace MAUI_SPM.DataModels
 {
     public class Models
     {
-        public class LaxvenSpeedometerModel 
+        public class LaxvenSpeedometerModel
         {
-            
+
             public String RunDateAndTimeInput { get; set; }
             public double TrainSpeed { get; set; }
             public double TractiveEffort { get; set; }
@@ -31,17 +31,17 @@ namespace MAUI_SPM.DataModels
 
             public int Rowid { get; set; }
             public String BlockSection { get; set; }
-            public double Hectometer { get; set; }  
-            public int SectionalSpeed { get; set; } 
+            public double Hectometer { get; set; }
+            public int SectionalSpeed { get; set; }
             public int CautionSpeed { get; set; }
             public String RunStatus { get; set; } // START, RUN , STOP
 
             public double BPpressureMetric { get { return PressureModifierToMetric(BPpressure); } }
             public double BCpressureMetric { get { return PressureModifierToMetric(BCpressure); } }
             public int ThrottleInt { get { return Throttle.GetThrottle(); } }
-            public DateTime RunDateTime { get { return RunDateAndTimeInput.ConvertToDateTime("dd/MM/yy HH:mm:ss"); } }
+            public DateTime RunDateAndTime { get { return RunDateAndTimeInput.ConvertToDateTime("dd/MM/yy HH:mm:ss"); } }
             /****/
-            
+
         }
 
 
@@ -73,11 +73,34 @@ namespace MAUI_SPM.DataModels
 
         }
 
+        public class CommonDieselBindingEventDataModel
+        {
+
+            public DateTime RunDateAndTime { get; set; }
+            public double TrainSpeed { get; set; }
+            public double TractiveEffort { get; set; }
+            public double RotationalDistanceCounter { get; set; }
+            public double CumulativeDistanceCounter { get; set; } = 0;
+            public String Horn { get; set; }
+            public String Throttle { get; set; }
+
+            public int Rowid { get; set; }
+            public String BlockSection { get; set; }
+            public double Hectometer { get; set; }
+            public int SectionalSpeed { get; set; }
+            public int CautionSpeed { get; set; }
+            public String RunStatus { get; set; } // START, RUN , STOP
+
+            public double BPpressureMetric { get; set; }
+            public double BCpressureMetric { get; set; }
+            public int ThrottleInt { get; set; }
+        }
+
         private static double PressureModifierToMetric(double PressureInPSI)
         {
-            
-                return Math.Round((PressureInPSI * 0.070307), 2);
-            
+
+            return Math.Round((PressureInPSI * 0.070307), 2);
+
         }
 
         public class TrainInformationModel
@@ -92,10 +115,10 @@ namespace MAUI_SPM.DataModels
                 String majorSection,
                 String analysedSection,
                 String stockType,
-                String brakePower_KBDpercentage,                
+                String brakePower_KBDpercentage,
                 DateTime queryStartFromTime,
                 DateTime queryEndTime,
-                String spmType,                
+                String spmType,
                 String excelPath,
                 String analyserName,
                 String analyserDegn, Boolean isDataValidated)
@@ -132,7 +155,7 @@ namespace MAUI_SPM.DataModels
             private String _BrakePower;
             private DateTime _QueryStartFromTime;
             private DateTime _QueryEndTime;
-            private String _SPMtype;            
+            private String _SPMtype;
             private string _ExcelFilePath;
             private String _AnalyserName;
             private String _AnalyserDegn;
@@ -150,7 +173,7 @@ namespace MAUI_SPM.DataModels
             public String Get_BrakePower { get { return _BrakePower; } }
             public DateTime Get_QueryStartFromTime { get { return _QueryStartFromTime; } }
             public DateTime Get_QueryEndTime { get { return _QueryEndTime; } }
-            public String Get_SPMtype { get { return _SPMtype; } }           
+            public String Get_SPMtype { get { return _SPMtype; } }
             public String Get_ExcelPath { get { return _ExcelFilePath; } }
             public String Get_AnalyserName { get { return _AnalyserName; } }
             public String Get_AnalyserDegn { get { return _AnalyserDegn; } }
@@ -159,7 +182,7 @@ namespace MAUI_SPM.DataModels
 
 
         }
-              
+
 
         public class CautionOrderModel
         {
@@ -171,27 +194,105 @@ namespace MAUI_SPM.DataModels
         public class BlockSecionModel
         {
             public string BlockSectionName { get; set; }
-            public double  BlockStartKms { get; set; }
+            public double BlockStartKms { get; set; }
             public double BlockEndKms { get; set; }
             public int SectionalSpeed { get; set; }
             public DateTime LpJournal_DepTime { get; set; }
             public DateTime LpJournal_ArrTime { get; set; }
 
         }
-        
-        public static class EventDataTypesModel {
+
+        public static class EventDataTypesModel
+        {
 
             public static List<String> EventDataModelTypesList()
             {
-                return new List<String> { "MEDHA-MRT","MEDHA-MLC","LAXVEN"};
-            }                
-                      
+                return new List<String> { "MEDHA-MRT", "MEDHA-MLC", "LAXVEN" };
+            }
+
 
         }
 
-        
+        /// <summary>
+        /// Common for BFT, BPT and Braking pattern
+        /// </summary>
+        public class BrakingPatternModel
+        {
+            public double TrainSpeed { get; set; }
+            public double TractiveEffort { get; set; }
+            public double RotationalDistanceCounter { get; set; }
+            public double CumulativeDistanceCounter { get; set; } 
 
+            public double Hectometer { get; set; }
+
+            public double BPpressureMetric { get; set; }
+            public double BCpressureMetric { get; set; }
+            public int ThrottleInt { get; set; }
+            public DateTime RunDateTime { get; set; }
+
+            public String StopLable { get; set; }
+
+        }
+
+        public class StoppageLablingModel
+        {
+            public String StoppageLable { get; set; }
+            public DateTime StopTime { get; set; }
+            public int StopRowId { get; set; }
+        }
+
+        public class BrakingPatternModelLists
+        {
+            public List<Models.BrakingPatternModel> PatternList { get; set; }
+            public String PaternLabel { get; set; }
+            public TimeSpan TimeDuration()
+            {
+                if (PatternList != null)
+                {
+                    DateTime TimeStart, TimeEnd;
+                    TimeStart = PatternList.Min(x => x.RunDateTime);
+                    TimeEnd = PatternList.Max(x => x.RunDateTime);
+
+                    return TimeEnd - TimeStart;
+                }
+                else return new TimeSpan(0);
+
+
+            }
+        }
+
+        public class  RunPlotterListModel
+        {
+         public List<Models.CommonDieselBindingEventDataModel> BlockRunList { get; set; }
+        public DateTime FromTime { get { return BlockRunList.Min(x => x.RunDateAndTime); } }
+        public DateTime ToTime { get { return BlockRunList.Max(x => x.RunDateAndTime); } }
+        public int TimeDuration { get { return (FromTime - ToTime).Minutes; } }
+        public String BlockSection()
+            {
+                if (BlockRunList != null)
+                {
+                    return BlockRunList.FirstOrDefault().BlockSection;
+                }
+                else return "";
+            }
+
+        }     
+               
         
     }
 }
+         
+    
+        
+        
+
+    
+ 
+    
+        
+
+        
+    
+
+
 
