@@ -32,14 +32,16 @@ namespace SPM_WINFM.GlobalFunctions
 
         public static DateTime ConvertToDateTime(this string InputString,String InputFormat)
         {
-            DateTime Output;
+            DateTime Output;            
             Boolean IsValidFormat = DateTime.TryParse(InputString, out Output);
-            
-            if (IsValidFormat) {
 
-               Output =  DateTime.ParseExact(InputString, InputFormat, CultureInfo.InvariantCulture);
+            if (IsValidFormat)
+            {
+
+                return DateTime.ParseExact(InputString, InputFormat, CultureInfo.InvariantCulture);
             }
-            return Output;
+            else return Output;
+            
         }
 
         public static TimeSpan ConvertToTimeSpan(this string InputString, String InputFormat)

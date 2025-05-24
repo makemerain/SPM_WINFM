@@ -59,7 +59,7 @@ namespace SPM_WINFM
                     
                 }
 
-                if (TimeList != null)
+                if (TimeList != null && TimeList.Count >= 2)
                 {
                     Dtp_QueryFrom.Value = TimeList.Min();
                     Dtp_QueryTo.Value = TimeList.Max();
@@ -597,14 +597,14 @@ namespace SPM_WINFM
                 Dgv_BlockSectionPartition.Rows.RemoveAt(e.RowIndex);
             }
 
-            DateTime? PrevArrivalTime = DateTime.Now;
+            DateTime? PrevArrivalTime = DateTime.Now.AddYears(-10);
             String SectionName = "";
 
             int Rowid = Dgv_BlockSectionPartition.RowCount - 1;
 
-            if (Rowid > 0)
+            if (Rowid > 0 && e.RowIndex > 0)
             {
-                PrevArrivalTime = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_LpJournalArrTime"].Value?.ToString().ConvertToDateTime("dd/MM/yy HH:mm;ss");
+                PrevArrivalTime = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_LpJournalArrTime"].Value?.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
                 SectionName = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_BlockSectionName"].Value?.ToString();
             }
             

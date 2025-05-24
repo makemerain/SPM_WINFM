@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDataAnalysis));
             groupBox1 = new GroupBox();
             groupBox4 = new GroupBox();
+            Btn_GenerateOutPut = new Button();
             Btn_BlockRunMapping = new Button();
             btn_StopaageMarking = new Button();
             groupBox2 = new GroupBox();
@@ -80,7 +82,6 @@
             Lbl_OutputDirectoryAddress = new ToolStripLabel();
             toolStripSeparator5 = new ToolStripSeparator();
             toolStripButton1 = new ToolStripButton();
-            Btn_GenerateOutPut = new Button();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -116,6 +117,15 @@
             groupBox4.TabIndex = 2;
             groupBox4.TabStop = false;
             groupBox4.Text = "Data Selection (Mandatory)";
+            // 
+            // Btn_GenerateOutPut
+            // 
+            Btn_GenerateOutPut.Location = new Point(9, 67);
+            Btn_GenerateOutPut.Name = "Btn_GenerateOutPut";
+            Btn_GenerateOutPut.Size = new Size(391, 38);
+            Btn_GenerateOutPut.TabIndex = 2;
+            Btn_GenerateOutPut.Text = "Generate Out Put";
+            Btn_GenerateOutPut.UseVisualStyleBackColor = true;
             // 
             // Btn_BlockRunMapping
             // 
@@ -294,6 +304,14 @@
             Dgv_Analysis.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             Dgv_Analysis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Dgv_Analysis.Columns.AddRange(new DataGridViewColumn[] { RunDateAndTime, BlockSection, RotationalDistanceCounter, CumulativeDistanceCounter, Hectometer, SectionalSpeed, CautionSpeed, TrainSpeed, TractiveEffort, RunStatus, BPpressureMetric, BCpressureMetric, ThrottleInt, Horn, Observation });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            Dgv_Analysis.DefaultCellStyle = dataGridViewCellStyle2;
             Dgv_Analysis.Dock = DockStyle.Fill;
             Dgv_Analysis.EnableHeadersVisualStyles = false;
             Dgv_Analysis.Location = new Point(0, 138);
@@ -529,15 +547,6 @@
             toolStripButton1.Size = new Size(138, 22);
             toolStripButton1.Text = "Set Out put Directory";
             // 
-            // Btn_GenerateOutPut
-            // 
-            Btn_GenerateOutPut.Location = new Point(9, 67);
-            Btn_GenerateOutPut.Name = "Btn_GenerateOutPut";
-            Btn_GenerateOutPut.Size = new Size(391, 38);
-            Btn_GenerateOutPut.TabIndex = 2;
-            Btn_GenerateOutPut.Text = "Generate Out Put";
-            Btn_GenerateOutPut.UseVisualStyleBackColor = true;
-            // 
             // FrmDataAnalysis
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -546,8 +555,10 @@
             Controls.Add(toolStrip1);
             Controls.Add(Dgv_Analysis);
             Controls.Add(groupBox1);
+            DoubleBuffered = true;
             Name = "FrmDataAnalysis";
-            Text = "FrmDataAnalysis";
+            Text = "DATA ANALYSIS";
+            WindowState = FormWindowState.Maximized;
             Load += FrmDataAnalysis_Load;
             groupBox1.ResumeLayout(false);
             groupBox4.ResumeLayout(false);

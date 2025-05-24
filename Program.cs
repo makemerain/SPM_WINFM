@@ -14,7 +14,7 @@ namespace SPM_WINFM
             CultureInfo customCulture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
             customCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";   // Custom date format
             customCulture.DateTimeFormat.LongTimePattern = "HH:mm:ss";     // Custom time format
-            customCulture.DateTimeFormat.FullDateTimePattern = "dd/MM/yyyy HH:mm:ss"; // Full format
+            customCulture.DateTimeFormat.FullDateTimePattern = "dd/MM/yy HH:mm:ss"; // Full format
 
             // Apply custom culture to the current thread
             Thread.CurrentThread.CurrentCulture = customCulture;

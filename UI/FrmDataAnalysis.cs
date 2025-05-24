@@ -85,12 +85,21 @@ namespace SPM_WINFM
 
         }
 
+        /// <summary>
+        /// Scroll the stoppage rows
+        /// </summary>
+        public void ScrollToStopRow(int Rowid)
+        {
+            Dgv_Analysis.ClearSelection();
+            Dgv_Analysis.FirstDisplayedScrollingRowIndex = Rowid;
+            Dgv_Analysis.Rows[Rowid].Selected = true;
 
+        }
 
         private void btn_StopaageMarking_Click(object sender, EventArgs e)
         {
-            Frm_StoppageFilter f = new(_BindableCommonEventList);
-            f.ShowDialog(this);
+            Frm_StoppageFilter f = new(_BindableCommonEventList,this);
+            f.Show(this);
 
             if (f.UserConfirmation && f.GetStoppagesList != null)
             {

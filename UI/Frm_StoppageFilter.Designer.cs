@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             Dgv_StoppagesMapper = new DataGridView();
             groupBox1 = new GroupBox();
             Btn_SaveStoppageList = new Button();
-            Rowid = new DataGridViewTextBoxColumn();
+            DgvCol_Rowid = new DataGridViewTextBoxColumn();
             DgvCol_RunDateAndTime = new DataGridViewTextBoxColumn();
             DgvCol_BlockSection = new DataGridViewTextBoxColumn();
             DgvCol_Hectometer = new DataGridViewTextBoxColumn();
@@ -47,27 +48,28 @@
             // Dgv_StoppagesMapper
             // 
             Dgv_StoppagesMapper.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Dgv_StoppagesMapper.Columns.AddRange(new DataGridViewColumn[] { Rowid, DgvCol_RunDateAndTime, DgvCol_BlockSection, DgvCol_Hectometer, DgvCol_RunStatus, DgvCol_StopLable, DgvCol_OptStoppage });
+            Dgv_StoppagesMapper.Columns.AddRange(new DataGridViewColumn[] { DgvCol_Rowid, DgvCol_RunDateAndTime, DgvCol_BlockSection, DgvCol_Hectometer, DgvCol_RunStatus, DgvCol_StopLable, DgvCol_OptStoppage });
             Dgv_StoppagesMapper.Dock = DockStyle.Fill;
             Dgv_StoppagesMapper.EnableHeadersVisualStyles = false;
             Dgv_StoppagesMapper.Location = new Point(0, 0);
             Dgv_StoppagesMapper.Name = "Dgv_StoppagesMapper";
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            Dgv_StoppagesMapper.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            Dgv_StoppagesMapper.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            Dgv_StoppagesMapper.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Microsoft YaHei", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            Dgv_StoppagesMapper.RowsDefaultCellStyle = dataGridViewCellStyle3;
             Dgv_StoppagesMapper.Size = new Size(800, 530);
             Dgv_StoppagesMapper.TabIndex = 0;
+            Dgv_StoppagesMapper.RowEnter += Dgv_StoppagesMapper_RowEnter;
             // 
             // groupBox1
             // 
@@ -90,16 +92,19 @@
             Btn_SaveStoppageList.UseVisualStyleBackColor = true;
             Btn_SaveStoppageList.Click += Btn_SaveStoppageList_Click;
             // 
-            // Rowid
+            // DgvCol_Rowid
             // 
-            Rowid.DataPropertyName = "Rowid";
-            Rowid.HeaderText = "Rowid";
-            Rowid.Name = "Rowid";
-            Rowid.ReadOnly = true;
+            DgvCol_Rowid.DataPropertyName = "Rowid";
+            DgvCol_Rowid.HeaderText = "Rowid";
+            DgvCol_Rowid.Name = "DgvCol_Rowid";
+            DgvCol_Rowid.ReadOnly = true;
             // 
             // DgvCol_RunDateAndTime
             // 
             DgvCol_RunDateAndTime.DataPropertyName = "RunDateAndTime";
+            dataGridViewCellStyle1.Format = "dd/MM/yy HH:mm:ss";
+            dataGridViewCellStyle1.NullValue = null;
+            DgvCol_RunDateAndTime.DefaultCellStyle = dataGridViewCellStyle1;
             DgvCol_RunDateAndTime.HeaderText = "STOP TIME";
             DgvCol_RunDateAndTime.Name = "DgvCol_RunDateAndTime";
             DgvCol_RunDateAndTime.ReadOnly = true;
@@ -165,7 +170,7 @@
         private DataGridView Dgv_StoppagesMapper;
         private GroupBox groupBox1;
         private Button Btn_SaveStoppageList;
-        private DataGridViewTextBoxColumn Rowid;
+        private DataGridViewTextBoxColumn DgvCol_Rowid;
         private DataGridViewTextBoxColumn DgvCol_RunDateAndTime;
         private DataGridViewTextBoxColumn DgvCol_BlockSection;
         private DataGridViewTextBoxColumn DgvCol_Hectometer;

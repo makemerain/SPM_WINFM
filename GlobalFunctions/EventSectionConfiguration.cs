@@ -190,8 +190,8 @@ namespace SPM_WINFM.GlobalFunctions
                     CautionTo = item.CautionOrderTo;
                     cautionSpeed = item.SpeedRestriction;
 
-                    var Q = (from row in _medhaEventList
-                             where row.Hectometer >= CautionTo && row.Hectometer <= CautionFrom
+                    var Q = (from row in _commonDieselBindingEventList
+                             where row.Hectometer >= CautionFrom && row.Hectometer <= CautionTo
                              select row).ToList();
 
                     foreach (var Qrow in Q)

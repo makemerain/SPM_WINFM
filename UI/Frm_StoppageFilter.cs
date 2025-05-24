@@ -16,25 +16,29 @@ namespace SPM_WINFM.UI
 {
     public partial class Frm_StoppageFilter : Form
     {
-        public Frm_StoppageFilter(List<Models.CommonDieselBindingEventDataModel> commonEventdatalist)
+        public Frm_StoppageFilter(List<Models.CommonDieselBindingEventDataModel> commonEventdatalist,FrmDataAnalysis callerform)
         {
             InitializeComponent();
             _commonEventdatalist = commonEventdatalist;
+            Dgv_StoppagesMapper.AutoGenerateColumns = false;
 
             if (_commonEventdatalist == null)
             {
                 Display.InfoMessage("Event data list is empty, Hence no stoppage can be listed out");
                 this.Close();
+
             }
             else
             {
                 _eventMapManager = new EventAnalysysOutputMapping(_commonEventdatalist);
+                _callerForm = callerform;
             }
 
         }
 
         List<Models.CommonDieselBindingEventDataModel> _commonEventdatalist = new();
         EventAnalysysOutputMapping _eventMapManager;
+        FrmDataAnalysis _callerForm = new(null, null, null);
 
         private void Frm_StoppageFilter_Load(object sender, EventArgs e)
         {
@@ -65,40 +69,48 @@ namespace SPM_WINFM.UI
 
             // Check the null lables in the opted stoppages
 
-            foreach (DataGridViewRow rx in Dgv_StoppagesMapper.Rows)
+             foreach (DataGridViewRow rx in Dgv_StoppagesMapper.Rows)
             {
                 // Check for invalid lable at the opted rows
                 if (!rx.IsNewRow)
                 {
+                    rx.Cells["DgvCol_OptStoppage"].Value = true;
                     StopLable = rx.Cells["DgvCol_StopLable"].Value?.ToString();
                     IsPicked = rx.Cells["DgvCol_OptStoppage"].Value.ToString().ConvertToBoolean();
 
                     if (IsPicked && StopLable == "")
                     {
                         Display.InfoMessage($"Invalid Stop lable at Row {rx.Index + 1}");
-                        return null;
-                    }
-                } else
-                {
-                        rowid = rx.Cells["DgvCol_StopLable"].Value.ToString().ConvertToInt();
-                        StopLable = rx.Cells["DgvCol_StopLable"].Value.ToString();
-                        stoptime = rx.Cells["DgvCol_RunDateAndTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+                        rx.Cells["DgvCol_StopLable"].Selected = true;
+                        
+                    } else
+                    {
+                    rowid = rx.Cells["DgvCol_Rowid"].Value.ToString().ConvertToInt();
+                    StopLable = rx.Cells["DgvCol_StopLable"].Value.ToString();
+                    stoptime = rx.Cells["DgvCol_RunDateAndTime"].Value.ToString().ConvertToDateTime("dd/MM/yyyy HH:mm:ss");
 
-                        _Stoppagelist.Add(new Models.StoppageLablingModel
-                        {
-                            StopRowId = rowid,
-                            StoppageLable = StopLable,
-                            StopTime = stoptime
-                        });
+                    _Stoppagelist.Add(new Models.StoppageLablingModel
+                    {
+                        StopRowId = rowid,
+                        StoppageLable = StopLable,
+                        StopTime = stoptime
+                    });
+                    }
+
+
+                  
                 }
+                
             }
-            
+
             return _Stoppagelist;
         }
 
         private void Btn_SaveStoppageList_Click(object sender, EventArgs e)
         {
-            if (GetStoppagesList == null && Display.InfoDecission($"The stoppages list is empty, Would you like to Close the Grid ?") == true)
+            var x = Get_StoppagesList();
+
+            if (GetStoppagesList.Count <= 0 && Display.InfoDecission($"The stoppages list is empty, Would you like to Close the Grid ?") == true)
             {
                 this.Close();
                 _userConfirmation = false;
@@ -108,6 +120,18 @@ namespace SPM_WINFM.UI
                 this.Close();
                 _userConfirmation = true;
             }
+        }
+
+        private void Dgv_StoppagesMapper_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            // Select the STOP row in the analysis grid
+            if (e.RowIndex >= 0)
+            {
+                int rowid = Dgv_StoppagesMapper.Rows[e.RowIndex].Cells["DgvCol_Rowid"].Value.ToString().ConvertToInt();
+                _callerForm.ScrollToStopRow(rowid);
+            }
+           
+            
         }
     }
 }
