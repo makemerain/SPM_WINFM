@@ -40,7 +40,7 @@ namespace MAUI_SPM.ApplicationTools
 
                 var Q = (from l in excel.Worksheet<Models.MedhaSpeedometerModel>(0)
                          where
-                         l.Runtime != ""
+                         l.Runtime != "" 
                          select l).ToList();
 
 

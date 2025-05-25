@@ -56,6 +56,25 @@ namespace SPM_WINFM.UI
         private bool _userConfirmation = false;
 
         /// <summary>
+        /// Validted the stoppage Selected but Invalid lable
+        /// </summary>
+        /// <returns>Boolean, True if invalid</returns>
+        private Boolean ValidateInvalidLable()
+        {
+            
+            foreach (DataGridViewRow rx in Dgv_StoppagesMapper.Rows)
+            {
+                if (!rx.IsNewRow &&
+                    rx.Cells["DgvCol_OptStoppage"].Value?.ToString().ConvertToBoolean() == true &&
+                   String.IsNullOrEmpty( rx.Cells["DgvCol_StopLable"].Value?.ToString()))
+                {
+                    Display.InfoMessage($"Invalid Stop lable at Row {rx.Index + 1}");
+                    return false;
+                }               
+            } return true;
+        }
+
+        /// <summary>
         /// Retruns the Picked stoppages list
         /// </summary>
         /// <returns>List<Models.StoppageLablingModel></returns>
@@ -68,39 +87,26 @@ namespace SPM_WINFM.UI
             Boolean IsPicked = false;
 
             // Check the null lables in the opted stoppages
-
-             foreach (DataGridViewRow rx in Dgv_StoppagesMapper.Rows)
+            if (ValidateInvalidLable())
             {
-                // Check for invalid lable at the opted rows
-                if (!rx.IsNewRow)
+                foreach (DataGridViewRow rx in Dgv_StoppagesMapper.Rows)
                 {
-                    rx.Cells["DgvCol_OptStoppage"].Value = true;
-                    StopLable = rx.Cells["DgvCol_StopLable"].Value?.ToString();
-                    IsPicked = rx.Cells["DgvCol_OptStoppage"].Value.ToString().ConvertToBoolean();
+                    var bOL = rx.Cells["DgvCol_OptStoppage"].Value.ToString().ConvertToBoolean();
 
-                    if (IsPicked && StopLable == "")
+                    if (!rx.IsNewRow && bOL  == true )
                     {
-                        Display.InfoMessage($"Invalid Stop lable at Row {rx.Index + 1}");
-                        rx.Cells["DgvCol_StopLable"].Selected = true;
-                        
-                    } else
-                    {
-                    rowid = rx.Cells["DgvCol_Rowid"].Value.ToString().ConvertToInt();
-                    StopLable = rx.Cells["DgvCol_StopLable"].Value.ToString();
-                    stoptime = rx.Cells["DgvCol_RunDateAndTime"].Value.ToString().ConvertToDateTime("dd/MM/yyyy HH:mm:ss");
+                        rowid = rx.Cells["DgvCol_Rowid"].Value.ToString().ConvertToInt();
+                        StopLable = rx.Cells["DgvCol_StopLable"].Value.ToString();
+                        stoptime = rx.Cells["DgvCol_RunDateAndTime"].Value.ToString().ConvertToDateTime("dd/MM/yyyy HH:mm:ss");
 
-                    _Stoppagelist.Add(new Models.StoppageLablingModel
-                    {
-                        StopRowId = rowid,
-                        StoppageLable = StopLable,
-                        StopTime = stoptime
-                    });
+                        _Stoppagelist.Add(new Models.StoppageLablingModel
+                        {
+                            StopRowId = rowid,
+                            StoppageLable = StopLable,
+                            StopTime = stoptime
+                        });
                     }
-
-
-                  
                 }
-                
             }
 
             return _Stoppagelist;
@@ -110,15 +116,17 @@ namespace SPM_WINFM.UI
         {
             var x = Get_StoppagesList();
 
-            if (GetStoppagesList.Count <= 0 && Display.InfoDecission($"The stoppages list is empty, Would you like to Close the Grid ?") == true)
+            if (x.Count <= 0 && Display.InfoDecission($"The stoppages list is empty, Would you like to Close the Grid ?") == true)
             {
-                this.Close();
                 _userConfirmation = false;
+                this.Close();
+               
             }
             else if (Display.InfoDecission($"Close the Grid ?") == true)
             {
-                this.Close();
                 _userConfirmation = true;
+                this.Close();
+               
             }
         }
 
