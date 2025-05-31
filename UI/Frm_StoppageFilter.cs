@@ -16,7 +16,7 @@ namespace SPM_WINFM.UI
 {
     public partial class Frm_StoppageFilter : Form
     {
-        public Frm_StoppageFilter(List<Models.CommonDieselBindingEventDataModel> commonEventdatalist,FrmDataAnalysis callerform)
+        public Frm_StoppageFilter(List<Models.CommonDieselBindingEventDataModel> commonEventdatalist, FrmDataAnalysis callerform)
         {
             InitializeComponent();
             _commonEventdatalist = commonEventdatalist;
@@ -61,17 +61,18 @@ namespace SPM_WINFM.UI
         /// <returns>Boolean, True if invalid</returns>
         private Boolean ValidateInvalidLable()
         {
-            
+
             foreach (DataGridViewRow rx in Dgv_StoppagesMapper.Rows)
             {
                 if (!rx.IsNewRow &&
                     rx.Cells["DgvCol_OptStoppage"].Value?.ToString().ConvertToBoolean() == true &&
-                   String.IsNullOrEmpty( rx.Cells["DgvCol_StopLable"].Value?.ToString()))
+                   String.IsNullOrEmpty(rx.Cells["DgvCol_StopLable"].Value?.ToString()))
                 {
                     Display.InfoMessage($"Invalid Stop lable at Row {rx.Index + 1}");
                     return false;
-                }               
-            } return true;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -84,7 +85,6 @@ namespace SPM_WINFM.UI
             int rowid = 0;
             String StopLable = "";
             DateTime stoptime;
-            Boolean IsPicked = false;
 
             // Check the null lables in the opted stoppages
             if (ValidateInvalidLable())
@@ -93,7 +93,7 @@ namespace SPM_WINFM.UI
                 {
                     var bOL = rx.Cells["DgvCol_OptStoppage"].Value.ToString().ConvertToBoolean();
 
-                    if (!rx.IsNewRow && bOL  == true )
+                    if (!rx.IsNewRow && bOL == true)
                     {
                         rowid = rx.Cells["DgvCol_Rowid"].Value.ToString().ConvertToInt();
                         StopLable = rx.Cells["DgvCol_StopLable"].Value.ToString();
@@ -120,13 +120,14 @@ namespace SPM_WINFM.UI
             {
                 _userConfirmation = false;
                 this.Close();
-               
+
             }
             else if (Display.InfoDecission($"Close the Grid ?") == true)
             {
                 _userConfirmation = true;
+                _callerForm.ReceiveStoppagesList(x, true);
                 this.Close();
-               
+
             }
         }
 
@@ -138,8 +139,8 @@ namespace SPM_WINFM.UI
                 int rowid = Dgv_StoppagesMapper.Rows[e.RowIndex].Cells["DgvCol_Rowid"].Value.ToString().ConvertToInt();
                 _callerForm.ScrollToStopRow(rowid);
             }
-           
-            
+
+
         }
     }
 }

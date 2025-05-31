@@ -17,18 +17,18 @@ namespace SPM_WINFM.GlobalFunctions
     {
 
         public EventSectionConfiguration(List<Models.MedhaSpeedometerModel> medhaeventdatalist,
-                                               List<Models.BlockSecionModel> blocksectionlist,                                              
+                                               List<Models.BlockSecionModel> blocksectionlist,
                                                List<Models.CautionOrderModel> cautionorderlist,
                                                String SPMtype)
         {
-             _medhaEventList = medhaeventdatalist;
+            _medhaEventList = medhaeventdatalist;
             _blockSectionModellist = blocksectionlist;
             _cautionOrderList = cautionorderlist;
             _spmType = SPMtype;
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Models.MedhaSpeedometerModel , Models.CommonDieselBindingEventDataModel>();
+                cfg.CreateMap<Models.MedhaSpeedometerModel, Models.CommonDieselBindingEventDataModel>();
             });
 
             var mapper = config.CreateMapper();
@@ -68,17 +68,16 @@ namespace SPM_WINFM.GlobalFunctions
         private List<Models.CautionOrderModel> _cautionOrderList = new();
         private List<Models.CommonDieselBindingEventDataModel> _commonDieselBindingEventList = new();
         private String _spmType;
-        
+
         /// <summary>
         /// Configure the Block section , Hecto meter & rowid
         /// </summary>
-        private  void  BlockSectionSectionConfiguration()                                                                                
-        {  
+        private void BlockSectionSectionConfiguration()
+        {
             // Block sectioning and sectional speed
             double Fromkm = 0;
             double Tokm = 0;
             double Diff = 0;
-            double CumDistance = 0;
             int TtlEventCount = _medhaEventList.Count;
             double CurrentRowDistance = 0;
             int eventListRowCounter = 0;
@@ -101,11 +100,11 @@ namespace SPM_WINFM.GlobalFunctions
                     LPJdepartureTime = blockSection.LpJournal_DepTime;
                     LPJarrivalTime = blockSection.LpJournal_ArrTime;
 
-                   
+
                     for (int i = eventListRowCounter; i <= TtlEventCount; i++)
                     {
                         IsnextEventExists = eventListRowCounter < (TtlEventCount - 1);
-                        
+
 
                         // Mark Run status STOP, START, RUN
                         if (IsnextEventExists)
@@ -114,7 +113,7 @@ namespace SPM_WINFM.GlobalFunctions
                             NextSpeed = _commonDieselBindingEventList[eventListRowCounter + 1].TrainSpeed;
                             Status = Extensions.GetTrainStatus(CurrentSpeed, NextSpeed);
 
-                            _commonDieselBindingEventList[eventListRowCounter + 1].RunStatus = Status;                          
+                            _commonDieselBindingEventList[eventListRowCounter + 1].RunStatus = Status;
 
                         }
 
@@ -136,7 +135,7 @@ namespace SPM_WINFM.GlobalFunctions
                                 _commonDieselBindingEventList[eventListRowCounter].BlockSection = blockSection.BlockSectionName;
                                 _commonDieselBindingEventList[eventListRowCounter].SectionalSpeed = blockSection.SectionalSpeed;
 
-                                CurrentRowDistance = (_commonDieselBindingEventList[eventListRowCounter].RotationalDistanceCounter / 1000);
+                                CurrentRowDistance = _commonDieselBindingEventList[eventListRowCounter].RotationalDistanceCounter / 1000;
 
                                 if (Diff > 0)
                                 {
@@ -144,25 +143,25 @@ namespace SPM_WINFM.GlobalFunctions
 
                                     _commonDieselBindingEventList[eventListRowCounter].Hectometer = Math.Round(Fromkm, 3);
 
-                                   // if (Fromkm <= Tokm) break;
+                                    // if (Fromkm <= Tokm) break;
                                 }
                                 else if (Diff < 0)
                                 {
                                     Fromkm += CurrentRowDistance;
                                     _commonDieselBindingEventList[eventListRowCounter].Hectometer = Math.Round(Fromkm, 3);
 
-                                   // if (Fromkm >= Tokm) break;
+                                    // if (Fromkm >= Tokm) break;
 
                                 }
 
-                         
-                        }
-                        }
-                        
 
-                        
+                            }
+                        }
+
+
+
                         eventListRowCounter++;
-                        
+
 
                     }
 
@@ -170,13 +169,13 @@ namespace SPM_WINFM.GlobalFunctions
                 }
             }
 
-            
+
         }
 
         /// <summary>
         /// Configures the Section Caution order
         /// </summary>
-        private  void CautionOrderConfiguration()
+        private void CautionOrderConfiguration()
         {
             double CautionFrom;
             double CautionTo;
@@ -201,7 +200,7 @@ namespace SPM_WINFM.GlobalFunctions
 
                 }
             }
-            
+
         }
 
         public List<Models.CommonDieselBindingEventDataModel> GetConfigured_EventDataList()
@@ -213,8 +212,8 @@ namespace SPM_WINFM.GlobalFunctions
         }
     }
 
- }           
+}
 
-    
+
 
 

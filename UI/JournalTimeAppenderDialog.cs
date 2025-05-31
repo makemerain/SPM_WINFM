@@ -27,21 +27,23 @@ namespace SPM_WINFM.UI
                 Dtp_DepartureTime.Value = _mininmumTimeLoc ?? DateTime.MinValue;
                 Dtp_DepartureTime.MinDate = _mininmumTimeLoc ?? DateTime.MinValue;
             }
-            
+
 
         }
 
         private String _blockSection { get; set; }
         private DateTime? _mininmumTimeLoc { get; set; }
 
-        private  DateTime GetDepartureTime()
+        private DateTime GetDepartureTime()
         {
             if (TimingsValidated())
             {
                 return Dtp_DepartureTime.Value;
             }
-            else return DateTime.Now;
-
+            else
+            {
+                return DateTime.Now;
+            }
         }
 
         public DateTime _GetArrivalTime { get { return Dtp_ArrivalTime.Value; } }
@@ -74,19 +76,19 @@ namespace SPM_WINFM.UI
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            
+
             _isCancelled = true;
             this.Close();
-            
 
-          //  MessageBox.Show(Dtp_ArrivalTime.Value.ToString("dd/MM/yy HH:mm:ss").ConvertToDateTime("dd/MM/yy HH:mm:ss").ToString());
+
+            //  MessageBox.Show(Dtp_ArrivalTime.Value.ToString("dd/MM/yy HH:mm:ss").ConvertToDateTime("dd/MM/yy HH:mm:ss").ToString());
 
 
         }
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
-                       this.Close();
+            this.Close();
 
         }
     }

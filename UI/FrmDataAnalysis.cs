@@ -2,6 +2,7 @@
 using MAUI_SPM.DataModels;
 
 using SPM_WINFM.GlobalFunctions;
+using SPM_WINFM.Properties;
 using SPM_WINFM.UI;
 
 using System;
@@ -43,7 +44,7 @@ namespace SPM_WINFM
         private List<Models.CommonDieselBindingEventDataModel> _BindableCommonEventList = new();
 
         // oUT PUT FOR ANALYSIS
-        private List<Models.StoppageLablingModel> _StoppageLablingEventList = new();
+        public List<Models.StoppageLablingModel> _StoppageLablingEventList = new(); // Data invocation from Stppages form
         private List<Models.BrakingPatternModel> _BrakeFeelTestModelList = new();
         private List<Models.BrakingPatternModel> _BrakePowerTestModelsList = new();
         private List<Models.RunPlotterListModel> _RunPlotterListModelList = new();
@@ -51,7 +52,7 @@ namespace SPM_WINFM
 
         private void InitializeData()
         {
-            ConnectionManager.ExcelConnectionFactory excelConnectionFactory = new ConnectionManager.ExcelConnectionFactory();
+            ConnectionManager.ExcelConnectionFactory excelConnectionFactory = new();
 
             if (_TrainInfoModel.Get_SPMtype == "MEDHA-MRT")
             {
@@ -59,7 +60,7 @@ namespace SPM_WINFM
                                                                                  _TrainInfoModel.Get_QueryEndTime,
                                                                                  _TrainInfoModel.Get_ExcelPath);
 
-                EventSectionConfiguration e = new EventSectionConfiguration(_MedhaEventDataList, _BlockSecionList, _CautionOrderList, _TrainInfoModel.Get_SPMtype);
+                EventSectionConfiguration e = new(_MedhaEventDataList, _BlockSecionList, _CautionOrderList, _TrainInfoModel.Get_SPMtype);
                 _BindableCommonEventList = e.GetConfigured_EventDataList();
 
                 Dgv_Analysis.DataSource = _BindableCommonEventList;
@@ -71,7 +72,7 @@ namespace SPM_WINFM
                                                                                 _TrainInfoModel.Get_QueryEndTime,
                                                                                 _TrainInfoModel.Get_ExcelPath);
 
-                EventSectionConfiguration e = new EventSectionConfiguration(_LaxvenEventDataList, _BlockSecionList, _CautionOrderList, _TrainInfoModel.Get_SPMtype);
+                EventSectionConfiguration e = new(_LaxvenEventDataList, _BlockSecionList, _CautionOrderList, _TrainInfoModel.Get_SPMtype);
                 _BindableCommonEventList = e.GetConfigured_EventDataList();
 
                 Dgv_Analysis.DataSource = _BindableCommonEventList;
@@ -82,6 +83,7 @@ namespace SPM_WINFM
         {
 
             InitializeData();
+            Lbl_OutputDirectoryAddress.Text = Properties.Settings.Default["SourceDirectory"].ToString();
 
         }
 
@@ -96,17 +98,25 @@ namespace SPM_WINFM
 
         }
 
+        public void ReceiveStoppagesList(List<Models.StoppageLablingModel> StoppagesList, Boolean Confirm)
+        {
+            if (Confirm)
+            {
+                _StoppageLablingEventList = StoppagesList;
+                Lbl_StoppagesMapping.Text = $"STOPS = {_StoppageLablingEventList.Count}";
+            }
+            else
+            {
+                Lbl_StoppagesMapping.Text = "False";
+            }
+        }
+
         private void btn_StopaageMarking_Click(object sender, EventArgs e)
         {
-            Frm_StoppageFilter f = new(_BindableCommonEventList,this);
+            Frm_StoppageFilter f = new(_BindableCommonEventList, this);
             f.Show(this);
 
-            if (f.UserConfirmation && f.GetStoppagesList != null)
-            {
-                this._StoppageLablingEventList = f.GetStoppagesList;
-                Lbl_StoppagesMapping.Text = _StoppageLablingEventList.Count().ToString() + "Stops";
-            }
-            else Lbl_StoppagesMapping.Text = "False";
+
         }
 
         private void ValidateBFTcheckValue()
@@ -154,29 +164,35 @@ namespace SPM_WINFM
         {
             if (Chk_IdentifyBPT.Checked)
             {
-                EventAnalysysOutputMapping em = new EventAnalysysOutputMapping(_BindableCommonEventList);
+                EventAnalysysOutputMapping em = new(_BindableCommonEventList);
                 _BrakePowerTestModelsList = em.Get_BrakingTestPatternList(Dtp_BptStartTime.Value, Dtp_BptendTime.Value, "BPT");
 
                 Lbl_BptMapping.Text = _BrakePowerTestModelsList.Count().ToString();
             }
-            else Lbl_BptMapping.Text = "False";
+            else
+            {
+                Lbl_BptMapping.Text = "False";
+            }
         }
 
         private void Chk_IdentifyBFT_CheckStateChanged(object sender, EventArgs e)
         {
             if (Chk_IdentifyBFT.Checked)
             {
-                EventAnalysysOutputMapping em = new EventAnalysysOutputMapping(_BindableCommonEventList);
+                EventAnalysysOutputMapping em = new(_BindableCommonEventList);
                 _BrakeFeelTestModelList = em.Get_BrakingTestPatternList(Dtp_BptStartTime.Value, Dtp_BptendTime.Value, "BFT");
 
                 Lbl_BFTmapping.Text = _BrakeFeelTestModelList.Count().ToString();
             }
-            else Lbl_BFTmapping.Text = "False";
+            else
+            {
+                Lbl_BFTmapping.Text = "False";
+            }
         }
 
         private void Btn_BlockSectionMapping_Click(object sender, EventArgs e)
         {
-            EventAnalysysOutputMapping em = new EventAnalysysOutputMapping(_BindableCommonEventList);
+            EventAnalysysOutputMapping em = new(_BindableCommonEventList);
             _RunPlotterListModelList = em.Get_RunplotterList();
 
             if (_RunPlotterListModelList == null)
@@ -185,11 +201,51 @@ namespace SPM_WINFM
                 Display.InfoMessage("No Block section mapping Available for mapping");
             }
             else
-            { 
+            {
                 Lbl_BlockSectionMapping.Text = _RunPlotterListModelList.Count.ToString() + "Sections";
                 Display.InfoMessage($"Total of {_RunPlotterListModelList.Count.ToString()} Sections available for mapping");
 
             }
         }
+
+        // Save the source directory
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog f = new();
+
+            String CurrentAppRootDir = Properties.Settings.Default["SourceDirectory"]?.ToString();
+            String NewPath = "";
+
+            using (f)
+            {
+
+                f.ShowNewFolderButton = true;
+                f.AddToRecent = true;
+                f.Description = "Root Directory of event analysis";
+
+
+                if (!String.IsNullOrEmpty(CurrentAppRootDir))
+                {
+                    f.InitialDirectory = CurrentAppRootDir;
+                }
+                DialogResult d = f.ShowDialog(this);
+
+                if (d == DialogResult.OK)
+                {
+                    NewPath = f.SelectedPath;
+
+                    if (NewPath != CurrentAppRootDir)
+                    {
+                        Properties.Settings.Default["SourceDirectory"] = NewPath;
+                        Properties.Settings.Default.Save();
+                    }
+                }
+
+            }
+
+
+
+        }
+
     }
 }

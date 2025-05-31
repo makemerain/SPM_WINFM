@@ -29,13 +29,24 @@ namespace SPM_WINFM
 
             trainInformationModel = InputDataValidation();
 
-            if (trainInformationModel == null) return;
-            if (Validate_CautionOrderGrid()) { cautionOrderModelList = Get_CautionOrderList(); } else return;
+            if (trainInformationModel == null)
+            {
+                return;
+            }
 
-            if (Validate_BlockSectioningGrid()) { blockSectionList = Get_BlockSectionPartitionList(); } else return;
+            if (Validate_CautionOrderGrid()) { cautionOrderModelList = Get_CautionOrderList(); }
+            else
+            {
+                return;
+            }
 
+            if (Validate_BlockSectioningGrid()) { blockSectionList = Get_BlockSectionPartitionList(); }
+            else
+            {
+                return;
+            }
 
-            FrmDataAnalysis f = new FrmDataAnalysis(trainInformationModel, cautionOrderModelList, blockSectionList);
+            FrmDataAnalysis f = new(trainInformationModel, cautionOrderModelList, blockSectionList);
             f.Show(this);
 
         }
@@ -47,16 +58,16 @@ namespace SPM_WINFM
             if (Dgv_BlockSectionPartition.RowCount > 0)
             {
                 List<DateTime> TimeList = new();
-                
+
 
                 foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
                 {
                     if (!rx.IsNewRow)
                     {
-                    TimeList.Add(rx.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss"));
-                    TimeList.Add(rx.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss"));
+                        TimeList.Add(rx.Cells["DgvCol_LpJournalDepTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss"));
+                        TimeList.Add(rx.Cells["DgvCol_LpJournalArrTime"].Value.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss"));
                     }
-                    
+
                 }
 
                 if (TimeList != null && TimeList.Count >= 2)
@@ -75,8 +86,6 @@ namespace SPM_WINFM
         /// <returns>TrainInformationModel</returns>
         private Models.TrainInformationModel InputDataValidation()
         {
-            Boolean IsValidated = false;
-
             String LPname = Txt_LocoPilotName.Text;
             String LPdesignation_Depot = Txt_LpDegn_Depot.Text;
             String Grade_Experiance = Txt_LpGrade_Experiance.Text;
@@ -192,7 +201,7 @@ namespace SPM_WINFM
                 Txt_TrainNumber.Focus();
                 return null;
             }
-            
+
             else
             {
                 trainInformationModel = new Models.TrainInformationModel(
@@ -229,7 +238,10 @@ namespace SPM_WINFM
             String CDto = "";
             String CDspeed = "";
 
-            if (Validate_NullFieldsInCautionGrid() == false) return false;
+            if (Validate_NullFieldsInCautionGrid() == false)
+            {
+                return false;
+            }
 
             DGV_CautionOrders.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
@@ -256,7 +268,10 @@ namespace SPM_WINFM
                         Display.InfoMessage($"Invalid CD speed {CDspeed} @ Row {r.Index + 1}");
                         return false;
                     }
-                    else return true;
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
             return true;
@@ -269,10 +284,13 @@ namespace SPM_WINFM
         private Boolean Validate_BlockTimings()
         {
 
-            if (!Validate_NullFieldsInBockGrid()) return false;
+            if (!Validate_NullFieldsInBockGrid())
+            {
+                return false;
+            }
 
             DateTime DepartedTime, ArrivedTime;
-            List<DateTime> RuntimeList = new List<DateTime>();
+            List<DateTime> RuntimeList = new();
 
             Dgv_BlockSectionPartition.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
@@ -286,8 +304,8 @@ namespace SPM_WINFM
 
                     RuntimeList.Add(DepartedTime);
                     RuntimeList.Add(ArrivedTime);
-                }               
-                
+                }
+
             }
 
             int loopCount = 0;
@@ -318,17 +336,17 @@ namespace SPM_WINFM
                 {
                     foreach (DataGridViewCell cx in rx.Cells)
                     {
-                       
-                   
-                        if (string.IsNullOrEmpty(cx.Value?.ToString()) && DGV_CautionOrders.Columns[ cx.ColumnIndex].Name != "DgvCol_DropCDrow")
+
+
+                        if (string.IsNullOrEmpty(cx.Value?.ToString()) && DGV_CautionOrders.Columns[cx.ColumnIndex].Name != "DgvCol_DropCDrow")
                         {
                             Display.InfoMessage($"Invalid Value in the Caution order Grid at Row {rx.Index + 1} Column {cx.ColumnIndex + 1}");
                             return false;
                         }
-                    
+
                     }
                 }
-               
+
 
             }
             return true;
@@ -342,20 +360,20 @@ namespace SPM_WINFM
         {
             foreach (DataGridViewRow rx in Dgv_BlockSectionPartition.Rows)
             {
-             if (!rx.IsNewRow)
-              {
-                    
+                if (!rx.IsNewRow)
+                {
+
 
                     foreach (DataGridViewCell cx in rx.Cells)
-                {                   
-                    
+                    {
+
                         if (string.IsNullOrEmpty(cx.Value?.ToString()) && Dgv_BlockSectionPartition.Columns[cx.ColumnIndex].Name != "DgvCol_DropBlock")
                         {
                             Display.InfoMessage($"Invalid Value in the Block section Formatting Grid at Row {rx.Index + 1} Col {cx.ColumnIndex + 1}");
                             return false;
-                        }                   
+                        }
+                    }
                 }
-             }
 
             }
             return true;
@@ -381,7 +399,10 @@ namespace SPM_WINFM
             Dgv_BlockSectionPartition.CommitEdit(DataGridViewDataErrorContexts.Commit);
 
             // Validate Block timings
-            if (Validate_BlockTimings() == false) return false;
+            if (Validate_BlockTimings() == false)
+            {
+                return false;
+            }
 
             foreach (DataGridViewRow r in Dgv_BlockSectionPartition.Rows)
             {
@@ -414,7 +435,10 @@ namespace SPM_WINFM
                         Display.InfoMessage($"Departure time Can't be more than the Arrival time @ row {r.Index + 1}");
                         return false;
                     }
-                    else return true;
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
             return true;
@@ -428,7 +452,7 @@ namespace SPM_WINFM
         private List<Models.CautionOrderModel> Get_CautionOrderList()
         {
 
-            List<Models.CautionOrderModel> cautionorderList = new List<Models.CautionOrderModel>();
+            List<Models.CautionOrderModel> cautionorderList = new();
 
             double cdFromKms, cdToKms;
             Int16 speed;
@@ -464,7 +488,7 @@ namespace SPM_WINFM
         private List<Models.BlockSecionModel> Get_BlockSectionPartitionList()
         {
 
-            List<Models.BlockSecionModel> blockSectionModelList = new List<Models.BlockSecionModel>();
+            List<Models.BlockSecionModel> blockSectionModelList = new();
 
             double FromKms, ToKms;
             int SectionalSpeed;
@@ -490,7 +514,7 @@ namespace SPM_WINFM
                             BlockEndKms = ToKms,
                             BlockSectionName = BlockSectionName,
                             SectionalSpeed = SectionalSpeed,
-                            LpJournal_DepTime = LPJdeptime ,
+                            LpJournal_DepTime = LPJdeptime,
                             LpJournal_ArrTime = LPJarrtime
                         }
                         );
@@ -520,7 +544,7 @@ namespace SPM_WINFM
         }
 
 
-     
+
 
         private void Txt_ExcelPath_TextChanged(object sender, EventArgs e)
         {
@@ -529,7 +553,7 @@ namespace SPM_WINFM
 
         private void Txt_ExcelPath_Click(object sender, EventArgs e)
         {
-            OpenFileDialog O = new OpenFileDialog();
+            OpenFileDialog O = new();
             O.Filter = "Excel files|*.xls;*.xlsx;";
             O.Multiselect = false;
             O.Title = "Direct to Event data file";
@@ -604,14 +628,14 @@ namespace SPM_WINFM
 
             if (Rowid > 0 && e.RowIndex > 0)
             {
-                PrevArrivalTime = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_LpJournalArrTime"].Value?.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
-                SectionName = Dgv_BlockSectionPartition.Rows[e.RowIndex -1].Cells["DgvCol_BlockSectionName"].Value?.ToString();
+                PrevArrivalTime = Dgv_BlockSectionPartition.Rows[e.RowIndex - 1].Cells["DgvCol_LpJournalArrTime"].Value?.ToString().ConvertToDateTime("dd/MM/yy HH:mm:ss");
+                SectionName = Dgv_BlockSectionPartition.Rows[e.RowIndex - 1].Cells["DgvCol_BlockSectionName"].Value?.ToString();
             }
-            
+
 
             if ((e.ColumnIndex == 4 || e.ColumnIndex == 5) && !Dgv_BlockSectionPartition.Rows[e.RowIndex].IsNewRow)
             {
-                JournalTimeAppenderDialog j = new JournalTimeAppenderDialog(SectionName, PrevArrivalTime);
+                JournalTimeAppenderDialog j = new(SectionName, PrevArrivalTime);
                 j.ShowDialog(this);
 
                 if (!j.Cancelled && j.TimingsValidated())

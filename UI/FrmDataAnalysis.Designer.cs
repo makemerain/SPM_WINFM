@@ -100,8 +100,10 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.FromArgb(0, 0, 192);
             groupBox1.Location = new Point(0, 0);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1494, 138);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(1707, 184);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
@@ -111,27 +113,31 @@
             groupBox4.Controls.Add(Btn_BlockRunMapping);
             groupBox4.Controls.Add(btn_StopaageMarking);
             groupBox4.Dock = DockStyle.Left;
-            groupBox4.Location = new Point(987, 23);
+            groupBox4.Location = new Point(1128, 29);
+            groupBox4.Margin = new Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(420, 112);
+            groupBox4.Padding = new Padding(3, 4, 3, 4);
+            groupBox4.Size = new Size(480, 151);
             groupBox4.TabIndex = 2;
             groupBox4.TabStop = false;
             groupBox4.Text = "Data Selection (Mandatory)";
             // 
             // Btn_GenerateOutPut
             // 
-            Btn_GenerateOutPut.Location = new Point(9, 67);
+            Btn_GenerateOutPut.Location = new Point(10, 89);
+            Btn_GenerateOutPut.Margin = new Padding(3, 4, 3, 4);
             Btn_GenerateOutPut.Name = "Btn_GenerateOutPut";
-            Btn_GenerateOutPut.Size = new Size(391, 38);
+            Btn_GenerateOutPut.Size = new Size(447, 51);
             Btn_GenerateOutPut.TabIndex = 2;
             Btn_GenerateOutPut.Text = "Generate Out Put";
             Btn_GenerateOutPut.UseVisualStyleBackColor = true;
             // 
             // Btn_BlockRunMapping
             // 
-            Btn_BlockRunMapping.Location = new Point(209, 21);
+            Btn_BlockRunMapping.Location = new Point(239, 28);
+            Btn_BlockRunMapping.Margin = new Padding(3, 4, 3, 4);
             Btn_BlockRunMapping.Name = "Btn_BlockRunMapping";
-            Btn_BlockRunMapping.Size = new Size(191, 38);
+            Btn_BlockRunMapping.Size = new Size(218, 51);
             Btn_BlockRunMapping.TabIndex = 1;
             Btn_BlockRunMapping.Text = "Run Plotting Initialization";
             Btn_BlockRunMapping.UseVisualStyleBackColor = true;
@@ -139,9 +145,10 @@
             // 
             // btn_StopaageMarking
             // 
-            btn_StopaageMarking.Location = new Point(9, 21);
+            btn_StopaageMarking.Location = new Point(10, 28);
+            btn_StopaageMarking.Margin = new Padding(3, 4, 3, 4);
             btn_StopaageMarking.Name = "btn_StopaageMarking";
-            btn_StopaageMarking.Size = new Size(191, 38);
+            btn_StopaageMarking.Size = new Size(218, 51);
             btn_StopaageMarking.TabIndex = 0;
             btn_StopaageMarking.Text = "Stoppages Mapping";
             btn_StopaageMarking.UseVisualStyleBackColor = true;
@@ -155,9 +162,11 @@
             groupBox2.Controls.Add(Dtp_BftStartTime);
             groupBox2.Controls.Add(label1);
             groupBox2.Dock = DockStyle.Left;
-            groupBox2.Location = new Point(491, 23);
+            groupBox2.Location = new Point(561, 29);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(496, 112);
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(567, 151);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "Indentify BFT (Min 60 Sec)";
@@ -166,27 +175,29 @@
             // 
             Dtp_BftEndTime.CustomFormat = "dd/MM/yy HH:mm:ss";
             Dtp_BftEndTime.Format = DateTimePickerFormat.Custom;
-            Dtp_BftEndTime.Location = new Point(132, 59);
+            Dtp_BftEndTime.Location = new Point(151, 79);
+            Dtp_BftEndTime.Margin = new Padding(3, 4, 3, 4);
             Dtp_BftEndTime.Name = "Dtp_BftEndTime";
-            Dtp_BftEndTime.Size = new Size(177, 27);
+            Dtp_BftEndTime.Size = new Size(202, 32);
             Dtp_BftEndTime.TabIndex = 4;
             Dtp_BftEndTime.ValueChanged += Dtp_BftEndTime_ValueChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(13, 59);
+            label4.Location = new Point(15, 79);
             label4.Name = "label4";
-            label4.Size = new Size(110, 20);
+            label4.Size = new Size(139, 25);
             label4.TabIndex = 3;
             label4.Text = "BFT end time : ";
             // 
             // Chk_IdentifyBFT
             // 
             Chk_IdentifyBFT.AutoSize = true;
-            Chk_IdentifyBFT.Location = new Point(338, 59);
+            Chk_IdentifyBFT.Location = new Point(386, 79);
+            Chk_IdentifyBFT.Margin = new Padding(3, 4, 3, 4);
             Chk_IdentifyBFT.Name = "Chk_IdentifyBFT";
-            Chk_IdentifyBFT.Size = new Size(120, 24);
+            Chk_IdentifyBFT.Size = new Size(150, 29);
             Chk_IdentifyBFT.TabIndex = 2;
             Chk_IdentifyBFT.Text = "Identify BFT ?";
             Chk_IdentifyBFT.UseVisualStyleBackColor = true;
@@ -196,18 +207,19 @@
             // 
             Dtp_BftStartTime.CustomFormat = "dd/MM/yy HH:mm:ss";
             Dtp_BftStartTime.Format = DateTimePickerFormat.Custom;
-            Dtp_BftStartTime.Location = new Point(132, 26);
+            Dtp_BftStartTime.Location = new Point(151, 35);
+            Dtp_BftStartTime.Margin = new Padding(3, 4, 3, 4);
             Dtp_BftStartTime.Name = "Dtp_BftStartTime";
-            Dtp_BftStartTime.Size = new Size(177, 27);
+            Dtp_BftStartTime.Size = new Size(202, 32);
             Dtp_BftStartTime.TabIndex = 1;
             Dtp_BftStartTime.ValueChanged += Dtp_BftStartTime_ValueChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(13, 25);
+            label1.Location = new Point(15, 33);
             label1.Name = "label1";
-            label1.Size = new Size(116, 20);
+            label1.Size = new Size(148, 25);
             label1.TabIndex = 0;
             label1.Text = "BFT Start time : ";
             // 
@@ -215,9 +227,11 @@
             // 
             groupBox3.Controls.Add(tableLayoutPanel1);
             groupBox3.Dock = DockStyle.Left;
-            groupBox3.Location = new Point(3, 23);
+            groupBox3.Location = new Point(3, 29);
+            groupBox3.Margin = new Padding(3, 4, 3, 4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(488, 112);
+            groupBox3.Padding = new Padding(3, 4, 3, 4);
+            groupBox3.Size = new Size(558, 151);
             groupBox3.TabIndex = 1;
             groupBox3.TabStop = false;
             groupBox3.Text = "Indentify BPT frame (Min 120 Sec)";
@@ -233,21 +247,23 @@
             tableLayoutPanel1.Controls.Add(label2, 0, 0);
             tableLayoutPanel1.Controls.Add(label3, 0, 1);
             tableLayoutPanel1.Controls.Add(Chk_IdentifyBPT, 2, 1);
-            tableLayoutPanel1.Location = new Point(6, 26);
+            tableLayoutPanel1.Location = new Point(7, 35);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(456, 60);
+            tableLayoutPanel1.Size = new Size(521, 80);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // Dtp_BptendTime
             // 
             Dtp_BptendTime.CustomFormat = "dd/MM/yy HH:mm:ss";
             Dtp_BptendTime.Format = DateTimePickerFormat.Custom;
-            Dtp_BptendTime.Location = new Point(121, 33);
+            Dtp_BptendTime.Location = new Point(152, 44);
+            Dtp_BptendTime.Margin = new Padding(3, 4, 3, 4);
             Dtp_BptendTime.Name = "Dtp_BptendTime";
-            Dtp_BptendTime.Size = new Size(163, 27);
+            Dtp_BptendTime.Size = new Size(186, 32);
             Dtp_BptendTime.TabIndex = 3;
             Dtp_BptendTime.ValueChanged += Dtp_BptendTime_ValueChanged;
             // 
@@ -255,9 +271,10 @@
             // 
             Dtp_BptStartTime.CustomFormat = "dd/MM/yy HH:mm:ss";
             Dtp_BptStartTime.Format = DateTimePickerFormat.Custom;
-            Dtp_BptStartTime.Location = new Point(121, 3);
+            Dtp_BptStartTime.Location = new Point(152, 4);
+            Dtp_BptStartTime.Margin = new Padding(3, 4, 3, 4);
             Dtp_BptStartTime.Name = "Dtp_BptStartTime";
-            Dtp_BptStartTime.Size = new Size(163, 27);
+            Dtp_BptStartTime.Size = new Size(186, 32);
             Dtp_BptStartTime.TabIndex = 2;
             Dtp_BptStartTime.ValueChanged += Dtp_BptStartTime_ValueChanged;
             // 
@@ -267,7 +284,7 @@
             label2.ForeColor = Color.Blue;
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(112, 20);
+            label2.Size = new Size(143, 25);
             label2.TabIndex = 0;
             label2.Text = "BFT Start time :";
             // 
@@ -275,18 +292,19 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Blue;
-            label3.Location = new Point(3, 30);
+            label3.Location = new Point(3, 40);
             label3.Name = "label3";
-            label3.Size = new Size(110, 20);
+            label3.Size = new Size(139, 25);
             label3.TabIndex = 1;
             label3.Text = "BFT end  time :";
             // 
             // Chk_IdentifyBPT
             // 
             Chk_IdentifyBPT.AutoSize = true;
-            Chk_IdentifyBPT.Location = new Point(290, 33);
+            Chk_IdentifyBPT.Location = new Point(344, 44);
+            Chk_IdentifyBPT.Margin = new Padding(3, 4, 3, 4);
             Chk_IdentifyBPT.Name = "Chk_IdentifyBPT";
-            Chk_IdentifyBPT.Size = new Size(147, 24);
+            Chk_IdentifyBPT.Size = new Size(184, 29);
             Chk_IdentifyBPT.TabIndex = 4;
             Chk_IdentifyBPT.Text = "Identify the BPT ?";
             Chk_IdentifyBPT.UseVisualStyleBackColor = true;
@@ -314,10 +332,11 @@
             Dgv_Analysis.DefaultCellStyle = dataGridViewCellStyle2;
             Dgv_Analysis.Dock = DockStyle.Fill;
             Dgv_Analysis.EnableHeadersVisualStyles = false;
-            Dgv_Analysis.Location = new Point(0, 138);
+            Dgv_Analysis.Location = new Point(0, 184);
+            Dgv_Analysis.Margin = new Padding(3, 4, 3, 4);
             Dgv_Analysis.Name = "Dgv_Analysis";
             Dgv_Analysis.RowHeadersWidth = 51;
-            Dgv_Analysis.Size = new Size(1494, 440);
+            Dgv_Analysis.Size = new Size(1707, 587);
             Dgv_Analysis.TabIndex = 1;
             // 
             // RunDateAndTime
@@ -333,7 +352,9 @@
             // 
             BlockSection.DataPropertyName = "BlockSection";
             BlockSection.HeaderText = "SECTION";
+            BlockSection.MinimumWidth = 6;
             BlockSection.Name = "BlockSection";
+            BlockSection.Width = 125;
             // 
             // RotationalDistanceCounter
             // 
@@ -375,7 +396,9 @@
             // 
             CautionSpeed.DataPropertyName = "CautionSpeed";
             CautionSpeed.HeaderText = "CD";
+            CautionSpeed.MinimumWidth = 6;
             CautionSpeed.Name = "CautionSpeed";
+            CautionSpeed.Width = 125;
             // 
             // TrainSpeed
             // 
@@ -399,7 +422,9 @@
             // 
             RunStatus.DataPropertyName = "RunStatus";
             RunStatus.HeaderText = "STATE";
+            RunStatus.MinimumWidth = 6;
             RunStatus.Name = "RunStatus";
+            RunStatus.Width = 125;
             // 
             // BPpressureMetric
             // 
@@ -447,115 +472,118 @@
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.Bottom;
+            toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, Lbl_StoppagesMapping, toolStripSeparator1, toolStripLabel2, Lbl_BFTmapping, toolStripSeparator2, Lable5, Lbl_BptMapping, toolStripSeparator3, toolStripLabel3, Lbl_BlockSectionMapping, toolStripSeparator4, toolStripLabel4, Lbl_OutputDirectoryAddress, toolStripSeparator5, toolStripButton1 });
-            toolStrip1.Location = new Point(0, 553);
+            toolStrip1.Location = new Point(0, 744);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1494, 25);
+            toolStrip1.Size = new Size(1707, 27);
             toolStrip1.TabIndex = 2;
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(122, 22);
+            toolStripLabel1.Size = new Size(155, 24);
             toolStripLabel1.Text = "Stoppages Mapping : ";
             // 
             // Lbl_StoppagesMapping
             // 
             Lbl_StoppagesMapping.BackColor = Color.Yellow;
             Lbl_StoppagesMapping.Name = "Lbl_StoppagesMapping";
-            Lbl_StoppagesMapping.Size = new Size(33, 22);
+            Lbl_StoppagesMapping.Size = new Size(41, 24);
             Lbl_StoppagesMapping.Text = "False";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
+            toolStripSeparator1.Size = new Size(6, 27);
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(87, 22);
+            toolStripLabel2.Size = new Size(108, 24);
             toolStripLabel2.Text = "BFT Mapping : ";
             // 
             // Lbl_BFTmapping
             // 
             Lbl_BFTmapping.Name = "Lbl_BFTmapping";
-            Lbl_BFTmapping.Size = new Size(33, 22);
+            Lbl_BFTmapping.Size = new Size(42, 24);
             Lbl_BFTmapping.Text = "Flase";
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 25);
+            toolStripSeparator2.Size = new Size(6, 27);
             // 
             // Lable5
             // 
             Lable5.Name = "Lable5";
-            Lable5.Size = new Size(88, 22);
+            Lable5.Size = new Size(109, 24);
             Lable5.Text = "BPT Mapping : ";
             // 
             // Lbl_BptMapping
             // 
             Lbl_BptMapping.Name = "Lbl_BptMapping";
-            Lbl_BptMapping.Size = new Size(33, 22);
+            Lbl_BptMapping.Size = new Size(41, 24);
             Lbl_BptMapping.Text = "False";
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 25);
+            toolStripSeparator3.Size = new Size(6, 27);
             // 
             // toolStripLabel3
             // 
             toolStripLabel3.Name = "toolStripLabel3";
-            toolStripLabel3.Size = new Size(112, 22);
+            toolStripLabel3.Size = new Size(140, 24);
             toolStripLabel3.Text = "Run plot Mapping : ";
             // 
             // Lbl_BlockSectionMapping
             // 
             Lbl_BlockSectionMapping.Name = "Lbl_BlockSectionMapping";
-            Lbl_BlockSectionMapping.Size = new Size(33, 22);
+            Lbl_BlockSectionMapping.Size = new Size(41, 24);
             Lbl_BlockSectionMapping.Text = "False";
             // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 25);
+            toolStripSeparator4.Size = new Size(6, 27);
             // 
             // toolStripLabel4
             // 
             toolStripLabel4.Name = "toolStripLabel4";
-            toolStripLabel4.Size = new Size(108, 22);
+            toolStripLabel4.Size = new Size(134, 24);
             toolStripLabel4.Text = "Out Put Directory : ";
             // 
             // Lbl_OutputDirectoryAddress
             // 
             Lbl_OutputDirectoryAddress.Name = "Lbl_OutputDirectoryAddress";
-            Lbl_OutputDirectoryAddress.Size = new Size(33, 22);
+            Lbl_OutputDirectoryAddress.Size = new Size(41, 24);
             Lbl_OutputDirectoryAddress.Text = "False";
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 25);
+            toolStripSeparator5.Size = new Size(6, 27);
             // 
             // toolStripButton1
             // 
             toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
             toolStripButton1.ImageTransparentColor = Color.Magenta;
             toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(138, 22);
+            toolStripButton1.Size = new Size(173, 24);
             toolStripButton1.Text = "Set Out put Directory";
+            toolStripButton1.Click += toolStripButton1_Click;
             // 
             // FrmDataAnalysis
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1494, 578);
+            ClientSize = new Size(1707, 771);
             Controls.Add(toolStrip1);
             Controls.Add(Dgv_Analysis);
             Controls.Add(groupBox1);
             DoubleBuffered = true;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmDataAnalysis";
             Text = "DATA ANALYSIS";
             WindowState = FormWindowState.Maximized;

@@ -94,12 +94,26 @@ namespace MAUI_SPM.DataModels
             public double BPpressureMetric { get; set; }
             public double BCpressureMetric { get; set; }
             public int ThrottleInt { get; set; }
+
+            public double ExcessSpeed { get { return getExcessSpeed(); } }
+
+            private double getExcessSpeed()
+            {
+                if (TrainSpeed > SectionalSpeed || TrainSpeed > CautionSpeed)
+                {
+                    return CautionSpeed > 0 ? TrainSpeed - CautionSpeed : TrainSpeed - SectionalSpeed;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
 
         private static double PressureModifierToMetric(double PressureInPSI)
         {
 
-            return Math.Round((PressureInPSI * 0.070307), 2);
+            return Math.Round(PressureInPSI * 0.070307, 2);
 
         }
 
@@ -221,7 +235,7 @@ namespace MAUI_SPM.DataModels
             public double TrainSpeed { get; set; }
             public double TractiveEffort { get; set; }
             public double RotationalDistanceCounter { get; set; }
-            public double CumulativeDistanceCounter { get; set; } 
+            public double CumulativeDistanceCounter { get; set; }
 
             public double Hectometer { get; set; }
 
@@ -241,6 +255,9 @@ namespace MAUI_SPM.DataModels
             public int StopRowId { get; set; }
         }
 
+        /// <summary>
+        /// Contains List<Models.BrakingPatternModel>,PatternLabel & TimeSpan of stop
+        /// </summary>
         public class BrakingPatternModelLists
         {
             public List<Models.BrakingPatternModel> PatternList { get; set; }
@@ -255,44 +272,51 @@ namespace MAUI_SPM.DataModels
 
                     return TimeEnd - TimeStart;
                 }
-                else return new TimeSpan(0);
-
-
+                else
+                {
+                    return new TimeSpan(0);
+                }
             }
         }
 
-        public class  RunPlotterListModel
+        /// <summary>
+        /// Contains List<Models.CommonDieselBindingEventDataModel> BlockRunList, FromTime, Totime, Block section name And TimeDuration
+        /// </summary>
+        public class RunPlotterListModel
         {
-         public List<Models.CommonDieselBindingEventDataModel> BlockRunList { get; set; }
-        public DateTime FromTime { get { return BlockRunList.Min(x => x.RunDateAndTime); } }
-        public DateTime ToTime { get { return BlockRunList.Max(x => x.RunDateAndTime); } }
-        public int TimeDuration { get { return (FromTime - ToTime).Minutes; } }
-        public String BlockSection()
+            public List<Models.CommonDieselBindingEventDataModel> BlockRunList { get; set; }
+            public DateTime FromTime { get { return BlockRunList.Min(x => x.RunDateAndTime); } }
+            public DateTime ToTime { get { return BlockRunList.Max(x => x.RunDateAndTime); } }
+            public int TimeDuration { get { return (FromTime - ToTime).Minutes; } }
+            public String BlockSection()
             {
                 if (BlockRunList != null)
                 {
                     return BlockRunList.FirstOrDefault().BlockSection;
                 }
-                else return "";
+                else
+                {
+                    return "";
+                }
             }
 
-        }     
-               
-        
+        }
+
+
     }
 }
-         
-    
-        
-        
 
-    
- 
-    
-        
 
-        
-    
+
+
+
+
+
+
+
+
+
+
 
 
 

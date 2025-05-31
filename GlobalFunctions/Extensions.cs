@@ -17,7 +17,9 @@ namespace SPM_WINFM.GlobalFunctions
                 return Convert.ToDouble(InputString);
             }
             else
-                throw new Exception($"{InputString} Is a invalid Single precission Number Extension");            
+            {
+                throw new Exception($"{InputString} Is a invalid Single precission Number Extension");
+            }
         }
 
         public static Int16 ConvertToInt(this string InputString)
@@ -27,12 +29,14 @@ namespace SPM_WINFM.GlobalFunctions
                 return Convert.ToInt16(result);
             }
             else
+            {
                 throw new Exception($"{InputString} Is a invalid Single precission Number Extension");
+            }
         }
 
-        public static DateTime ConvertToDateTime(this string InputString,String InputFormat)
+        public static DateTime ConvertToDateTime(this string InputString, String InputFormat)
         {
-            DateTime Output;            
+            DateTime Output;
             Boolean IsValidFormat = DateTime.TryParse(InputString, out Output);
 
             if (IsValidFormat)
@@ -40,8 +44,10 @@ namespace SPM_WINFM.GlobalFunctions
 
                 return DateTime.ParseExact(InputString, InputFormat, CultureInfo.InvariantCulture);
             }
-            else return Output;
-            
+            else
+            {
+                return Output;
+            }
         }
 
         public static TimeSpan ConvertToTimeSpan(this string InputString, String InputFormat)
@@ -52,8 +58,8 @@ namespace SPM_WINFM.GlobalFunctions
             if (IsValidFormat)
             {
 
-                Output = TimeSpan.ParseExact(InputString,InputFormat, CultureInfo.InvariantCulture);
-              
+                Output = TimeSpan.ParseExact(InputString, InputFormat, CultureInfo.InvariantCulture);
+
             }
             return Output;
         }
@@ -70,8 +76,10 @@ namespace SPM_WINFM.GlobalFunctions
             {
                 return -1;
             }
-            else return x.ConvertToInt();
-            
+            else
+            {
+                return x.ConvertToInt();
+            }
         }
 
         /// <summary>
@@ -83,11 +91,11 @@ namespace SPM_WINFM.GlobalFunctions
         {
             Boolean IsNumeric = false;
 
-            if (Double.TryParse(InputString,out _))
+            if (Double.TryParse(InputString, out _))
             {
                 IsNumeric = true;
             }
-            else if (int.TryParse(InputString,out _))
+            else if (int.TryParse(InputString, out _))
             {
                 IsNumeric = true;
             }
@@ -111,11 +119,16 @@ namespace SPM_WINFM.GlobalFunctions
             else if (prevSpeed > 0 && nextSpeed > 0)
             {
                 status = "RUN";
-            } else status = "None";
+            }
+            else
+            {
+                status = "None";
+            }
+
             return status;
         }
 
-     public static Boolean ConvertToBoolean(this String BoolString)
+        public static Boolean ConvertToBoolean(this String BoolString)
         {
             if (BoolString == "True" || BoolString == "Y" || BoolString == "Yes")
             {
@@ -125,7 +138,10 @@ namespace SPM_WINFM.GlobalFunctions
             {
                 return false;
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
 
     }

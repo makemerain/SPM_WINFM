@@ -40,7 +40,7 @@ namespace MAUI_SPM.ApplicationTools
 
                 var Q = (from l in excel.Worksheet<Models.MedhaSpeedometerModel>(0)
                          where
-                         l.Runtime != "" 
+                         l.Runtime != ""
                          select l).ToList();
 
 
@@ -84,7 +84,7 @@ namespace MAUI_SPM.ApplicationTools
                 //Time	Speed	Distance	TE	GenPower	BPP	BCP	TL24T	GF	RV	Th	Hr	H1	H2	PCS	PB	VALIDITY	MF	Evnt
 
 
-                excel.AddMapping<Models.LaxvenSpeedometerModel>(x => x.RunDateAndTimeInput, "Time");                
+                excel.AddMapping<Models.LaxvenSpeedometerModel>(x => x.RunDateAndTimeInput, "Time");
                 excel.AddMapping<Models.LaxvenSpeedometerModel>(x => x.TrainSpeed, "Speed");
                 excel.AddMapping<Models.LaxvenSpeedometerModel>(x => x.CumulativeDistanceCounter, "Distance");
                 excel.AddMapping<Models.LaxvenSpeedometerModel>(x => x.TractiveEffort, "TE");
@@ -104,9 +104,8 @@ namespace MAUI_SPM.ApplicationTools
                                where l.RunDateAndTime <= QueryToTime &&
                                l.RunDateAndTime >= QueryFromTime
                                select l).ToList();
-                double runningTotal = 0;
 
-                var CumQ = (FilterQ.Select((x, index) => new
+                var CumQ = FilterQ.Select((x, index) => new
                 {
                     NextValue = index < FilterQ.Count - 1 ? FilterQ[index + 1].CumulativeDistanceCounter : (double?)null,
                     RotationalDistanceCounter = index < FilterQ.Count - 1 ? (double?)(x.CumulativeDistanceCounter - FilterQ[index + 1].CumulativeDistanceCounter) : null,
@@ -118,9 +117,9 @@ namespace MAUI_SPM.ApplicationTools
                     x.BPpressureMetric,
                     x.BCpressureMetric,
                     x.Horn
-                }).Where(x => x.NextValue != null).ToList());
-                
-     
+                }).Where(x => x.NextValue != null).ToList();
+
+
                 return FilterQ;
 
             }

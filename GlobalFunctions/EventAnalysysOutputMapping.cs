@@ -13,21 +13,21 @@ using AutoMapper;
 
 namespace SPM_WINFM.GlobalFunctions
 {
-    public  class EventAnalysysOutputMapping
+    public class EventAnalysysOutputMapping
     {
         // String SPMtype, String sectionLable
         public EventAnalysysOutputMapping(List<Models.CommonDieselBindingEventDataModel> commonBindableDieselEventDatalist)
         {
             _commonBindableEventDataList = commonBindableDieselEventDatalist;
-           
+
         }
-             
-       
+
+
         private List<Models.CommonDieselBindingEventDataModel> _commonBindableEventDataList = new();
-     
-       // private String _SPMtype = "";
-      //  private String _sectionLalble;
-       
+
+        // private String _SPMtype = "";
+        //  private String _sectionLalble;
+
 
         /// <summary>
         /// Returns the BFT / BPT braking pattern list
@@ -36,11 +36,11 @@ namespace SPM_WINFM.GlobalFunctions
         /// <param name="BFTendtime"></param>
         /// <param name="SectionLable"></param>
         /// <returns>List<Models.BrakingPatternModel></returns>
-        public List<Models.BrakingPatternModel> Get_BrakingTestPatternList(DateTime BFTstarttime,DateTime BFTendtime, String SectionLable)
+        public List<Models.BrakingPatternModel> Get_BrakingTestPatternList(DateTime BFTstarttime, DateTime BFTendtime, String SectionLable)
         {
             List<Models.BrakingPatternModel> blist = new();
 
-            if ( _commonBindableEventDataList != null )
+            if (_commonBindableEventDataList != null)
             {
                 var EventList = (from Q in _commonBindableEventDataList
                                  where Q.RunDateAndTime >= BFTstarttime && Q.RunDateAndTime <= BFTendtime
@@ -55,7 +55,7 @@ namespace SPM_WINFM.GlobalFunctions
 
                 blist = mapper.Map<List<Models.BrakingPatternModel>>(EventList);
 
-            }           
+            }
 
             return blist;
         }
@@ -75,7 +75,10 @@ namespace SPM_WINFM.GlobalFunctions
                 return Qlist.ToList();
 
             }
-            else return null;
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace SPM_WINFM.GlobalFunctions
         /// <returns>List<Models.BrakindPatternModelLists></returns>
         public List<Models.BrakingPatternModelLists> Get_BrakingPatternStoplist(List<Models.StoppageLablingModel> StoppageslList)
         {
-            
+
             double cumulativeDistacne = 0;
             List<Models.BrakingPatternModel> UniquePatternList = new(); // Each stop unique
             List<Models.BrakingPatternModelLists> BrakingPatternLists = new(); // List of lists of UniquePatternList
@@ -97,30 +100,33 @@ namespace SPM_WINFM.GlobalFunctions
                 {
                     // Filter Stoppage till 0 row
                     var StopDataList = (from Q in _commonBindableEventDataList
-                                    where Q.Rowid > 0 && Q.Rowid <= x.StopRowId
-                                    select Q).ToList().OrderBy(x => x.Rowid).ToList();
+                                        where Q.Rowid > 0 && Q.Rowid <= x.StopRowId
+                                        select Q).ToList().OrderBy(x => x.Rowid).ToList();
 
 
                     // Append each item till 1400 mts to the list UniquePatternList Then add the list to List group StoppagesPatternLists
                     foreach (var Event in StopDataList)
                     {
-                        UniquePatternList.Add(new Models.BrakingPatternModel 
+                        UniquePatternList.Add(new Models.BrakingPatternModel
                         {
-                          TrainSpeed = Event.TrainSpeed,
-                          TractiveEffort = Event.TractiveEffort,
-                          RotationalDistanceCounter = Event.RotationalDistanceCounter,
-                          CumulativeDistanceCounter =   Event.CumulativeDistanceCounter,
-                          BPpressureMetric = Event.BPpressureMetric,
-                          BCpressureMetric = Event.BCpressureMetric,
-                          Hectometer = Event.Hectometer,
-                          ThrottleInt = Event.ThrottleInt,
-                          RunDateTime = Event.RunDateAndTime,
-                          StopLable = x.StoppageLable
-                        });                                            
+                            TrainSpeed = Event.TrainSpeed,
+                            TractiveEffort = Event.TractiveEffort,
+                            RotationalDistanceCounter = Event.RotationalDistanceCounter,
+                            CumulativeDistanceCounter = Event.CumulativeDistanceCounter,
+                            BPpressureMetric = Event.BPpressureMetric,
+                            BCpressureMetric = Event.BCpressureMetric,
+                            Hectometer = Event.Hectometer,
+                            ThrottleInt = Event.ThrottleInt,
+                            RunDateTime = Event.RunDateAndTime,
+                            StopLable = x.StoppageLable
+                        });
 
                         cumulativeDistacne += Event.RotationalDistanceCounter;
 
-                        if (cumulativeDistacne >= 1400) break;
+                        if (cumulativeDistacne >= 1400)
+                        {
+                            break;
+                        }
                     }
 
                     // Add the each stop list & reset the counter
@@ -136,9 +142,9 @@ namespace SPM_WINFM.GlobalFunctions
                 }
             }
 
-            return BrakingPatternLists;        
+            return BrakingPatternLists;
 
-                          
+
         }
 
         /// <summary>
@@ -153,13 +159,13 @@ namespace SPM_WINFM.GlobalFunctions
 
 
             var Qlist = from Q in _commonBindableEventDataList
-                        group Q by Q.BlockSection                        
-                        into Qg                        
+                        group Q by Q.BlockSection
+                        into Qg
                         select Qg;
 
-            if (Qlist != null )
+            if (Qlist != null)
             {
-                foreach (var Q in Qlist) 
+                foreach (var Q in Qlist)
                 {
 
                     var BlockList = (from El in _commonBindableEventDataList
@@ -169,14 +175,14 @@ namespace SPM_WINFM.GlobalFunctions
                     // Add the list too Run plotter
                     RunPlotterList.Add(new Models.RunPlotterListModel
                     {
-                        BlockRunList = BlockList,                                       
+                        BlockRunList = BlockList,
 
                     });
                 }
             }
 
-              return RunPlotterList;          
-                        
+            return RunPlotterList;
+
         }
 
     }

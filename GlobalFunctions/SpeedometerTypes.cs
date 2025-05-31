@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MAUI_SPM.ApplicationTools
 {
     public class SpeedometerTypes
-            {
+    {
         public enum SPMtypes
         {
             LAXVEN,

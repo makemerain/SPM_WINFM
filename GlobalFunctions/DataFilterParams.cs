@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MAUI_SPM.ApplicationTools
 {
-    public  class DataFilterParams
+    public class DataFilterParams
     {
 
-       
+
         public String _excelFilePath { get; set; }
         public String _speedoMeterType { get; set; }
         public DateTime _QueryTime { get; set; }
